@@ -57,7 +57,7 @@
 .right-section{
   display: flex;
   align-items: center;
-  width: 250px;
+  width: 320px;
   justify-content: space-evenly;
 }
 
@@ -77,5 +77,11 @@
 }
 
 .default{
-  width: 36px;
+  width: 42px;
+}
+
+.down{
+  width: 12px;
+  position: relative;
+  right: 20px;
 }

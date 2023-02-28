@@ -5,6 +5,7 @@ import wishlist from '../imgs/wishlist.png'
 import cart from '../imgs/cart.png'
 import notify from '../imgs/notify.png'
 import Default from '../imgs/default.png'
+import down from '../imgs/down.png'
 import './navbar.css'
 
 function Navbar() {
@@ -25,6 +26,7 @@ function Navbar() {
         <img src={cart} className="cart" />
         <img src={notify} className="notify" />
         <img src={Default} className="default" />
+        <img src={down} className="down" />
       </div>
     </div>
     </>
