@@ -21,8 +21,8 @@
   outline: none;
   height:46px;
   width: 52px;
-  border-top-right-radius: 6px;
-  border-bottom-right-radius: 6px;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
 }
 
 .left-section {
@@ -43,8 +43,8 @@
     color: white;
     padding-left: 10px;
     border: 2px solid #455b6e;
-    border-top-left-radius: 6px;
-    border-bottom-left-radius: 6px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
   background-color: #2d3b47;
 
 }
