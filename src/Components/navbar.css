@@ -3,6 +3,7 @@
   padding: 20px;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   border-bottom: 2px solid #455b6e;
 }
 
@@ -51,4 +52,30 @@
 
 .search-box::placeholder{
     color: white;
+}
+
+.right-section{
+  display: flex;
+  align-items: center;
+  width: 250px;
+  justify-content: space-evenly;
+}
+
+.wishlist{
+  width: 26px;
+}
+
+.cart{
+  width: 25px;
+  padding: 12px;
+  border-radius: 9px;
+  background-color: #e99317;
+}
+
+.notify{
+  width: 32px;
+}
+
+.default{
+  width: 36px;
 }
