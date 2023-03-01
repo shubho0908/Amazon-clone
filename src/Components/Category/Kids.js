@@ -2,7 +2,11 @@ import React from 'react'
 
 function Kids() {
   return (
-    <div>Kids</div>
+    <>
+    <div className="App">
+      Kids
+    </div>
+    </>
   )
 }
 

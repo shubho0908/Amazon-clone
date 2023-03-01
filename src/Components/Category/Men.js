@@ -2,7 +2,11 @@ import React from 'react'
 
 function Men() {
   return (
-    <div>Men</div>
+    <>
+    <div className="App">
+      Men
+    </div>
+    </>
   )
 }
 

@@ -63,22 +63,22 @@
 }
 
 .wishlist{
-  width: 26px;
+  width: 20px;
 }
 
 .cart{
-  width: 25px;
+  width: 20px;
   padding: 12px;
   border-radius: 9px;
   background-color: #e99317;
 }
 
 .notify{
-  width: 32px;
+  width: 25px;
 }
 
 .default{
-  width: 48px;
+  width: 44px;
 }
 
 .down{

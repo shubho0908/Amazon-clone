@@ -1,6 +1,9 @@
 .App {
   text-align: center;
+  width: 100vw;
+  background-color: #f6f5f5;
 }
+
 
 .main-body{
   display: flex;
