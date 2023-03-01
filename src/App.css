@@ -1,10 +1,14 @@
 .App {
+  position: relative;
+  top: 85px;
   text-align: center;
-  width: 100vw;
+  width: 100%;
   background-color: #f6f5f5;
 }
 
 
 .main-body{
   display: flex;
+  position: fixed;
+  width: 100%;
 }

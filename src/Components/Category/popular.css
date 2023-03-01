@@ -1,0 +1,39 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:wght@800&display=swap");
+
+.popular {
+  position: relative;
+  top: 80px;
+  left: 34px;
+  width: 96%;
+}
+
+.popular-head {
+  font-family: "Noto Sans", sans-serif;
+  font-size: 25px;
+  text-align: center;
+  color: rgb(38, 38, 38);
+}
+
+.electronics,
+.jwellery,
+.men,
+.women {
+    cursor: pointer;
+  width: 50px;
+  background-color: white;
+  padding: 15px;
+  border-radius: 15px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+}
+.jwellery,
+.men,
+.women {
+  margin-left: 40px;
+}
+
+.popular-items {
+  display: flex;
+  margin-top: 55px;
+  justify-content: center;
+}

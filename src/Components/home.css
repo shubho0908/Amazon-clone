@@ -9,8 +9,8 @@
     rgba(233, 125, 23, 1) 87%
   );
   position: relative;
-  margin-left: 30px;
-  margin-right: 30px;
+  margin-left: 60px;
+  margin-right: 60px;
   border-radius: 20px;
   top: 40px;
   padding: 10px;
@@ -20,13 +20,13 @@
 }
 
 .poster-head {
-  font-size: 45px;
+  font-size: 39px;
   font-family: 'Noto Sans', sans-serif;
   color: white;
 }
 
 .poster-desc {
-  font-size: 18px;
+  font-size: 17px;
   font-family: 'Poppins', sans-serif;
   width: 28%;
   color: white;
@@ -52,11 +52,22 @@
 
 .delivery {
   position: absolute;
-  width: 450px;
+  width: 400px;
   right: 200px;
-  top: 85px;
-  backdrop-filter: drop-shadow(
-    rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
-    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px
-  );
+  top: 1px;
+animation: float .6s ease-out;
+}
+
+@keyframes float {
+
+  0%{
+    top: 50px;
+    opacity: 0;
+  }
+  
+  100%{
+    top: 1px;
+    opacity: 1;
+  }
+  
 }
