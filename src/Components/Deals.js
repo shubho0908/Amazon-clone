@@ -28,8 +28,8 @@ function Deals() {
                 </div>
                 <div className="card-data">
                   <p className="card-title">
-                    {items.title.length >= 30
-                      ? items.title.slice(0, 30) + "..."
+                    {items.title.length >= 32
+                      ? items.title.slice(0, 32) + ".."
                       : items.title}
                   </p>
                   <p className="card-category">{items.category}</p>
