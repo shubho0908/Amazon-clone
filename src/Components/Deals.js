@@ -24,7 +24,7 @@ function Deals() {
               <div className="card" key={items.id}>
                 <img src={items.image} className="card-img" />
 
-                <p className="card-title">{items.title.slice(0, 50) + "..."}</p>
+                <p className="card-title">{ items.title.length >= 50 ? (items.title.slice(0, 50) + "...") : (items.title)}</p>
                 <p className="card-category">{items.category}</p>
                 <div className="card-price">
                   <p className="discount">{items.price}</p>

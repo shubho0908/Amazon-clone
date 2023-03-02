@@ -9,9 +9,9 @@
     rgba(233, 125, 23, 1) 87%
   );
   position: relative;
-  margin-left: 60px;
-  margin-right: 60px;
   border-radius: 20px;
+  margin-left: 220px;
+  margin-right: 220px;
   top: 40px;
   padding: 10px;
   padding-bottom: 40px;
@@ -53,7 +53,7 @@
 .delivery {
   position: absolute;
   width: 400px;
-  right: 200px;
+  right: 250px;
   top: 1px;
 animation: float .6s ease-out;
 }

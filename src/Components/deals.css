@@ -13,8 +13,10 @@
 }
 
 .deal-items {
-  margin-top: 55px;
   display: grid;
+  margin-top: 55px;
+  padding-left: 90px;
+  padding-right: 90px;
   grid-template-columns: repeat(auto-fill, 250px);
   grid-template-rows: repeat(auto-fill, 430px);
   grid-gap: 10px; /* adjust as needed */
@@ -24,7 +26,7 @@
 .card {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   margin-left: 24px;
 }
 
@@ -41,12 +43,21 @@
 }
 
 .card-title{
+  margin-top: 15px;
+  margin-bottom: 10px;
     font-family: "Noto Sans", sans-serif;
-    font-size: 16px;
     text-align: left;
+    font-size: 16px;
     color: rgb(38, 38, 38);
 }
 
 .card-category{
     margin: 0;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 12px;
+}
+
+.mrp{
+  margin-left: 15px;
 }
