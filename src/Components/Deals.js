@@ -22,12 +22,14 @@ function Deals() {
           AllProducts.map((items) => {
             return (
               <div className="card" key={items.id}>
+                <div className="card-img-data">
                   <img src={items.image} className="card-img" />
-                <button className="view">View product</button>
+                  <button className="view">View product</button>
+                </div>
                 <div className="card-data">
                   <p className="card-title">
-                    {items.title.length >= 50
-                      ? items.title.slice(0, 50) + "..."
+                    {items.title.length >= 30
+                      ? items.title.slice(0, 30) + "..."
                       : items.title}
                   </p>
                   <p className="card-category">{items.category}</p>

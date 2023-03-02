@@ -1,6 +1,6 @@
 .Deals {
   position: relative;
-  top: 120px;
+  top: 160px;
   background-color: #f6f5f5;
 }
 .deals-head {
@@ -12,11 +12,10 @@
 
 .deal-items {
   display: grid;
-  margin-top: 55px;
   padding-left: 90px;
   padding-right: 90px;
   grid-template-columns: repeat(auto-fill, 250px);
-  grid-template-rows: repeat(auto-fill, 430px);
+  /* grid-template-rows: repeat(auto-fill, 450px); */
   grid-gap: 10px; /* adjust as needed */
   justify-content: center;
 }
@@ -27,6 +26,7 @@
   flex-direction: column;
   align-items: flex-start;
   margin-left: 24px;
+  margin-top: 15px;
 }
 
 .card-img {
@@ -79,7 +79,6 @@
 .view{
   cursor: pointer;
   position: relative;
-  left: 60px;
   bottom: 145px;
   border: none;
   background-color: white;
@@ -95,15 +94,18 @@
 
 .card-data{
   position: relative;
-  bottom: 30px;
   text-align: left;
 }
 
-.card:hover .view{
+.card-img-data:hover .view{
   opacity: 1;
   visibility: visible;
 }
 
-.card:hover .card-img{
-  filter: brightness(80%);
+.card-img-data:hover .card-img{
+  filter: brightness(75%);
+}
+
+.card-img-data{
+  height: 250px;
 }
