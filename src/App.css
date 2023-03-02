@@ -1,20 +1,8 @@
-.App {
+
+.content {
   position: relative;
-  top: 85px;
+  top: 86px;
+  background-size: cover;
   text-align: center;
-  overflow: auto;
-  height: 100vh;
-  width: 100%;
   background-color: #f6f5f5;
-}
-
-.App::-webkit-scrollbar{
-  display: none;
-}
-
-
-.main-body{
-  display: flex;
-  position: fixed;
-  width: 100%;
 }

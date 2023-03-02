@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./popular.css";
+import Deals from "../Deals";
 
 // IMAGES
 
@@ -26,6 +27,7 @@ function Popular() {
           <img src={Women} className="women" />
         </div>
       </div>
+      <Deals/>
     </>
   );
 }

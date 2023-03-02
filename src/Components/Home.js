@@ -2,12 +2,11 @@ import React from "react";
 import "./home.css";
 import Delivery from "../imgs/delivery.png";
 import Popular from "./Category/Popular";
-import Deals from "./Deals";
 
 function Home() {
   return (
     <>
-      <div className="App">
+        <div className="content">
         <div className="poster-area">
           <div className="poster-data">
             <p className="poster-head">Free Delivery!</p>
@@ -20,8 +19,7 @@ function Home() {
         </div>
         <img src={Delivery} className="delivery" />
         <Popular/>
-        <Deals/>
-      </div>
+        </div>
     </>
   );
 }

@@ -21,14 +21,14 @@ function Deals() {
         {AllProducts &&
           AllProducts.map((items) => {
             return (
-              <div className="card">
+              <div className="card" key={items.id}>
                 <img src={items.image} className="card-img" />
 
-                <p className="card-title">{items.title}</p>
-                <p className="card-category"></p>
+                <p className="card-title">{items.title.slice(0, 50) + "..."}</p>
+                <p className="card-category">{items.category}</p>
                 <div className="card-price">
-                  <p className="discount"></p>
-                  <p className="mrp"></p>
+                  <p className="discount">{items.price}</p>
+                  <p className="mrp">{Math.round(items.price*1.66)}</p>
                 </div>
               </div>
             );
