@@ -18,7 +18,7 @@ function Popular() {
     <>
       <div className="popular">
         <div className="popular-data">
-          <p className="popular-head">Popular categories</p>
+          <p className="popular-head">Popular categories 🌟</p>
         </div>
         <div className="popular-items">
           <img src={Electronics} className="electronics" />
