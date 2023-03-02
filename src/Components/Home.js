@@ -2,6 +2,7 @@ import React from "react";
 import "./home.css";
 import Delivery from "../imgs/delivery.png";
 import Popular from "./Category/Popular";
+import Deals from "./Deals";
 
 function Home() {
   return (
@@ -19,6 +20,7 @@ function Home() {
         </div>
         <img src={Delivery} className="delivery" />
         <Popular/>
+        <Deals/>
       </div>
     </>
   );
