@@ -27,8 +27,8 @@ function Deals() {
                 <p className="card-title">{ items.title.length >= 50 ? (items.title.slice(0, 50) + "...") : (items.title)}</p>
                 <p className="card-category">{items.category}</p>
                 <div className="card-price">
-                  <p className="discount">{items.price}</p>
-                  <p className="mrp">{Math.round(items.price*1.66)}</p>
+                  <p className="discount">${items.price}</p>
+                  <p className="mrp">${Math.round(items.price*1.66)}</p>
                 </div>
               </div>
             );

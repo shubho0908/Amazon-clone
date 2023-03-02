@@ -2,7 +2,6 @@
   position: relative;
   top: 120px;
   background-color: #f6f5f5;
-
 }
 
 .deals-head {
@@ -31,33 +30,45 @@
 }
 
 .card-img {
+  cursor: pointer;
   width: 130px;
   height: 150px;
   background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.04) 0px 3px 5px;
   padding: 50px;
   border-radius: 15px;
 }
 
-.card-price{
-    display: flex;
+.card-price {
+  display: flex;
+  align-items: center;
 }
 
-.card-title{
+.card-title {
   margin-top: 15px;
   margin-bottom: 10px;
-    font-family: "Noto Sans", sans-serif;
-    text-align: left;
-    font-size: 16px;
-    color: rgb(38, 38, 38);
+  font-family: "Noto Sans", sans-serif;
+  text-align: left;
+  font-size: 16px;
+  color: rgb(38, 38, 38);
 }
 
-.card-category{
-    margin: 0;
-    text-transform: uppercase;
-    font-weight: 600;
-    font-size: 12px;
+.card-category {
+  margin: 0;
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 12px;
 }
 
-.mrp{
-  margin-left: 15px;
+.mrp {
+  margin-left: 8px;
+  text-decoration: line-through;
+  font-weight: 600;
+  color: rgb(169, 0, 0);
+}
+
+.discount {
+  font-family: "Noto Sans", sans-serif;
+  font-weight: 600;
+  font-size: 20px;
 }
