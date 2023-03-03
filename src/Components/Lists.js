@@ -1,33 +1,15 @@
-import { React, useEffect, useState } from "react";
-import "./deals.css";
+import {React,useState,useEffect} from "react";
+import { AddToList, RemoveList } from "../action/List";
+import { useSelector, useDispatch } from "react-redux";
 import Add from "../imgs/heart.png";
 import Added from "../imgs/red-heart.png";
 import rating from "../imgs/rating.png";
-import { AddToList, RemoveList } from "../action/List";
-import { useSelector, useDispatch } from "react-redux";
+import './lists.css'
 
-function Deals() {
-  const [AllProducts, setAllProducts] = useState([]);
-  const [AddedIds, setAddedIds] = useState([]);
-
+function Lists() {
+    const [AddedIds, setAddedIds] = useState([]);
   const ListItems = useSelector((state) => state.ItemsAdded.ListItems);
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    const GetProducts = async () => {
-      const data = await fetch("https://fakestoreapi.com/products");
-      const new_data = await data.json();
-      setAllProducts(new_data);
-      // Add a review number property to each item object
-      const productsWithReviewNumber = new_data.map((item) => ({
-        ...item,
-        reviewNumber: Math.floor(Math.random() * (150 - 50 + 1)) + 50,
-      }));
-      setAllProducts(productsWithReviewNumber);
-    };
-
-    GetProducts();
-  }, []);
 
   useEffect(() => {
     // Update the added ids whenever the list items change
@@ -41,11 +23,11 @@ function Deals() {
   };
 
   return (
-    <div className="Deals">
-      <p className="deals-head">Hot Deals 🔥</p>
-      <div className="deal-items">
-        {AllProducts &&
-          AllProducts.map((items) => {
+    <>
+       <div className="lists">
+      <div className="lists-items">
+        {ListItems &&
+          ListItems.map((items) => {
             return (
               <div className="card" key={items.id}>
                 <div className="card-img-data">
@@ -78,7 +60,7 @@ function Deals() {
                       <img src={rating} className="rating-img" />
                       <img src={rating} className="rating-img" />
                       <p className="rating-text">
-                        {"5 " + "(" + items.reviewNumber + " reviews)"}
+                        5
                       </p>
                     </div>
                   </div>
@@ -92,7 +74,8 @@ function Deals() {
           })}
       </div>
     </div>
+    </>
   );
 }
 
-export default Deals;
+export default Lists;

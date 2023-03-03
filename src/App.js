@@ -5,6 +5,7 @@ import Home from "./Components/Home";
 import Men from "./Components/Category/Men";
 import Women from "./Components/Category/Women";
 import Kids from "./Components/Category/Kids";
+import Lists from "./Components/Lists";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route exact path="/men" element={<Men />} />
           <Route exact path="/women" element={<Women />} />
           <Route exact path="/kids" element={<Kids />} />
+          <Route exact path="/wishlists" element={<Lists />} />
         </Routes>
       </BrowserRouter>
     </>
