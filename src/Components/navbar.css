@@ -10,6 +10,11 @@
   border-bottom: 2px solid #455b6e;
 }
 
+a{
+  display: flex;
+  align-items: center;
+}
+
 .logo {
   width: 120px;
 }

@@ -55,19 +55,19 @@
   position: absolute;
   width: 400px;
   right: 250px;
-  top: 1px;
+  top: 95px;
 animation: float .6s ease-out;
 }
 
 @keyframes float {
 
   0%{
-    top: 50px;
+    top: 120px;
     opacity: 0;
   }
   
   100%{
-    top: 1px;
+    top: 95px;
     opacity: 1;
   }
   
