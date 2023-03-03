@@ -41,9 +41,9 @@ function Lists() {
                       }
                     }}
                     src={isAdded(items.id) ? Added : Add}
-                    className="add-list"
+                    className="add-list2"
                   />
-                  <button className="view">View product</button>
+                  <button className="view2">View product</button>
                 </div>
                 <div className="card-data">
                   <p className="card-title">

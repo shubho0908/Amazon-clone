@@ -15,7 +15,7 @@ function Navbar() {
     <>
       <div className="navbar">
         <div className="left-section">
-          <img src={Logo} className="logo" />
+          <Link to="/"><img src={Logo} className="logo" /></Link>
           <div className="search-bar">
             <input type="text" className="search-box" placeholder="Search..." />
             <button className="search-btn">

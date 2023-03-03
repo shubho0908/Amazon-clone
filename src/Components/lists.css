@@ -71,11 +71,11 @@
     font-size: 20px;
   }
   
-  .view {
+  .view2 {
     cursor: pointer;
     position: relative;
     bottom: 145px;
-    right: 10px;
+    left: 38px;
     border: none;
     background-color: white;
     text-align: center;
@@ -93,7 +93,7 @@
     text-align: left;
   }
   
-  .card-img-data:hover .view {
+  .card-img-data:hover .view2 {
     opacity: 1;
     visibility: visible;
   }
@@ -106,11 +106,11 @@
     height: 250px;
   }
   
-  .add-list {
+  .add-list2 {
     width: 24px;
     position: relative;
     bottom: 240px;
-    left: 142px;
+    left: 190px;
   }
   
   .rating-img {
