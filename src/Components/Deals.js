@@ -1,8 +1,11 @@
 import { React, useEffect, useState } from "react";
 import "./deals.css";
+import Add from "../imgs/heart.png";
+import Added from "../imgs/red-heart.png";
 
 function Deals() {
   const [AllProducts, setAllProducts] = useState([]);
+  const [Listadded, setListadded] = useState(false);
 
   useEffect(() => {
     const GetProducts = async () => {
@@ -24,6 +27,9 @@ function Deals() {
               <div className="card" key={items.id}>
                 <div className="card-img-data">
                   <img src={items.image} className="card-img" />
+                  <img onClick={() => {
+                    setListadded(!Listadded)
+                  }} src={Listadded ? Added : Add} className="add-list" />
                   <button className="view">View product</button>
                 </div>
                 <div className="card-data">

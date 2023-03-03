@@ -80,6 +80,7 @@
   cursor: pointer;
   position: relative;
   bottom: 145px;
+  right: 10px;
   border: none;
   background-color: white;
   text-align: center;
@@ -108,4 +109,11 @@
 
 .card-img-data{
   height: 250px;
+}
+
+.add-list{
+  width: 24px;
+    position: relative;
+    bottom: 240px;
+    left: 142px;
 }
