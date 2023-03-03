@@ -3,10 +3,16 @@ import "./deals.css";
 import Add from "../imgs/heart.png";
 import Added from "../imgs/red-heart.png";
 import rating from "../imgs/rating.png";
+import { AddToList, RemoveList } from "../action/List";
+import { useSelector, useDispatch } from "react-redux";
 
 function Deals() {
   const [AllProducts, setAllProducts] = useState([]);
   const [Listadded, setListadded] = useState(false);
+
+  const ListItems = useSelector((state)=> state.ItemsAdded.ListItems)
+  const dispatch = useDispatch();
+
 
   useEffect(() => {
     const GetProducts = async () => {
@@ -37,8 +43,17 @@ function Deals() {
                   <img
                     onClick={() => {
                       setListadded(!Listadded);
+                      if (Listadded === false) {
+                        dispatch(AddToList(items))
+                      }
+                      else if(Listadded === true){
+                        dispatch(RemoveList(items.id))
+                      }
                     }}
-                    src={Listadded ? Added : Add}
+                    src={ListItems.filter((ele) => ele.id === items.id)
+                      .length > 0
+                      ? Added
+                      : Add}
                     className="add-list"
                   />
                   <button className="view">View product</button>
