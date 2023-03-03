@@ -3,8 +3,7 @@ import "./deals.css";
 import Add from "../imgs/heart.png";
 import Added from "../imgs/red-heart.png";
 import rating from "../imgs/rating.png";
-import { AddToList, RemoveList } from "../action/List";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { app } from "../Firebase";
 import { getFirestore, collection, addDoc, getDocs } from "firebase/firestore";
 
@@ -16,7 +15,6 @@ function Deals() {
   const [Database, setDatabase] = useState([]);
 
   const ListItems = useSelector((state) => state.ItemsAdded.ListItems);
-  const dispatch = useDispatch();
 
   useEffect(() => {
     const GetProducts = async () => {
@@ -33,7 +31,8 @@ function Deals() {
 
     const loadData = async () => {
       const querySnapshot = await getDocs(collection(db, "Wishlists"));
-      const data = querySnapshot.docs.map((doc) => doc.data().item);
+      const data = querySnapshot.docs.filter(doc => doc.data().item).map(doc => doc.data().item);
+
       setDatabase(data);
     };
 
@@ -51,11 +50,6 @@ function Deals() {
     // Check if the item id is in the added ids
     return AddedIds.includes(itemId);
   };
-  const GetData = async () => {
-    const querySnapshot = await getDocs(collection(db, "Wishlists"));
-    const data = querySnapshot.docs.map((doc) => doc.data().data);
-    setDatabase(data);
-  };
 
   const AddData = async (item) => {
     try {
@@ -64,6 +58,7 @@ function Deals() {
       });
       const data = { ...item, id: docRef.id };
       setDatabase([...Database, data]);
+
     } catch (e) {
       console.error("Error adding document: ", e);
     }
@@ -87,7 +82,7 @@ function Deals() {
                       }
                     }}
                     src={
-                      console.log(Database) ||
+
                       Database.find((data) => data.image === items.image)
                         ? Added
                         : Add
@@ -125,7 +120,9 @@ function Deals() {
             );
           })}
       </div>
+
     </div>
+    
   );
 }
 
