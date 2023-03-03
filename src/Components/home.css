@@ -38,6 +38,7 @@
 }
 
 .browse-btn {
+  cursor: pointer;
   background-color: white;
   border-radius: 40px;
   color: rgb(233, 147, 23);
