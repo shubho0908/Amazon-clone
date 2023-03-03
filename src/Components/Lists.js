@@ -1,12 +1,6 @@
 import { React, useState, useEffect } from "react";
 import { app } from "../Firebase";
-import {
-  getFirestore,
-  collection,
-  getDocs,
-  deleteDoc,
-  doc,
-} from "firebase/firestore";
+import { getFirestore, collection, getDocs } from "firebase/firestore";
 import Added from "../imgs/red-heart.png";
 import rating from "../imgs/rating.png";
 import "./lists.css";
@@ -31,30 +25,8 @@ function Lists() {
         });
     };
 
-    const GetData = async () => {
-      const querySnapshot = await getDocs(collection(db, "Wishlists"));
-      querySnapshot.forEach((doc) => {
-        console.log(doc.id);
-      });
-    };
-
     loadData();
-    GetData();
   }, []);
-
-  const handleDelete = (id) => {
-    const db = getFirestore(app);
-
-    deleteDoc(doc(db, "Wishlists", id.toString()))
-      .then(() => {
-        setDatabase((prevDatabase) =>
-          prevDatabase.filter((item) => item.id !== id)
-        );
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
 
   return (
     <>
@@ -66,21 +38,7 @@ function Lists() {
                 <div className="card" key={items.id}>
                   <div className="card-img-data">
                     <img src={items.image} className="card-img" />
-                    <img
-                      onClick={async () => {
-                        const db = getFirestore(app);
-
-                        const querySnapshot = await getDocs(
-                          collection(db, "Wishlists")
-                        );
-                        querySnapshot.forEach((doc) => {
-                          console.log(doc.id);
-                          handleDelete(doc.id);
-                        });
-                      }}
-                      src={Added}
-                      className="add-list2"
-                    />
+                    <img src={Added} className="add-list2" />
 
                     <button className="view2">View product</button>
                   </div>

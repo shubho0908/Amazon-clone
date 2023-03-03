@@ -31,7 +31,9 @@ function Deals() {
 
     const loadData = async () => {
       const querySnapshot = await getDocs(collection(db, "Wishlists"));
-      const data = querySnapshot.docs.filter(doc => doc.data().item).map(doc => doc.data().item);
+      const data = querySnapshot.docs
+        .filter((doc) => doc.data().item)
+        .map((doc) => doc.data().item);
 
       setDatabase(data);
     };
@@ -58,7 +60,6 @@ function Deals() {
       });
       const data = { ...item, id: docRef.id };
       setDatabase([...Database, data]);
-
     } catch (e) {
       console.error("Error adding document: ", e);
     }
@@ -82,7 +83,6 @@ function Deals() {
                       }
                     }}
                     src={
-
                       Database.find((data) => data.image === items.image)
                         ? Added
                         : Add
@@ -120,9 +120,7 @@ function Deals() {
             );
           })}
       </div>
-
     </div>
-    
   );
 }
 
