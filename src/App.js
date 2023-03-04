@@ -4,7 +4,7 @@ import Navbar from "./Components/Navbar";
 import Home from "./Components/Home";
 import Men from "./Components/Category/Men";
 import Women from "./Components/Category/Women";
-import Kids from "./Components/Category/Kids";
+import Kids from "./Components/Category/Electronics";
 import Lists from "./Components/Lists";
 
 function App() {

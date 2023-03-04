@@ -3,6 +3,7 @@
   top: 160px;
   background-color: #f6f5f5;
 }
+
 .deals-head {
   font-family: "Noto Sans", sans-serif;
   font-size: 25px;
@@ -12,10 +13,9 @@
 
 .deal-items {
   display: grid;
-  padding-left: 90px;
   padding-bottom: 120px;
-  padding-right: 90px;
-  grid-template-columns: repeat(auto-fill, 250px);
+  padding-top: 30px;
+  grid-template-columns: repeat(auto-fit, 250px);
   /* grid-template-rows: repeat(auto-fill, 450px); */
   grid-gap: 10px; /* adjust as needed */
   justify-content: center;

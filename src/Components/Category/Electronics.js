@@ -1,26 +1,28 @@
 import { React, useEffect, useState } from "react";
-import "./deals.css";
-import Add from "../imgs/heart.png";
-import Added from "../imgs/red-heart.png";
-import rating from "../imgs/rating.png";
-import { AddToList, RemoveList } from "../action/List";
+import "../deals.css";
+import Add from "./Img/heart.png";
+import Added from "./Img/red-heart.png";
+import rating from "./Img/rating.png";
+import { AddToList, RemoveList } from "../../action/List";
 import { useSelector, useDispatch } from "react-redux";
-import Footer from "./Footer";
-import Spinner from "./Spinner";
+import Footer from "../Footer";
+import Spinner from "../Spinner";
 
-function Deals() {
+function Electronics() {
   const [AllProducts, setAllProducts] = useState([]);
-  const [AddedIds, setAddedIds] = useState([]);
   const [loading, setLoading] = useState(true); // add loading state
+  const [AddedIds, setAddedIds] = useState([]);
 
   const ListItems = useSelector((state) => state.ItemsAdded.ListItems);
   const dispatch = useDispatch();
 
   useEffect(() => {
     const GetProducts = async () => {
-      const data = await fetch("https://fakestoreapi.com/products");
+      const data = await fetch(
+        "https://fakestoreapi.com/products/category/electronics"
+      );
       const new_data = await data.json();
-      setLoading(false)
+      setLoading(false);
       setAllProducts(new_data);
       // Add a review number property to each item object
       const productsWithReviewNumber = new_data.map((item) => ({
@@ -46,7 +48,7 @@ function Deals() {
 
   return (
     <div className="Deals">
-      <p className="deals-head">Hot Deals 🔥</p>
+      <p className="deals-head">Electronics</p>
       {loading && <Spinner />}
       <div className="deal-items">
         {AllProducts &&
@@ -102,4 +104,4 @@ function Deals() {
   );
 }
 
-export default Deals;
+export default Electronics;
