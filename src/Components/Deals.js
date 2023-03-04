@@ -5,6 +5,7 @@ import Added from "../imgs/red-heart.png";
 import rating from "../imgs/rating.png";
 import { AddToList, RemoveList } from "../action/List";
 import { useSelector, useDispatch } from "react-redux";
+import Footer from './Footer'
 
 function Deals() {
   const [AllProducts, setAllProducts] = useState([]);
@@ -96,6 +97,8 @@ function Deals() {
             );
           })}
       </div>
+      <Footer/>
+
     </div>
   );
 }

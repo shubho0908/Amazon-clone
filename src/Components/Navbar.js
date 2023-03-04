@@ -15,7 +15,9 @@ function Navbar() {
     <>
       <div className="navbar">
         <div className="left-section">
-          <Link to="/"><img src={Logo} className="logo" /></Link>
+          <Link to="/">
+            <img src={Logo} className="logo" />
+          </Link>
           <div className="search-bar">
             <input type="text" className="search-box" placeholder="Search..." />
             <button className="search-btn">
@@ -24,7 +26,9 @@ function Navbar() {
           </div>
         </div>
         <div className="right-section">
-          <Link to="/wishlists"><img src={wishlist} className="wishlist" /></Link>
+          <Link to="/wishlists">
+            <img src={wishlist} className="wishlist" />
+          </Link>
           <img src={cart} className="cart" />
           <img src={notify} className="notify" />
           <img src={Default} className="default" />
