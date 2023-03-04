@@ -13,6 +13,7 @@
 .deal-items {
   display: grid;
   padding-left: 90px;
+  padding-bottom: 120px;
   padding-right: 90px;
   grid-template-columns: repeat(auto-fill, 250px);
   /* grid-template-rows: repeat(auto-fill, 450px); */

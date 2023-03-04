@@ -1,0 +1,13 @@
+.disclaimer-area{
+    display: flex;
+    background-color: #1c2228;
+  font-family: "Poppins", sans-serif;
+  color: white;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+}
+
+.disclaimer-head{
+    font-weight: bolder;
+}

@@ -1,6 +1,7 @@
 import { React, useState, useEffect } from "react";
 import { AddToList, RemoveList } from "../action/List";
 import { useSelector, useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 import Added from "../imgs/red-heart.png";
 import Add from "../imgs/heart.png";
 import Footer from './Footer'
@@ -27,7 +28,7 @@ function Lists() {
 
   return (
     <>
-      <div className="content">
+      <div style={{height:"100%"}} className="content">
         <div className="lists">
           <p className="wishlist-head">Wishlist</p>
           <div style={ListItems.length === 0 ? {display:"flex"}:{display:"none"}} className="empty-list">
@@ -35,7 +36,7 @@ function Lists() {
             <div className="empty-text">
               <p className="empty-head">It's empty here!</p>
               <p className="empty-desc">"Don't let your wishlist collect dust. Add some items that bring joy to your life and watch as they become a reality with just a few clicks."</p>
-              <button className="shopping">Go Shopping</button>
+              <Link to="/"><button className="shopping">Go Shopping</button></Link>
             </div>
           </div>
           <div className="lists-items">

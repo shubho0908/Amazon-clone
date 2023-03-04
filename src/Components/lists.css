@@ -4,13 +4,13 @@
   position: relative;
   background-size: cover;
   text-align: center;
-  height: 100vh;
   background-color: #f6f5f5;
 }
 
 .lists {
   position: relative;
   padding-top: 10px;
+  padding-bottom: 100px;
   background-color: #f6f5f5;
 }
 .lists-items {
@@ -140,6 +140,7 @@
   text-align: left;
   font-family: "Poppins", sans-serif;
   position: relative;
+  width: 200px;
   left: 230px;
   font-weight: 600;
   font-size: 30px;
@@ -178,8 +179,9 @@
 }
 
 .shopping {
+  cursor: pointer;
   border: none;
-  background-color: orange;
+  background-color: rgb(255, 149, 0);
   padding: 12px;
   font-family: "Poppins", sans-serif;
   font-weight: 600;
@@ -188,4 +190,8 @@
   box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
   font-size: 18px;
   border-radius: 7px;
+}
+
+a{
+  text-decoration: none;
 }
