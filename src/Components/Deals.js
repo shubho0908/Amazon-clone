@@ -3,18 +3,16 @@ import "./deals.css";
 import Add from "../imgs/heart.png";
 import Added from "../imgs/red-heart.png";
 import rating from "../imgs/rating.png";
-import { useSelector } from "react-redux";
-import { app } from "../Firebase";
-import { getFirestore, collection, addDoc, getDocs } from "firebase/firestore";
-
-const db = getFirestore(app);
+import { AddToList, RemoveList } from "../action/List";
+import { useSelector, useDispatch } from "react-redux";
 
 function Deals() {
   const [AllProducts, setAllProducts] = useState([]);
   const [AddedIds, setAddedIds] = useState([]);
-  const [Database, setDatabase] = useState([]);
 
   const ListItems = useSelector((state) => state.ItemsAdded.ListItems);
+  const dispatch = useDispatch();
+
 
   useEffect(() => {
     const GetProducts = async () => {
@@ -29,16 +27,7 @@ function Deals() {
       setAllProducts(productsWithReviewNumber);
     };
 
-    const loadData = async () => {
-      const querySnapshot = await getDocs(collection(db, "Wishlists"));
-      const data = querySnapshot.docs
-        .filter((doc) => doc.data().item)
-        .map((doc) => doc.data().item);
-
-      setDatabase(data);
-    };
-
-    loadData();
+   
     GetProducts();
   }, []);
 
@@ -51,18 +40,6 @@ function Deals() {
   const isAdded = (itemId) => {
     // Check if the item id is in the added ids
     return AddedIds.includes(itemId);
-  };
-
-  const AddData = async (item) => {
-    try {
-      const docRef = await addDoc(collection(db, "Wishlists"), {
-        item,
-      });
-      const data = { ...item, id: docRef.id };
-      setDatabase([...Database, data]);
-    } catch (e) {
-      console.error("Error adding document: ", e);
-    }
   };
 
   return (
@@ -78,14 +55,13 @@ function Deals() {
                   <img
                     onClick={() => {
                       if (!isAdded(items.id)) {
-                        AddData(items);
+                        dispatch(AddToList(items));
                       } else {
+                        dispatch(RemoveList(items.id));
                       }
                     }}
                     src={
-                      Database.find((data) => data.image === items.image)
-                        ? Added
-                        : Add
+                      isAdded(items.id) ? Added : Add
                     }
                     className="add-list"
                   />
