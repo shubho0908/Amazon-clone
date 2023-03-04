@@ -1,7 +1,15 @@
+.content{
+  position: relative;
+    padding-top: 100px;
+    background-size: cover;
+    text-align: center;
+    height: 100vh;
+    background-color: #f6f5f5;
+}
+
 .lists {
     position: relative;
-    padding-top: 160px;
-    height: 100vh;
+    padding-top: 80px;
     background-color: #f6f5f5;
   }
   .lists-items {
@@ -75,7 +83,7 @@
     cursor: pointer;
     position: relative;
     bottom: 145px;
-    left: 38px;
+    right: 8px;
     border: none;
     background-color: white;
     text-align: center;
@@ -109,8 +117,8 @@
   .add-list2 {
     width: 24px;
     position: relative;
-    bottom: 240px;
-    left: 190px;
+    bottom: 244px;
+    left: 145px;
   }
   
   .rating-img {

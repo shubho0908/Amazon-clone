@@ -24,56 +24,56 @@ function Lists() {
 
   return (
     <>
-       <div className="lists">
-      <div className="lists-items">
-        {ListItems &&
-          ListItems.map((items) => {
-            return (
-              <div className="card" key={items.id}>
-                <div className="card-img-data">
-                  <img src={items.image} className="card-img" />
-                  <img
-                    onClick={() => {
-                      if (!isAdded(items.id)) {
-                        dispatch(AddToList(items));
-                      } else {
-                        dispatch(RemoveList(items.id));
-                      }
-                    }}
-                    src={isAdded(items.id) ? Added : Add}
-                    className="add-list"
-                  />
-                  <button className="view">View product</button>
-                </div>
-                <div className="card-data">
-                  <p className="card-title">
-                    {items.title.length >= 32
-                      ? items.title.slice(0, 32) + ".."
-                      : items.title}
-                  </p>
-                  <div className="category-rating">
-                    <p className="card-category">{items.category}</p>
-                    <div className="rating">
-                      <img src={rating} className="rating-img" />
-                      <img src={rating} className="rating-img" />
-                      <img src={rating} className="rating-img" />
-                      <img src={rating} className="rating-img" />
-                      <img src={rating} className="rating-img" />
-                      <p className="rating-text">
-                        5
+      <div className="content">
+        <div className="lists">
+          <div className="lists-items">
+            {ListItems &&
+              ListItems.map((items) => {
+                return (
+                  <div className="card" key={items.id}>
+                    <div className="card-img-data">
+                      <img src={items.image} className="card-img" />
+                      <img
+                        onClick={() => {
+                          if (!isAdded(items.id)) {
+                            dispatch(AddToList(items));
+                          } else {
+                            dispatch(RemoveList(items.id));
+                          }
+                        }}
+                        src={isAdded(items.id) ? Added : Add}
+                        className="add-list2"
+                      />
+                      <button className="view2">View product</button>
+                    </div>
+                    <div className="card-data">
+                      <p className="card-title">
+                        {items.title.length >= 32
+                          ? items.title.slice(0, 32) + ".."
+                          : items.title}
                       </p>
+                      <div className="category-rating">
+                        <p className="card-category">{items.category}</p>
+                        <div className="rating">
+                          <img src={rating} className="rating-img" />
+                          <img src={rating} className="rating-img" />
+                          <img src={rating} className="rating-img" />
+                          <img src={rating} className="rating-img" />
+                          <img src={rating} className="rating-img" />
+                          <p className="rating-text">5</p>
+                        </div>
+                      </div>
+                      <div className="card-price">
+                        <p className="discount">${items.price}</p>
+                        <p className="mrp">${Math.round(items.price * 1.66)}</p>
+                      </div>
                     </div>
                   </div>
-                  <div className="card-price">
-                    <p className="discount">${items.price}</p>
-                    <p className="mrp">${Math.round(items.price * 1.66)}</p>
-                  </div>
-                </div>
-              </div>
-            );
-          })}
+                );
+              })}
+          </div>
+        </div>
       </div>
-    </div>
     </>
   );
 }
