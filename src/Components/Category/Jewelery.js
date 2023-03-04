@@ -8,7 +8,7 @@ import { useSelector, useDispatch } from "react-redux";
 import Footer from '../Footer'
 import Spinner from "../Spinner";
 
-function Women() {
+function Jewelery() {
   const [AllProducts, setAllProducts] = useState([]);
   const [AddedIds, setAddedIds] = useState([]);
   const [loading, setLoading] = useState(true); // add loading state
@@ -19,7 +19,7 @@ function Women() {
 
   useEffect(() => {
     const GetProducts = async () => {
-      const data = await fetch("https://fakestoreapi.com/products/category/women's%20clothing");
+      const data = await fetch("https://fakestoreapi.com/products/category/jewelery");
       const new_data = await data.json();
       setLoading(false);
       setAllProducts(new_data);
@@ -48,7 +48,7 @@ function Women() {
 
   return (
     <div className="Deals">
-      <p className="deals-head">Women's Clothing</p>
+      <p className="deals-head">Jewelery</p>
       {loading && <Spinner />}
       <div className="deal-items">
         {AllProducts &&
@@ -107,4 +107,4 @@ function Women() {
   );
 }
 
-export default Women;
+export default Jewelery;

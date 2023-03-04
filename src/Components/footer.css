@@ -1,3 +1,8 @@
+.footer{
+  background-color: #EAEAEA;
+
+}
+
 .disclaimer-area {
   display: flex;
   background-color: #1c2228;
@@ -27,16 +32,44 @@
 .link-section {
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: space-around;
   padding-top: 50px;
   padding-bottom: 50px;
   font-size: 14px;
   color: gray;
-  background-color: #EAEAEA;
 }
 
 .bold {
   font-family: "Poppins", sans-serif;
   font-weight: bolder;
   color: black !important;
+}
+
+.amazon-img{
+  width: 100px;
+}
+
+.developer{
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+  position: relative;
+  padding-bottom: 30px;
+  padding-top: 30px;
+}
+
+.dev-data{
+  display: flex;
+  position: relative;
+  bottom: 8px;
+  margin-left: 15px;
+  align-items: center;
+}
+
+.dev-link{
+  margin-left: 5px;
+  text-decoration: underline;
 }

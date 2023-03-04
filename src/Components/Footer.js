@@ -1,5 +1,6 @@
 import React from 'react'
 import './footer.css'
+import Logo from '../imgs/logo2.png'
 
 function Footer() {
   return (
@@ -36,6 +37,13 @@ function Footer() {
         <p>Returns & Replacements</p>
       </div>
     </div>
+      <div className="developer">
+        <img src={Logo} className="amazon-img" />
+        <div className="dev-data">
+        <p>&copy; 2023 | Developed by </p>
+        <a className='dev-link' href="https://github.com/shubho0908" target="_blank">Shubhojeet Bera</a>
+        </div>
+      </div>
     </>
   )
 }

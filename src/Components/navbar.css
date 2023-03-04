@@ -7,11 +7,12 @@
   align-items: center;
   z-index: 2;
   justify-content: space-between;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px,
+    rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
   border-bottom: 2px solid #455b6e;
 }
 
-a{
+a {
   display: flex;
   align-items: center;
 }
@@ -25,11 +26,11 @@ a{
 }
 
 .search-btn {
-    position: relative;
+  position: relative;
   background-color: #e99317;
   border: none;
   outline: none;
-  height:46px;
+  height: 46px;
   width: 52px;
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
@@ -44,54 +45,62 @@ a{
   display: flex;
   align-items: center;
   margin-left: 170px;
-
 }
 
-.search-box{
-    height: 40px;
-    width: 325px;
-    color: white;
-    outline: none;
-    padding-left: 10px;
-    border: 2px solid #455b6e;
-    border-top-left-radius: 10px;
-    border-bottom-left-radius: 10px;
+.search-box {
+  height: 40px;
+  width: 325px;
+  color: white;
+  outline: none;
+  padding-left: 10px;
+  border: 2px solid #455b6e;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
   background-color: #2d3b47;
-
 }
 
-.search-box::placeholder{
-    color: white;
+.search-box::placeholder {
+  color: white;
 }
 
-.right-section{
+.right-section {
   display: flex;
   align-items: center;
-  width: 320px;
-  justify-content: space-evenly;
+  width: 300px;
 }
 
-.wishlist{
-  width: 20px;
+.wishlist {
+  width: 28px;
 }
 
-.cart{
-  width: 20px;
+.cart {
+  width: 28px;
   padding: 12px;
+  margin-left: 5px;
   border-radius: 9px;
-  background-color: #e99317;
+  filter: invert(1);
 }
 
-.notify{
-  width: 25px;
+.notify {
+  width: 28px;
+  margin-left: 20px;
 }
 
-.default{
+.default {
+  margin-left: 30px;
   width: 44px;
 }
-
-.down{
-  width: 12px;
+.list-count {
+  color: white;
   position: relative;
-  right: 20px;
+  bottom: 12px;
+  right: 10px;
+  font-size: 13px;
+  padding-top: 2px;
+  padding-bottom: 4px;
+  padding-left: 8px;
+  padding-right: 8px;
+  text-align: center;
+  background-color: #e99317;
+  border-radius: 50px;
 }

@@ -6,10 +6,12 @@ import cart from "../imgs/cart.png";
 import notify from "../imgs/notify.png";
 import Default from "../imgs/default.png";
 import down from "../imgs/down.png";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import "./navbar.css";
 
 function Navbar() {
+  const ListItems = useSelector((state) => state.ItemsAdded.ListItems);
 
   return (
     <>
@@ -28,11 +30,11 @@ function Navbar() {
         <div className="right-section">
           <Link to="/wishlists">
             <img src={wishlist} className="wishlist" />
+            <p className="list-count">{ListItems.length}</p>
           </Link>
           <img src={cart} className="cart" />
           <img src={notify} className="notify" />
           <img src={Default} className="default" />
-          <img src={down} className="down" />
         </div>
       </div>
     </>

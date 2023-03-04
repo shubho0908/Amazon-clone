@@ -2,7 +2,9 @@ import React, { useState, useEffect } from "react";
 import "./popular.css";
 import Deals from "../Deals";
 import Men from "./Men";
+import Women from "./Women";
 import Electronics from "./Electronics";
+import Jewelery from "./Jewelery";
 
 import men from "./Img/men.png";
 import women from "./Img/women.png";
@@ -69,6 +71,10 @@ function Popular() {
         <Deals />
       ) : activeIndex === 2 ? (
         <Men />
+      ) : activeIndex === 3 ? (
+        <Women />
+      ) : activeIndex === 1 ? (
+        <Jewelery />
       ) : activeIndex === 0 ? (
         <Electronics />
       ) : <Deals/>}

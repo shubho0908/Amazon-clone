@@ -14,10 +14,9 @@
 .deal-items {
   display: grid;
   padding-bottom: 120px;
-  padding-top: 30px;
+  padding-top: 15px;
   grid-template-columns: repeat(auto-fit, 250px);
-  /* grid-template-rows: repeat(auto-fill, 450px); */
-  grid-gap: 10px; /* adjust as needed */
+  grid-gap: 10px;
   justify-content: center;
 }
 
@@ -61,7 +60,8 @@
 .card-category {
   margin: 0;
   text-transform: uppercase;
-  font-weight: 600;
+  font-weight: 200;
+  color: rgb(50, 50, 50);
   font-size: 12px;
 }
 
