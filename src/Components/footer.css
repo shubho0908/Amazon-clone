@@ -1,13 +1,42 @@
-.disclaimer-area{
-    display: flex;
-    background-color: #1c2228;
+.disclaimer-area {
+  display: flex;
+  background-color: #1c2228;
   font-family: "Poppins", sans-serif;
   color: white;
-    justify-content: center;
-    align-items: center;
-    height: 60px;
+  justify-content: center;
+  align-items: center;
+  height: 60px;
 }
 
-.disclaimer-head{
-    font-weight: bolder;
+.disclaimer-head {
+  font-weight: bolder;
+}
+
+.first-row,
+.second-row,
+.third-row,
+.fourth-row {
+  cursor: pointer;
+  display: flex;
+  justify-content: flex-start;
+  font-family: "Poppins", sans-serif;
+  flex-direction: column;
+  text-align: left;
+}
+
+.link-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  font-size: 14px;
+  color: gray;
+  background-color: #EAEAEA;
+}
+
+.bold {
+  font-family: "Poppins", sans-serif;
+  font-weight: bolder;
+  color: black !important;
 }
