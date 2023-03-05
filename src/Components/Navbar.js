@@ -17,7 +17,7 @@ function Navbar() {
     <>
       <div className="navbar">
         <div className="left-section">
-          <Link to="/">
+          <Link to="/home">
             <img src={Logo} className="logo" />
           </Link>
           <div className="search-bar">

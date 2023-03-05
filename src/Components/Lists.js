@@ -4,9 +4,10 @@ import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import Added from "../imgs/red-heart.png";
 import Add from "../imgs/heart.png";
-import Footer from './Footer'
+import Footer from "./Footer";
 import rating from "../imgs/rating.png";
-import empty from '../imgs/empty.png'
+import Navbar from "./Navbar";
+import empty from "../imgs/empty.png";
 import "./lists.css";
 
 function Lists() {
@@ -24,19 +25,30 @@ function Lists() {
     // Check if the item id is in the added ids
     return AddedIds.includes(itemId);
   };
-  
 
   return (
     <>
-      <div style={{height:"100%"}} className="content">
+      <Navbar />
+      <div style={{ height: "100%" }} className="content">
         <div className="lists">
           <p className="wishlist-head">Wishlist</p>
-          <div style={ListItems.length === 0 ? {display:"flex"}:{display:"none"}} className="empty-list">
+          <div
+            style={
+              ListItems.length === 0 ? { display: "flex" } : { display: "none" }
+            }
+            className="empty-list"
+          >
             <img src={empty} className="empty-img" />
             <div className="empty-text">
               <p className="empty-head">It's empty here!</p>
-              <p className="empty-desc">"Don't let your wishlist collect dust. Add some items that bring joy to your life and watch as they become a reality with just a few clicks."</p>
-              <Link to="/"><button className="shopping">Go Shopping</button></Link>
+              <p className="empty-desc">
+                "Don't let your wishlist collect dust. Add some items that bring
+                joy to your life and watch as they become a reality with just a
+                few clicks."
+              </p>
+              <Link to="/home">
+                <button className="shopping">Go Shopping</button>
+              </Link>
             </div>
           </div>
           <div className="lists-items">
@@ -86,7 +98,7 @@ function Lists() {
               })}
           </div>
         </div>
-        <Footer/>
+        <Footer />
       </div>
     </>
   );

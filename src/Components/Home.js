@@ -2,10 +2,12 @@ import React from "react";
 import "./home.css";
 import Delivery from "../imgs/delivery.png";
 import Popular from "./Category/Popular";
+import Navbar from './Navbar'
 
 function Home() {
   return (
     <>
+    <Navbar/>
         <div className="content">
           <div className="poster-area">
             <div className="poster-data">
