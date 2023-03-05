@@ -1,4 +1,4 @@
-import { React, useEffect, useState } from "react";
+import { React, useEffect, useState, useRef } from "react";
 import Logo from "../imgs/logo.png";
 import search from "../imgs/search.png";
 import wishlist from "../imgs/wishlist.png";
@@ -16,6 +16,10 @@ const auth = getAuth(app);
 function Navbar() {
   const ListItems = useSelector((state) => state.ItemsAdded.ListItems);
   const [user, setUser] = useState(null);
+  const [searchText, setSearchText] = useState("");
+  const [Products, setProducts] = useState([]);
+
+  const searchResultsRef = useRef(null);
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
@@ -25,9 +29,35 @@ function Navbar() {
         setUser(null);
       }
     });
-  }, [])
-  
 
+    const GetProducts = async () => {
+      const data = await fetch("https://fakestoreapi.com/products");
+      const new_data = await data.json();
+      setProducts(new_data);
+      console.log(Products);
+    };
+
+    GetProducts();
+
+    const handleClick = (event) => {
+      if (
+        searchResultsRef.current &&
+        !searchResultsRef.current.contains(event.target)
+      ) {
+        setSearchText("");
+      }
+    };
+    document.addEventListener("click", handleClick);
+    return () => {
+      document.removeEventListener("click", handleClick);
+    };
+  }, []);
+
+  const searchResults = Products.filter(
+    (product) =>
+      product.title.toLowerCase().includes(searchText.toLowerCase()) ||
+      product.description.toLowerCase().includes(searchText.toLowerCase())
+  );
   return (
     <>
       <div className="navbar">
@@ -36,7 +66,13 @@ function Navbar() {
             <img src={Logo} className="logo" />
           </Link>
           <div className="search-bar">
-            <input type="text" className="search-box" placeholder="Search..." />
+            <input
+              type="text"
+              className="search-box"
+              placeholder="Search..."
+              value={searchText}
+              onChange={(e) => setSearchText(e.target.value)}
+            />
             <button className="search-btn">
               <img src={search} className="search-img" />
             </button>
@@ -56,6 +92,33 @@ function Navbar() {
           )}
         </div>
       </div>
+      {searchText !== "" && (
+        <div
+          ref={searchResultsRef}
+          className={`search-results ${searchResults.length ? "show" : ""}`}
+        >
+          {searchResults.length > 0 &&
+            searchResults.map((product) => (
+              <div className="search-results2" key={product.id}>
+                <div className="product-img">
+                  <img src={product.image} className="product-image" />
+                </div>
+                <div className="product-data">
+                  <p className="product-title">
+                    {product.title.length > 50
+                      ? product.title.slice(0, 50) + "..."
+                      : product.title}
+                  </p>
+                  <p className="product-desc">
+                    {product.description.length > 50
+                      ? product.description.slice(0, 50) + "..."
+                      : product.description}
+                  </p>
+                </div>
+              </div>
+            ))}
+        </div>
+      )}
     </>
   );
 }
