@@ -37,11 +37,13 @@ function Signin() {
                 className="password"
               />
               <button className="signin-btn">Sign in</button>
-            <p className="or">Or Sign in with</p>
-            <button className="google">
-                <p>Sign in with</p>
-                <img src={google} className="google-img" />
-            </button>
+              <div className="extra-buttons">
+                <p className="or">&#x2015; Or &#x2015;</p>
+                <button className="google">
+                  <p>Sign in with</p>
+                  <img src={google} className="google-img" />
+                </button>
+              </div>
             </div>
           </div>
         </div>

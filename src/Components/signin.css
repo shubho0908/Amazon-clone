@@ -60,7 +60,7 @@
   display: flex;
   justify-content: center;
   position: relative;
-  bottom: 25vw;
+  bottom: 30vw;
 }
 
 .background {
@@ -89,12 +89,14 @@
 
 .or {
   font-family: "Poppins", sans-serif;
+  text-align: center;
+  font-weight: 600;
 }
 
 .email,
 .password {
   height: 35px;
-  width: 400px;
+  width: 350px;
   font-family: "Poppins", sans-serif;
   margin-top: 10px;
   outline: none;
@@ -103,13 +105,27 @@
   border-radius: 6px;
 }
 
+.extra-buttons {
+  display: flex;
+  flex-direction: column;
+  margin-top: 25px;
+}
+
 .google {
   display: flex;
-  font-family: "Poppins", sans-serif;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
+  border: 1.5px solid rgba(175, 175, 175, 0.678);
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  background-color: white;
+  color: rgba(0, 0, 0, 0.724);
+  font-size: 18px;
+  border-radius: 7px;
 }
 
 .google-img {
   width: 30px;
+  margin-left: 10px;
 }
