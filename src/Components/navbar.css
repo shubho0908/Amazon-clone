@@ -138,6 +138,7 @@ a {
   display: flex;
   align-items: center;
   padding: 20px;
+  width: 100%;
   padding-top: 15px;
   padding-bottom: 15px;
   transition: all .2s ease;
@@ -164,4 +165,9 @@ background-color: rgba(218, 218, 218, 0.731);
 .product-desc {
   font-size: 14px;
   margin: 0;
+}
+
+.nav-link {
+  color: inherit;
+  text-decoration: none;
 }

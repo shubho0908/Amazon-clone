@@ -6,7 +6,7 @@ import cart from "../imgs/cart.png";
 import notify from "../imgs/notify.png";
 import Default from "../imgs/default.png";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import "./navbar.css";
 import { app } from "../Firebase";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
@@ -99,7 +99,8 @@ function Navbar() {
         >
           {searchResults.length > 0 &&
             searchResults.map((product) => (
-              <div className="search-results2" key={product.id}>
+              <NavLink to={`/product/${product.id}`}  key={product.id} className="nav-link">
+                <div className="search-results2" key={product.id}>
                 <div className="product-img">
                   <img src={product.image} className="product-image" />
                 </div>
@@ -116,6 +117,7 @@ function Navbar() {
                   </p>
                 </div>
               </div>
+              </NavLink>
             ))}
         </div>
       )}
