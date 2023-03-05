@@ -34,7 +34,6 @@ function Navbar() {
       const data = await fetch("https://fakestoreapi.com/products");
       const new_data = await data.json();
       setProducts(new_data);
-      console.log(Products);
     };
 
     GetProducts();

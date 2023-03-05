@@ -57,10 +57,13 @@ a {
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
   background-color: #2d3b47;
+  font-family: "Poppins", sans-serif;
+
 }
 
 .search-box::placeholder {
   color: white;
+  opacity: .6;
 }
 
 .right-section {

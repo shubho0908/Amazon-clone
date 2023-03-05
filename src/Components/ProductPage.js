@@ -15,7 +15,6 @@ function ProductPage() {
   }, []);
 
   useEffect(() => {
-    console.log(product);
   }, [product]);
 
   return <div>ProductPage</div>;
