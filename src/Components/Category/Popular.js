@@ -19,6 +19,7 @@ function Popular() {
   const [activeIndex, setActiveIndex] = useState(-1);
   const [showDeals, setShowDeals] = useState(true);
 
+
   const images = [
     {
       src: electronics,
@@ -60,6 +61,7 @@ function Popular() {
                   ? image.className + " active"
                   : image.className
               }
+              title={image.className}
               style={{
                 backgroundColor: index === activeIndex ? "#1c2228" : "white",
               }}

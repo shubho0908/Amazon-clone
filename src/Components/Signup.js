@@ -61,11 +61,10 @@ function Signup() {
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
-        console.log(user);
         navigate("/home");
       })
       .catch((error) => {
-        console.log(error);
+        alert(error)
       });
   };
 
@@ -76,11 +75,9 @@ function Signup() {
         const token = credential.accessToken;
         // The signed-in user info.
         const user = result.user;
-        console.log(user);
         navigate("/home");
       })
       .catch((error) => {
-        console.log(error);
       });
   };
 

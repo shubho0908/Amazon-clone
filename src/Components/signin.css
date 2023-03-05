@@ -39,13 +39,17 @@
   font-family: "Poppins", sans-serif;
   font-weight: 600;
   color: white;
-
+  transition: all .3s ease;
   font-size: 18px;
   border-radius: 7px;
 }
 
 .signin-btn {
   margin-top: 25px;
+}
+
+.signin-btn:hover, .signup-btn:hover{
+  background-color: rgb(255, 102, 0);
 }
 
 .user-details {
@@ -137,6 +141,12 @@
   color: rgba(0, 0, 0, 0.724);
   font-size: 18px;
   border-radius: 7px;
+  transition: all .3s ease;
+}
+
+.google:hover{
+  background-color: rgb(226, 226, 226);
+
 }
 
 .google-img {

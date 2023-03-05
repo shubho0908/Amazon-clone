@@ -6,6 +6,7 @@ import rating from "./Img/rating.png";
 import { AddToList, RemoveList } from "../../action/List";
 import { useSelector, useDispatch } from "react-redux";
 import Footer from "../Footer";
+import { NavLink } from "react-router-dom";
 import Spinner from "../Spinner";
 
 function Electronics() {
@@ -69,7 +70,9 @@ function Electronics() {
                     className="add-list"
                   />
 
-                  <button className="view">View product</button>
+                  <NavLink to={`/product/${items.id}`} key={items.id}>
+                    <button className="view">View product</button>
+                  </NavLink>
                 </div>
                 <div className="card-data">
                   <p className="card-title">

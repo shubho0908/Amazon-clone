@@ -7,6 +7,7 @@ import { AddToList, RemoveList } from "../action/List";
 import { useSelector, useDispatch } from "react-redux";
 import Footer from "./Footer";
 import Spinner from "./Spinner";
+import { NavLink } from "react-router-dom";
 
 function Deals() {
   const [AllProducts, setAllProducts] = useState([]);
@@ -67,7 +68,7 @@ function Deals() {
                     className="add-list"
                   />
 
-                  <button className="view">View product</button>
+                  <NavLink to={`/product/${items.id}`} key={items.id}><button className="view">View product</button></NavLink>
                 </div>
                 <div className="card-data">
                   <p className="card-title">

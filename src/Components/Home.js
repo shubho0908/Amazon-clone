@@ -1,10 +1,20 @@
-import React from "react";
+import {React,useState} from "react";
 import "./home.css";
 import Delivery from "../imgs/delivery.png";
 import Popular from "./Category/Popular";
 import Navbar from './Navbar'
 
 function Home() {
+  const [scrollPosition, setScrollPosition] = useState(0);
+
+  const handleScroll = () => {
+    window.scrollTo({
+      top: scrollPosition + 750, // Scroll down by 100 pixels
+      behavior: "smooth" // Add smooth scrolling animation
+    });
+    setScrollPosition(scrollPosition + 750); // Update the state with the new scroll position
+  };
+
   return (
     <>
     <Navbar/>
@@ -18,7 +28,7 @@ function Home() {
                 your orders.
               </p>
             </div>
-            <button className="browse-btn">Browse products</button>
+            <button onClick={handleScroll} className="browse-btn">Browse products</button>
           </div>
           <img src={Delivery} className="delivery" />
           <Popular />

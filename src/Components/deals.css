@@ -81,8 +81,8 @@
 .view {
   cursor: pointer;
   position: relative;
-  bottom: 145px;
-  right: 10px;
+  bottom: 178px;
+  left: 62px;
   border: none;
   background-color: white;
   text-align: center;
@@ -116,8 +116,8 @@
 .add-list {
   width: 24px;
   position: relative;
-  bottom: 240px;
-  left: 142px;
+  bottom: 246px;
+  left: 92px;
 }
 
 .rating-img {

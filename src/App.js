@@ -8,8 +8,10 @@ import Kids from "./Components/Category/Electronics";
 import Lists from "./Components/Lists";
 import Signin from "./Components/Signin";
 import Signup from "./Components/Signup";
+import Error from "./Error";
 import { app } from "./Firebase";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
+import ProductPage from "./Components/ProductPage";
 
 const auth = getAuth(app);
 
@@ -37,10 +39,8 @@ function App() {
         ) : (
           <>
             <Route exact path="/home" element={<Home />} />
-            <Route exact path="/men" element={<Men />} />
-            <Route exact path="/women" element={<Women />} />
-            <Route exact path="/kids" element={<Kids />} />
             <Route exact path="/wishlists" element={<Lists />} />
+            <Route exact path="/product/:id" element={<ProductPage />} />
           </>
         )}
       </Routes>

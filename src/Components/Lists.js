@@ -8,6 +8,7 @@ import Footer from "./Footer";
 import rating from "../imgs/rating.png";
 import Navbar from "./Navbar";
 import empty from "../imgs/empty.png";
+import { NavLink } from "react-router-dom";
 import "./lists.css";
 
 function Lists() {
@@ -69,7 +70,9 @@ function Lists() {
                         src={isAdded(items.id) ? Added : Add}
                         className="add-list2"
                       />
-                      <button className="view2">View product</button>
+                      <NavLink to={`/product/${items.id}`} key={items.id}>
+                    <button className="view">View product</button>
+                  </NavLink>
                     </div>
                     <div className="card-data">
                       <p className="card-title">

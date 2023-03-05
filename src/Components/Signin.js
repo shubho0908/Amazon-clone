@@ -57,10 +57,10 @@ function Signin() {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
-        console.log(user);
       })
       .catch((error) => {
-        console.log(error);
+        alert(error)
+
       });
   };
 
@@ -71,11 +71,9 @@ function Signin() {
         const token = credential.accessToken;
         // The signed-in user info.
         const user = result.user;
-        console.log(user);
         navigate("/home");
       })
       .catch((error) => {
-        console.log(error);
       });
   };
 

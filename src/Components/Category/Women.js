@@ -5,7 +5,8 @@ import Added from "./Img/red-heart.png";
 import rating from "./Img/rating.png";
 import { AddToList, RemoveList } from "../../action/List";
 import { useSelector, useDispatch } from "react-redux";
-import Footer from '../Footer'
+import Footer from "../Footer";
+import { NavLink } from "react-router-dom";
 import Spinner from "../Spinner";
 
 function Women() {
@@ -16,10 +17,11 @@ function Women() {
   const ListItems = useSelector((state) => state.ItemsAdded.ListItems);
   const dispatch = useDispatch();
 
-
   useEffect(() => {
     const GetProducts = async () => {
-      const data = await fetch("https://fakestoreapi.com/products/category/women's%20clothing");
+      const data = await fetch(
+        "https://fakestoreapi.com/products/category/women's%20clothing"
+      );
       const new_data = await data.json();
       setLoading(false);
       setAllProducts(new_data);
@@ -31,7 +33,6 @@ function Women() {
       setAllProducts(productsWithReviewNumber);
     };
 
-   
     GetProducts();
   }, []);
 
@@ -65,13 +66,13 @@ function Women() {
                         dispatch(RemoveList(items.id));
                       }
                     }}
-                    src={
-                      isAdded(items.id) ? Added : Add
-                    }
+                    src={isAdded(items.id) ? Added : Add}
                     className="add-list"
                   />
 
-                  <button className="view">View product</button>
+                  <NavLink to={`/product/${items.id}`} key={items.id}>
+                    <button className="view">View product</button>
+                  </NavLink>
                 </div>
                 <div className="card-data">
                   <p className="card-title">
@@ -101,8 +102,7 @@ function Women() {
             );
           })}
       </div>
-      <Footer/>
-
+      <Footer />
     </div>
   );
 }
