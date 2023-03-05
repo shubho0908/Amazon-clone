@@ -2,13 +2,9 @@ import "./App.css";
 import { useState, useEffect } from "react";
 import { Routes, Route, BrowserRouter, Navigate } from "react-router-dom"; // Import the Navigate component from react-router-dom
 import Home from "./Components/Home";
-import Men from "./Components/Category/Men";
-import Women from "./Components/Category/Women";
-import Kids from "./Components/Category/Electronics";
 import Lists from "./Components/Lists";
 import Signin from "./Components/Signin";
 import Signup from "./Components/Signup";
-import Error from "./Error";
 import { app } from "./Firebase";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import ProductPage from "./Components/ProductPage";

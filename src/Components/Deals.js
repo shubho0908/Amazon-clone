@@ -21,7 +21,7 @@ function Deals() {
     const GetProducts = async () => {
       const data = await fetch("https://fakestoreapi.com/products");
       const new_data = await data.json();
-      setLoading(false)
+      setLoading(false);
       setAllProducts(new_data);
       // Add a review number property to each item object
       const productsWithReviewNumber = new_data.map((item) => ({
@@ -68,7 +68,9 @@ function Deals() {
                     className="add-list"
                   />
 
-                  <NavLink to={`/product/${items.id}`} key={items.id}><button className="view">View product</button></NavLink>
+                  <NavLink to={`/product/${items.id}`} key={items.id}>
+                    <button className="view">View product</button>
+                  </NavLink>
                 </div>
                 <div className="card-data">
                   <p className="card-title">

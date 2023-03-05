@@ -89,6 +89,9 @@ a {
 .default {
   margin-left: 30px;
   width: 44px;
+  border-radius: 50%;
+  border: 2px solid white;
+  padding: 3px;
 }
 .list-count {
   color: white;
