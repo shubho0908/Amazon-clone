@@ -121,7 +121,8 @@ a {
   border-radius: 9px;
   left: 230px;
   top: 85px;
-  height: 400px;
+  height: auto;
+  max-height: 400px;
   width: 450px;
   overflow-y: scroll;
   opacity: 0;
@@ -141,11 +142,11 @@ a {
   width: 100%;
   padding-top: 15px;
   padding-bottom: 15px;
-  transition: all .2s ease;
+  transition: all 0.2s ease;
 }
 
 .search-results2:hover {
-background-color: rgba(218, 218, 218, 0.731);
+  background-color: rgba(218, 218, 218, 0.731);
 }
 
 .product-image {
@@ -163,7 +164,9 @@ background-color: rgba(218, 218, 218, 0.731);
 }
 
 .product-desc {
-  font-size: 14px;
+  font-family: "Poppins", sans-serif;
+  font-size: 12.6px;
+  color: rgb(62, 62, 62);
   margin: 0;
 }
 
