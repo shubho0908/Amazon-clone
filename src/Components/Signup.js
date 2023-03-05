@@ -4,27 +4,31 @@ import Logo from "../imgs/logo2.png";
 import BG1 from "../imgs/login-BG.png";
 import BG2 from "../imgs/login-BG2.png";
 import google from "../imgs/google.png";
-import { Link, useNavigate } from "react-router-dom";
 import { app } from "../Firebase";
+import { Link, useNavigate } from "react-router-dom";
 import {
   getAuth,
-  signInWithEmailAndPassword,
-  GoogleAuthProvider,
-  signInWithPopup,
+  createUserWithEmailAndPassword,
+  GoogleAuthProvider, signInWithPopup
 } from "firebase/auth";
 
 const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
 
-function Signin() {
+function Signup() {
   const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState("");
   const [PasswordError, setPasswordError] = useState("");
-  const navigate = useNavigate();
 
+  const navigate = useNavigate();
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
+  };
+
+  const handleNameChange = (event) => {
+    setName(event.target.value);
   };
 
   const handlePasswordChange = (event) => {
@@ -53,11 +57,12 @@ function Signin() {
     }
   };
 
-  const LogInUser = async () => {
-    signInWithEmailAndPassword(auth, email, password)
+  const CreateUser = async () => {
+    createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
         console.log(user);
+        navigate("/home");
       })
       .catch((error) => {
         console.log(error);
@@ -87,8 +92,8 @@ function Signin() {
             <img src={Logo} className="amazon-logo" />
           </div>
           <div className="signup">
-            <Link to="/signup">
-              <button className="signup-btn">Sign up</button>
+            <Link to="/">
+              <button className="signup-btn">Sign in</button>
             </Link>
           </div>
         </div>
@@ -99,12 +104,20 @@ function Signin() {
         <div className="main-form">
           <div className="login-form">
             <div className="some-text">
-              <p className="user">User Login</p>
+              <p className="user">User Registration</p>
               <p className="user-desc">
-                Hey, Enter your details to get sign in to your account
+                Hey, Enter your details to create a new account
               </p>
             </div>
             <div className="user-details">
+              <input
+                type="text"
+                placeholder="Name"
+                className="name"
+                value={name}
+                onChange={handleNameChange}
+                required
+              />
               <input
                 type="email"
                 placeholder="Enter Email"
@@ -128,13 +141,13 @@ function Signin() {
               {PasswordError && (
                 <div className="error-message">{PasswordError}</div>
               )}
-              <button onClick={LogInUser} className="signin-btn">
-                Sign in
+              <button onClick={CreateUser} className="signin-btn">
+                Sign up
               </button>
               <div className="extra-buttons">
                 <p className="or">&#x2015; Or &#x2015;</p>
                 <button onClick={GoogleAuth} className="google">
-                  <p>Sign in with</p>
+                  <p>Sign up with</p>
                   <img src={google} className="google-img" />
                 </button>
               </div>
@@ -146,4 +159,4 @@ function Signin() {
   );
 }
 
-export default Signin;
+export default Signup;

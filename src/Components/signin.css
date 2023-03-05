@@ -1,6 +1,19 @@
 .signin-page {
   background-color: #f6f5f5;
   height: 100vh;
+  animation: fadein .35s ease;
+}
+
+@keyframes fadein {
+
+  0%{
+    opacity: 0;
+  }
+
+  100%{
+    opacity: 1;
+  }
+  
 }
 
 .amazon-logo {
@@ -60,7 +73,7 @@
   display: flex;
   justify-content: center;
   position: relative;
-  bottom: 30.8vw;
+  bottom: 30vw;
 }
 
 .background {
@@ -74,6 +87,7 @@
 .BG1,
 .BG2 {
   width: 40vw;
+  object-fit: cover;
 }
 
 .user {
@@ -94,7 +108,7 @@
 }
 
 .email,
-.password {
+.password,.name {
   height: 35px;
   width: 350px;
   font-family: "Poppins", sans-serif;
