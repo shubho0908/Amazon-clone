@@ -1,0 +1,115 @@
+.signin-page {
+  background-color: #f6f5f5;
+  height: 100vh;
+}
+
+.amazon-logo {
+  width: 160px;
+}
+
+.login-navbar {
+  display: flex;
+  align-items: center;
+  padding-left: 80px;
+  padding-right: 80px;
+  justify-content: space-between;
+}
+
+.signup-btn,
+.signin-btn {
+  cursor: pointer;
+  border: none;
+  background-color: rgb(255, 149, 0);
+  padding: 12px;
+  padding-left: 22px;
+  padding-right: 22px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  color: white;
+
+  font-size: 18px;
+  border-radius: 7px;
+}
+
+.signin-btn {
+  margin-top: 25px;
+}
+
+.user-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.some-text {
+  text-align: center;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  padding: 50px;
+  border-radius: 15px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
+    rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+}
+
+.main-form {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  bottom: 25vw;
+}
+
+.background {
+  display: flex;
+  align-items: center;
+  position: relative;
+  top: 60px;
+  justify-content: space-between;
+}
+
+.BG1,
+.BG2 {
+  width: 40vw;
+}
+
+.user {
+  margin: 0;
+  font-family: "Noto Sans", sans-serif;
+  font-size: 35px;
+}
+
+.user-desc {
+  font-family: "Poppins", sans-serif;
+  width: 300px;
+}
+
+.or {
+  font-family: "Poppins", sans-serif;
+}
+
+.email,
+.password {
+  height: 35px;
+  width: 400px;
+  font-family: "Poppins", sans-serif;
+  margin-top: 10px;
+  outline: none;
+  border: 1px solid rgba(175, 175, 175, 0.678);
+  padding: 10px;
+  border-radius: 6px;
+}
+
+.google {
+  display: flex;
+  font-family: "Poppins", sans-serif;
+  align-items: center;
+  justify-content: center;
+}
+
+.google-img {
+  width: 30px;
+}
