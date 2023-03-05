@@ -60,7 +60,7 @@
   display: flex;
   justify-content: center;
   position: relative;
-  bottom: 30vw;
+  bottom: 30.8vw;
 }
 
 .background {
@@ -128,4 +128,12 @@
 .google-img {
   width: 30px;
   margin-left: 10px;
+}
+
+.error-message {
+  margin-top: 10px;
+  width: 85%;
+  font-family: "Poppins", sans-serif;
+  color: red;
+  font-size: 14px;
 }
