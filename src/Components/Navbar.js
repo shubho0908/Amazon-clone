@@ -80,7 +80,16 @@ function Navbar() {
         <div className="right-section">
           <Link to="/wishlists">
             <img src={wishlist} className="wishlist" />
-            <p className="list-count">{ListItems.length}</p>
+            <p
+              style={
+                ListItems && ListItems.length > 0
+                  ? { opacity: 1 }
+                  : { opacity: 0 }
+              }
+              className="list-count"
+            >
+              {ListItems.length}
+            </p>
           </Link>
           <img src={cart} className="cart" />
           <img src={notify} className="notify" />

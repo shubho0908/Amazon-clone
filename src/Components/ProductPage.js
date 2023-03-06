@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, NavLink } from "react-router-dom";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import "./productpage.css";
@@ -7,6 +7,7 @@ import Rating from "../imgs/rating.png";
 import added from "../imgs/added.png";
 import add from "../imgs/not-added.png";
 import free from "../imgs/free.png";
+import Add from "../imgs/heart.png";
 import tick from "../imgs/tick.png";
 
 function ProductPage() {
@@ -17,13 +18,25 @@ function ProductPage() {
   const [pincode, setPincode] = useState("");
   const [pinDisplay, setpinDisplay] = useState("none");
   const [invalidDisplay, setinvalidDisplay] = useState("none");
+  const [reviews, setReviews] = useState(null);
+  const [similar, setSimilar] = useState([]);
 
   useEffect(() => {
     const getProducts = async () => {
       const data = await fetch(`https://fakestoreapi.com/products/${id}`);
       const new_data = await data.json();
       setProduct(new_data);
+      const data2 = await fetch(
+        `https://fakestoreapi.com/products/category/${new_data.category}`
+      );
+      const new_data2 = await data2.json();
+      const slicedData = new_data2.slice(0, 3);
+      setSimilar(slicedData);
     };
+
+    const randomNumber = Math.floor(Math.random() * 81) + 20;
+    setReviews(randomNumber);
+
     getProducts();
   }, [id]);
 
@@ -55,7 +68,7 @@ function ProductPage() {
               <img src={product && Rating} className="rating-img" />
               <img src={product && Rating} className="rating-img" />
               <img src={product && Rating} className="rating-img" />
-              <p className="rating-no">{product ? "5" : ""}</p>
+              <p className="rating-no">{product ? `(${reviews})` : ""}</p>
             </div>
             {product ? <hr className="horizontal" /> : ""}
             <div
@@ -130,7 +143,10 @@ function ProductPage() {
                 </p>
               </button>
             </div>
-            <div style={product ? {display:"block"}:{display:"none"}} className="extra-features">
+            <div
+              style={product ? { display: "block" } : { display: "none" }}
+              className="extra-features"
+            >
               <div className="free-delivery">
                 <img src={free} className="free" />
                 <p className="free-head">Free Delivery</p>
@@ -148,10 +164,10 @@ function ProductPage() {
                   onClick={() => {
                     if (pincode && pincode.length === 6) {
                       setpinDisplay("flex");
-                      setinvalidDisplay("none")
+                      setinvalidDisplay("none");
                     } else {
                       setpinDisplay("none");
-                      setinvalidDisplay("block")
+                      setinvalidDisplay("block");
                     }
                   }}
                   className="pin-check"
@@ -165,9 +181,52 @@ function ProductPage() {
                   <b>Free Delivery</b> is available at your location.
                 </p>
               </div>
-              <p style={{display:invalidDisplay}} className="invalid">Please enter a valid pincode.</p>
+              <p style={{ display: invalidDisplay }} className="invalid">
+                Please enter a valid pincode.
+              </p>
             </div>
           </div>
+        </div>
+      </div>
+      <div className="similar-items">
+        <p className="similar-head">Similar Items you might like</p>
+        <div className="lists-items">
+          {similar &&
+            similar.map((items) => {
+              return (
+                <div className="card" key={items.id}>
+                  <div className="card-img-data">
+                    <img src={items.image} className="card-img" />
+                    <img onClick={() => {}} src={Add} className="add-list3" />
+                    <NavLink to={`/product/${items.id}`} key={items.id}>
+                      <button className="view">View product</button>
+                    </NavLink>
+                  </div>
+                  <div className="card-data">
+                    <p className="card-title">
+                      {items.title.length >= 32
+                        ? items.title.slice(0, 32) + ".."
+                        : items.title}
+                    </p>
+                    <div className="category-rating">
+                      <p className="card-category">{items.category}</p>
+                      <div className="rating">
+                        <img src={Rating} className="rating-img" />
+                        <img src={Rating} className="rating-img" />
+                        <img src={Rating} className="rating-img" />
+                        <img src={Rating} className="rating-img" />
+                        <img src={Rating} className="rating-img" />
+                        <p className="rating-text">5</p>
+                      </div>
+                    </div>
+                    <div className="card-price">
+                      <p className="discount">${items.price}</p>
+                      <p className="mrp">${Math.round(items.price * 1.66)}</p>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
         </div>
       </div>
       <Footer />

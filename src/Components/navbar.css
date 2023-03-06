@@ -78,13 +78,12 @@ a {
 .cart {
   width: 28px;
   padding: 12px;
-  margin-left: 5px;
   border-radius: 9px;
   filter: invert(1);
 }
 
 .notify {
-  width: 28px;
+  width: 30px;
   margin-left: 20px;
 }
 

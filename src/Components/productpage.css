@@ -8,6 +8,11 @@
   justify-content: center;
 }
 
+.similar-items{
+  background-color: #f6f5f5;
+  padding-bottom: 60px;
+}
+
 .product-dataa {
   position: relative;
   display: flex;
@@ -46,6 +51,7 @@
 .item-desc {
   font-family: "Poppins";
   font-size: 15px;
+  text-align: justify;
 }
 
 .img-style {
@@ -100,7 +106,7 @@
 }
 
 .buying-buttons {
-  margin-top: 30px;
+  margin-top: 40px;
 }
 
 .buy-btn {
@@ -248,4 +254,15 @@
   height: 24px;
   margin-top: 20px;
   transition: all .2s ease;
+}
+
+.add-list3 {
+  width: 24px;
+  position: relative;
+  bottom: 244px;
+  left: 194px;
+}
+
+.similar-head{
+  margin: 0;
 }
