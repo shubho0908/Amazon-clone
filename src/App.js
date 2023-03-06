@@ -5,6 +5,7 @@ import Home from "./Components/Home";
 import Lists from "./Components/Lists";
 import Signin from "./Components/Signin";
 import Signup from "./Components/Signup";
+import Load from "./imgs/spin.gif";
 import { app } from "./Firebase";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import ProductPage from "./Components/ProductPage";
@@ -27,14 +28,23 @@ function App() {
   }, []);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return (
+      <>
+        <div className="loading">
+          <img src={Load} className="loading-img"/>
+        </div>
+      </>
+    );
   }
 
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={user ? <Navigate to="/home" /> : <Signin />} />
-        <Route path="/signup" element={user ? <Navigate to="/home" /> : <Signup />} />
+        <Route
+          path="/signup"
+          element={user ? <Navigate to="/home" /> : <Signup />}
+        />
         {user && (
           <>
             <Route path="/" element={<Navigate to="/home" />} />

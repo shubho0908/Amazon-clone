@@ -58,12 +58,11 @@ a {
   border-bottom-left-radius: 10px;
   background-color: #2d3b47;
   font-family: "Poppins", sans-serif;
-
 }
 
 .search-box::placeholder {
   color: white;
-  opacity: .6;
+  opacity: 0.6;
 }
 
 .right-section {
@@ -96,7 +95,6 @@ a {
   border-radius: 50%;
   border: 2px solid white;
   padding: 3px;
-  
 }
 .list-count {
   color: white;
@@ -116,7 +114,6 @@ a {
 .search-results {
   z-index: 2;
   position: fixed;
-  top: 150px;
   background-color: white;
   padding-top: 10px;
   padding-bottom: 10px;
@@ -132,6 +129,19 @@ a {
   opacity: 0;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
     rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+  animation: fadedown 0.25s ease;
+}
+
+@keyframes fadedown {
+  0% {
+    top: 75px;
+    opacity: 0;
+  }
+
+  100% {
+    top: 85px;
+    opacity: 1;
+  }
 }
 
 .search-results.show {
