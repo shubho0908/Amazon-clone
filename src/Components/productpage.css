@@ -21,6 +21,16 @@
   width: 650px;
 }
 
+.item-rating{
+  display: flex;
+  align-items: center;
+}
+
+.rating-no{
+  font-family: "Poppins";
+  padding-left: 5px;
+}
+
 .item-img {
   width: 350px;
 }
@@ -29,6 +39,7 @@
   font-family: "Jost", sans-serif;
   font-size: 35px;
   font-weight: bolder;
+  margin: 0;
 }
 
 .item-desc {
@@ -42,4 +53,8 @@
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
     rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
   border-radius: 12px;
+}
+
+.horizontal{
+  opacity: .3;
 }

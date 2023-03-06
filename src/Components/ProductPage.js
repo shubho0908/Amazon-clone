@@ -33,11 +33,24 @@ function ProductPage() {
             <p className="item-title">{product.title}</p>
             <p className="item-desc">{product.description}</p>
             <div className="item-rating">
-              <img src={Rating} className="rating-img" />
-              <img src={Rating} className="rating-img" />
-              <img src={Rating} className="rating-img" />
-              <img src={Rating} className="rating-img" />
-              <img src={Rating} className="rating-img" />
+              <img src={product && Rating} className="rating-img" />
+              <img src={product && Rating} className="rating-img" />
+              <img src={product && Rating} className="rating-img" />
+              <img src={product && Rating} className="rating-img" />
+              <img src={product && Rating} className="rating-img" />
+              <p className="rating-no">5</p>
+            </div>
+            <hr className="horizontal" />
+            <div
+              style={
+                product.category === "men's clothing" ||
+                product.category === "women's clothing"
+                  ? { display: "block" }
+                  : { display: "none" }
+              }
+              className="cloth-size"
+            >
+              CLOTH
             </div>
           </div>
         </div>
