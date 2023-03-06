@@ -50,7 +50,15 @@ function ProductPage() {
               }
               className="cloth-size"
             >
-              CLOTH
+              <p className="choose">Choose a size</p>
+              <div className="options">
+                <p className="size">S</p>
+                <p className="size">M</p>
+                <p className="size">L</p>
+                <p className="size">XL</p>
+                <p className="size">XXL</p>
+                <p className="size">XXXL</p>
+              </div>
             </div>
           </div>
         </div>

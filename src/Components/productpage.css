@@ -21,12 +21,12 @@
   width: 650px;
 }
 
-.item-rating{
+.item-rating {
   display: flex;
   align-items: center;
 }
 
-.rating-no{
+.rating-no {
   font-family: "Poppins";
   padding-left: 5px;
 }
@@ -43,8 +43,8 @@
 }
 
 .item-desc {
-    font-family: "Poppins";
-    font-size: 15px;
+  font-family: "Poppins";
+  font-size: 15px;
 }
 
 .img-style {
@@ -55,6 +55,43 @@
   border-radius: 12px;
 }
 
-.horizontal{
-  opacity: .3;
+.horizontal {
+  opacity: 0.3;
+}
+
+.options {
+  text-align: center;
+  display: flex;
+  position: relative;
+  right: 15px;
+  top:  8px;
+  margin: 0;
+}
+
+.choose {
+  font-family: "Jost", sans-serif;
+  font-size: 25px;
+  font-weight: bolder;
+  margin: 0;
+}
+
+.size {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Poppins", "sans-serif";
+  font-weight: 600;
+  padding: 12px;
+  border: 2px solid rgb(79, 141, 255);
+  border-radius: 6px;
+  margin-left: 15px;
+  height: 32px;
+  width: 32px;
+  transition: all 0.2s ease;
+}
+
+.size:hover {
+  background-color: rgb(79, 141, 255);
+  color: white;
 }
