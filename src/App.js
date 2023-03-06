@@ -1,6 +1,6 @@
 import "./App.css";
 import { useState, useEffect } from "react";
-import { Routes, Route, BrowserRouter, Navigate } from "react-router-dom"; // Import the Navigate component from react-router-dom
+import { Routes, Route, Navigate, BrowserRouter } from "react-router-dom";
 import Home from "./Components/Home";
 import Lists from "./Components/Lists";
 import Signin from "./Components/Signin";
@@ -13,6 +13,7 @@ const auth = getAuth(app);
 
 function App() {
   const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
@@ -21,22 +22,25 @@ function App() {
       } else {
         setUser(null);
       }
+      setLoading(false);
     });
   }, []);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <BrowserRouter>
       <Routes>
-        {user === null ? (
+        <Route path="/" element={user ? <Navigate to="/home" /> : <Signin />} />
+        <Route path="/signup" element={user ? <Navigate to="/home" /> : <Signup />} />
+        {user && (
           <>
-            <Route exact path="/" element={<Signin />} />
-            <Route exact path="/signup" element={<Signup />} />
-          </>
-        ) : (
-          <>
-            <Route exact path="/home" element={<Home />} />
-            <Route exact path="/wishlists" element={<Lists />} />
-            <Route exact path="/product/:id" element={<ProductPage />} />
+            <Route path="/" element={<Navigate to="/home" />} />
+            <Route path="/home" element={<Home />} />
+            <Route path="/wishlists" element={<Lists />} />
+            <Route path="/product/:id" element={<ProductPage />} />
           </>
         )}
       </Routes>
