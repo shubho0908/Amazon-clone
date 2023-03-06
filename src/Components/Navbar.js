@@ -25,6 +25,7 @@ function Navbar() {
     onAuthStateChanged(auth, (user) => {
       if (user) {
         setUser(user);
+        console.log(user);
       } else {
         setUser(null);
       }
@@ -84,11 +85,10 @@ function Navbar() {
           </Link>
           <img src={cart} className="cart" />
           <img src={notify} className="notify" />
-          {user && user.photoURL ? (
-            <img src={user.photoURL} className="default" />
-          ) : (
-            <img src={Default} className="default" />
-          )}
+          <img
+            src={user && user.photoURL ? user.photoURL : Default}
+            className="default"
+          />
         </div>
       </div>
       {searchText !== "" && (
@@ -98,24 +98,28 @@ function Navbar() {
         >
           {searchResults.length > 0 &&
             searchResults.map((product) => (
-              <NavLink to={`/product/${product.id}`}  key={product.id} className="nav-link">
+              <NavLink
+                to={`/product/${product.id}`}
+                key={product.id}
+                className="nav-link"
+              >
                 <div className="search-results2" key={product.id}>
-                <div className="product-img">
-                  <img src={product.image} className="product-image" />
+                  <div className="product-img">
+                    <img src={product.image} className="product-image" />
+                  </div>
+                  <div className="product-data">
+                    <p className="product-title">
+                      {product.title.length > 50
+                        ? product.title.slice(0, 50) + "..."
+                        : product.title}
+                    </p>
+                    <p className="product-desc">
+                      {product.description.length > 50
+                        ? product.description.slice(0, 50) + "..."
+                        : product.description}
+                    </p>
+                  </div>
                 </div>
-                <div className="product-data">
-                  <p className="product-title">
-                    {product.title.length > 50
-                      ? product.title.slice(0, 50) + "..."
-                      : product.title}
-                  </p>
-                  <p className="product-desc">
-                    {product.description.length > 50
-                      ? product.description.slice(0, 50) + "..."
-                      : product.description}
-                  </p>
-                </div>
-              </div>
               </NavLink>
             ))}
         </div>

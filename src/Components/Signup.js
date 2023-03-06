@@ -98,7 +98,7 @@ function Signup() {
           <img src={BG1} className="BG1" />
           <img src={BG2} className="BG2" />
         </div>
-        <div className="main-form">
+        <div className="main-form2">
           <div className="login-form">
             <div className="some-text">
               <p className="user">User Registration</p>

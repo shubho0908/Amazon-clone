@@ -80,6 +80,13 @@
   bottom: 30vw;
 }
 
+.main-form2 {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  bottom: 32vw;
+}
+
 .background {
   display: flex;
   align-items: center;
