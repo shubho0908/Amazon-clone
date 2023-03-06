@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Navbar from "./Navbar";
+import Footer from './Footer'
 import './productpage.css'
 
 function ProductPage() {
@@ -32,6 +33,7 @@ function ProductPage() {
           </div>
         </div>
       </div>
+        <Footer/>
     </>
   );
 }
