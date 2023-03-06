@@ -17,13 +17,13 @@ function ProductPage() {
       setProduct(new_data);
     };
     getProducts();
-  }, []);
+  }, [id]);
 
   return (
     <>
       <Navbar />
       <div className="product-page">
-        <div className="product-data">
+        <div className="product-dataa">
           <div className="item-image">
             <img
               src={product.image}
@@ -93,8 +93,8 @@ function ProductPage() {
             ) : (
               ""
             )}
-            <div className="buying-buttons">
-              <button className="but-btn">Buy Now</button>
+            <div style={product ? {display:"flex"}:{display:"none"}} className="buying-buttons">
+              <button className="buy-btn">Buy Now</button>
               <button className="add-cart-btn">Add to Cart</button>
             </div>
           </div>

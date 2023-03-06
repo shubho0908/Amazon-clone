@@ -95,8 +95,12 @@
   transition: all 0.3s;
   opacity: 0;
   visibility: hidden;
+  transition: all .18s ease;
 }
 
+.view2:hover{
+  transform: scale(1.1);
+}
 .card-data {
   position: relative;
   text-align: left;
