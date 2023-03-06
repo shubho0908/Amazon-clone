@@ -4,11 +4,14 @@ import Navbar from "./Navbar";
 import Footer from "./Footer";
 import "./productpage.css";
 import Rating from "../imgs/rating.png";
+import added from "../imgs/added.png";
+import add from "../imgs/not-added.png";
 
 function ProductPage() {
   const { id } = useParams();
   const [product, setProduct] = useState("");
   const [Size, setSize] = useState("");
+  const [cart, setCart] = useState(false);
 
   useEffect(() => {
     const getProducts = async () => {
@@ -18,6 +21,10 @@ function ProductPage() {
     };
     getProducts();
   }, [id]);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <>
@@ -93,9 +100,24 @@ function ProductPage() {
             ) : (
               ""
             )}
-            <div style={product ? {display:"flex"}:{display:"none"}} className="buying-buttons">
+            <div
+              style={product ? { display: "flex" } : { display: "none" }}
+              className="buying-buttons"
+            >
               <button className="buy-btn">Buy Now</button>
-              <button className="add-cart-btn">Add to Cart</button>
+              <button
+                onClick={() => {
+                  setCart(true);
+                  if (cart === true) {
+                    setCart(false);
+                  } else {
+                  }
+                }}
+                className="add-cart-btn"
+              >
+                <img src={cart === true ? added : add} className="cart-img" />
+                <p style={{marginLeft:"8px"}} className="cart-text">{cart === true ? "Added": "Add"}</p>
+              </button>
             </div>
           </div>
         </div>

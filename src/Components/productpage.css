@@ -106,9 +106,10 @@
 
 .buy-btn {
   cursor: pointer;
+  height: 50px;
+  padding: 5px;
   border: none;
   background-color: rgb(255, 149, 0);
-  padding: 12px;
   padding-left: 22px;
   padding-right: 22px;
   font-family: "Poppins", sans-serif;
@@ -118,14 +119,18 @@
   font-size: 18px;
   border-radius: 7px;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 18px 50px -10px;
-  transition:all .25s ease;
+  transition: all 0.13s;
+
 }
 
 .add-cart-btn {
+  display: flex;
+  align-items: center;
   cursor: pointer;
+  height: 50px;
+  padding: 5px;
   border: none;
-  background-color: rgb(255, 149, 0);
-  padding: 12px;
+  background-color: #1c2228;
   padding-left: 22px;
   padding-right: 22px;
   font-family: "Poppins", sans-serif;
@@ -136,9 +141,19 @@
   border-radius: 7px;
   margin-left: 35px;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 18px 50px -10px;
-  transition:all .15s ease;
+  transition: all 0.13s;
 }
 
-.buy-btn:hover,.add-cart-btn:hover{
-transform: scale(1.06);
+.cart-img {
+  width: 30px;
+}
+
+.buy-btn:hover,
+.add-cart-btn:hover {
+  transform: scale(1.06);
+}
+
+.buy-btn:active,
+.add-cart-btn:active {
+  transform: scale(1);
 }
