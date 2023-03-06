@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Jost:wght@600&family=Poppins:wght@600&display=swap');
+
+.product-page {
+  background-color: #f6f5f5;
+  height: 100vh;
+}
+
+.product-data {
+  position: relative;
+  display: flex;
+
+  top: 180px;
+}
+
+.item-img {
+  width: 400px;
+}
+
+.item-title {
+    font-family: 'Jost', sans-serif;
+  font-size: 35px;
+  font-weight: bolder;
+}
+
+.img-style {
+  background-color: white;
+  padding: 60px;
+  border-radius: 12px;
+}
