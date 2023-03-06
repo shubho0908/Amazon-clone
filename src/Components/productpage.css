@@ -56,6 +56,8 @@
 }
 
 .horizontal {
+  margin-top: 25px;
+  margin-bottom: 25px;
   opacity: 0.3;
 }
 
@@ -64,7 +66,7 @@
   display: flex;
   position: relative;
   right: 15px;
-  top:  8px;
+  top: 8px;
   margin: 0;
 }
 
@@ -83,7 +85,7 @@
   font-family: "Poppins", "sans-serif";
   font-weight: 600;
   padding: 12px;
-  border: 2px solid rgb(79, 141, 255);
+  border: 2px solid #e99317;
   border-radius: 6px;
   margin-left: 15px;
   height: 32px;
@@ -92,6 +94,11 @@
 }
 
 .size:hover {
-  background-color: rgb(79, 141, 255);
+  background-color: #e99317;
+  color: white;
+}
+
+.size-clicked {
+  background-color: #e99317;
   color: white;
 }

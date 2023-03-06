@@ -8,6 +8,7 @@ import Rating from "../imgs/rating.png";
 function ProductPage() {
   const { id } = useParams();
   const [product, setProduct] = useState("");
+  const [Size, setSize] = useState("");
 
   useEffect(() => {
     const getProducts = async () => {
@@ -38,9 +39,9 @@ function ProductPage() {
               <img src={product && Rating} className="rating-img" />
               <img src={product && Rating} className="rating-img" />
               <img src={product && Rating} className="rating-img" />
-              <p className="rating-no">5</p>
+              <p className="rating-no">{product ? "5" : ""}</p>
             </div>
-            <hr className="horizontal" />
+            {product ? <hr className="horizontal" /> : ""}
             <div
               style={
                 product.category === "men's clothing" ||
@@ -52,13 +53,49 @@ function ProductPage() {
             >
               <p className="choose">Choose a size</p>
               <div className="options">
-                <p className="size">S</p>
-                <p className="size">M</p>
-                <p className="size">L</p>
-                <p className="size">XL</p>
-                <p className="size">XXL</p>
-                <p className="size">XXXL</p>
+                <p
+                  onClick={() => setSize("small")}
+                  className={`size ${Size === "small" ? "size-clicked" : ""}`}
+                >
+                  S
+                </p>
+                <p
+                  onClick={() => setSize("medium")}
+                  className={`size ${Size === "medium" ? "size-clicked" : ""}`}
+                >
+                  M
+                </p>
+                <p
+                  onClick={() => setSize("large")}
+                  className={`size ${Size === "large" ? "size-clicked" : ""}`}
+                >
+                  L
+                </p>
+                <p
+                  onClick={() => setSize("x-large")}
+                  className={`size ${Size === "x-large" ? "size-clicked" : ""}`}
+                >
+                  XL
+                </p>
+                <p
+                  onClick={() => setSize("xx-large")}
+                  className={`size ${
+                    Size === "xx-large" ? "size-clicked" : ""
+                  }`}
+                >
+                  XXL
+                </p>
               </div>
+            </div>
+            {(product && product.category === "men's clothing") ||
+            product.category === "women's clothing" ? (
+              <hr className="horizontal" />
+            ) : (
+              ""
+            )}
+            <div className="buying-buttons">
+              <button className="but-btn">Buy Now</button>
+              <button className="add-cart-btn">Add to Cart</button>
             </div>
           </div>
         </div>
