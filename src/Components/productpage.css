@@ -4,6 +4,7 @@
   background-color: #f6f5f5;
   height: 100vh;
   display: flex;
+  padding-bottom: 80px;
   justify-content: center;
 }
 
@@ -12,7 +13,7 @@
   display: flex;
   justify-content: space-evenly;
   top: 180px;
-  width: 64%;
+  width: 75%;
 }
 
 .product-details {
@@ -21,7 +22,7 @@
 }
 
 .item-img {
-  width: 400px;
+  width: 350px;
 }
 
 .item-title {
@@ -30,8 +31,15 @@
   font-weight: bolder;
 }
 
+.item-desc {
+    font-family: "Poppins";
+    font-size: 15px;
+}
+
 .img-style {
   background-color: white;
   padding: 60px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
+    rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
   border-radius: 12px;
 }
