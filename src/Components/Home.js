@@ -9,10 +9,14 @@ function Home() {
 
   const handleScroll = () => {
     window.scrollTo({
-      top: scrollPosition + 750, // Scroll down by 100 pixels
-      behavior: "smooth" // Add smooth scrolling animation
+      top: scrollPosition + 750, 
+      behavior: "smooth" 
     });
-    setScrollPosition(scrollPosition + 750); // Update the state with the new scroll position
+    setScrollPosition(scrollPosition + 750);
+    setTimeout(() => {
+    setScrollPosition(0); 
+      
+    }, 100); 
   };
 
   return (

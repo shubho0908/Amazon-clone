@@ -94,14 +94,13 @@
   transition: all 0.2s ease;
 }
 
-.size:hover {
+.size-clicked {
   background-color: #e99317;
   color: white;
 }
 
-.size-clicked {
-  background-color: #e99317;
-  color: white;
+.buying-buttons {
+  margin-top: 30px;
 }
 
 .buy-btn {
@@ -120,7 +119,6 @@
   border-radius: 7px;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 18px 50px -10px;
   transition: all 0.13s;
-
 }
 
 .add-cart-btn {
@@ -156,4 +154,98 @@
 .buy-btn:active,
 .add-cart-btn:active {
   transform: scale(1);
+}
+
+.extra-features {
+  margin-top: 25px;
+}
+
+.free {
+  width: 35px;
+}
+
+.free-head {
+  font-family: "Poppins";
+  font-weight: bold;
+  font-size: 25px;
+  margin-left: 12px;
+}
+
+.free-delivery {
+  display: flex;
+  align-items: center;
+}
+
+.free-data {
+  margin-top: 6px;
+  display: flex;
+  align-items: center;
+}
+
+.pincode {
+  height: 26px;
+  border: none;
+  font-family: "Poppins";
+  font-size: 15px;
+  border-radius: 5px;
+  padding: 12px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  width: 250px;
+  outline: none;
+}
+
+.pin-check {
+  cursor: pointer;
+  height: 46px;
+  padding: 5px;
+  border: none;
+  background-color: #1c2228;
+  padding-left: 15px;
+  padding-right: 15px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  color: white;
+  transition: all 0.3s ease;
+  font-size: 18px;
+  border-radius: 7px;
+  margin-left: 15px;
+  transition: all 0.13s;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 18px 50px -10px;
+}
+
+.pin-check:hover {
+  transform: scale(1.06);
+}
+
+.pin-check:active {
+  transform: scale(1);
+}
+
+.tick {
+  width: 30px;
+  margin-right: 4px;
+}
+
+.free-check {
+  display: flex;
+  align-items: center;
+  height: 24px;
+  margin-top: 20px;
+  border-radius: 6px;
+  transition: all .2s ease;
+}
+
+.available {
+  font-family: "Poppins";
+  font-size: 14px;
+}
+
+.invalid {
+  color: rgb(158, 0, 0);
+  font-family: "Poppins";
+  font-size: 15px;
+  height: 24px;
+  margin-top: 20px;
+  transition: all .2s ease;
 }

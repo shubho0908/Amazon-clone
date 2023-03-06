@@ -99,7 +99,7 @@
 }
 
 .view2:hover{
-  transform: scale(1.1);
+  transform: scale(1.06);
 }
 .card-data {
   position: relative;
@@ -208,6 +208,15 @@
     rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
   font-size: 18px;
   border-radius: 7px;
+  transition: all 0.13s;
+}
+
+.shopping:hover {
+  transform: scale(1.06);
+}
+
+.shopping:active {
+  transform: scale(1);
 }
 
 a {
