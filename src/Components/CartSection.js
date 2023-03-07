@@ -180,7 +180,7 @@ function CartSection() {
               </div>
               <div className="money-4">
                 <p className="item-tax">Tax</p>
-                <p className="item-tax2">+ ${TaxPrice}</p>
+                <p className="item-tax2">(5%) + ${TaxPrice}</p>
               </div>
             </div>
             <hr className="horizontal" />
