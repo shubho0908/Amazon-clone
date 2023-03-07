@@ -21,7 +21,7 @@ function ProductPage() {
   const [pinDisplay, setpinDisplay] = useState("none");
   const [invalidDisplay, setinvalidDisplay] = useState("none");
   const [reviews, setReviews] = useState(null);
-  const Quantity = 1
+  const Quantity = 1;
 
   const tiltRef = useRef(null);
 
@@ -75,6 +75,7 @@ function ProductPage() {
         price: product.price,
         image: product.image,
         size: Size,
+        category: product.category,
         quantity: Quantity,
       };
       dispatch(AddToCart(item));
@@ -122,33 +123,33 @@ function ProductPage() {
               <p className="choose">Choose a size</p>
               <div className="options">
                 <p
-                  onClick={() => setSize("small")}
-                  className={`size ${Size === "small" ? "size-clicked" : ""}`}
+                  onClick={() => setSize("S")}
+                  className={`size ${Size === "S" ? "size-clicked" : ""}`}
                 >
                   S
                 </p>
                 <p
-                  onClick={() => setSize("medium")}
-                  className={`size ${Size === "medium" ? "size-clicked" : ""}`}
+                  onClick={() => setSize("M")}
+                  className={`size ${Size === "M" ? "size-clicked" : ""}`}
                 >
                   M
                 </p>
                 <p
-                  onClick={() => setSize("large")}
-                  className={`size ${Size === "large" ? "size-clicked" : ""}`}
+                  onClick={() => setSize("L")}
+                  className={`size ${Size === "L" ? "size-clicked" : ""}`}
                 >
                   L
                 </p>
                 <p
-                  onClick={() => setSize("x-large")}
-                  className={`size ${Size === "x-large" ? "size-clicked" : ""}`}
+                  onClick={() => setSize("XL")}
+                  className={`size ${Size === "XL" ? "size-clicked" : ""}`}
                 >
                   XL
                 </p>
                 <p
-                  onClick={() => setSize("xx-large")}
+                  onClick={() => setSize("XXL")}
                   className={`size ${
-                    Size === "xx-large" ? "size-clicked" : ""
+                    Size === "XXL" ? "size-clicked" : ""
                   }`}
                 >
                   XXL

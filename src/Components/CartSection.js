@@ -2,13 +2,19 @@ import React, { useState, useEffect } from "react";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import "./cart.css";
+import { AddToList, RemoveList } from "../action/List";
 import { IncreaseQuantity, DecreaseQuantity } from "../action/Cart";
 import { RemoveCart } from "../action/Cart";
+import save from "../imgs/save.png";
+import saved from "../imgs/saved.png";
+import Delete from "../imgs/delete.png";
 import { useSelector, useDispatch } from "react-redux";
 
 function CartSection() {
   const CartItems = useSelector((state) => state.CartItemsAdded.CartItems);
+  const ListItems = useSelector((state) => state.ItemsAdded.ListItems);
   const dispatch = useDispatch();
+  const [AddedIds, setAddedIds] = useState([]);
   const [SubTotal, setSubTotal] = useState(0);
 
   useEffect(() => {
@@ -18,6 +24,22 @@ function CartSection() {
     );
     setSubTotal(newSubtotal);
   }, [CartItems]);
+
+  const totalQuantity = CartItems.reduce(
+    (total, item) => total + item.quantity,
+    0
+  );
+
+  useEffect(() => {
+    // Update the added ids whenever the list items change
+    const ids = ListItems.map((item) => item.id);
+    setAddedIds(ids);
+  }, [ListItems]);
+
+  const isAdded = (itemId) => {
+    // Check if the item id is in the added ids
+    return AddedIds.includes(itemId);
+  };
 
   return (
     <>
@@ -46,9 +68,19 @@ function CartSection() {
                         <p className="cart-discount">
                           ${(item.price * item.quantity).toFixed(1)}
                         </p>
-                        <p className="cart-size">
+                        <p
+                          style={
+                            (item && item.category === "men's clothing") ||
+                            item.category === "women's clothing"
+                              ? { display: "block" }
+                              : { display: "none" }
+                          }
+                          className="cart-size"
+                        >
                           Size: {item.size ? item.size : "Not choosen"}
                         </p>
+                      </div>
+                      <div className="more-buttons">
                         <div className="quantity-section">
                           <button
                             onClick={() => dispatch(IncreaseQuantity(item.id))}
@@ -66,7 +98,25 @@ function CartSection() {
                           >
                             -
                           </button>
-                          <button onClick={() => dispatch(RemoveCart(item.id))}> DELETE</button>
+                        </div>
+                        <div className="right-btns">
+                          <div onClick={()=>{
+                            if (!isAdded(item.id)) {
+                              dispatch(AddToList(item));
+                            } else {
+                              dispatch(RemoveList(item.id));
+                            }
+                          }} className="save-btn">
+                            <img src={isAdded(item.id) ? saved : save} className="save-img" />
+                            <p>Save</p>
+                          </div>
+                          <div
+                            onClick={() => dispatch(RemoveCart(item.id))}
+                            className="delete-btn"
+                          >
+                            <img src={Delete} className="delete-img" />
+                            <p>Delete</p>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -83,7 +133,15 @@ function CartSection() {
             }
             className="checkout-section"
           >
-            Total: ${SubTotal}
+            <p className="checkout-title">Checkout</p>
+            <div className="congrats">
+              <p>
+                Congrats! You're eligible for <b>Free Delivery</b>.
+              </p>
+            </div>
+            <div className="total">Sub-Total: ${SubTotal.toFixed(1)}</div>
+            <p className="total-items">Number of items: {totalQuantity}</p>
+            <button className="payment">Payment</button>
           </div>
         </div>
       </div>

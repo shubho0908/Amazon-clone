@@ -2,7 +2,6 @@
 
 .product-page {
   background-color: #f6f5f5;
-  height: 100vh;
   display: flex;
   padding-bottom: 100px;
   justify-content: center;
@@ -14,6 +13,8 @@
   justify-content: space-evenly;
   top: 180px;
   width: 75%;
+  height: 100vh;
+  margin-bottom: 40px;
 }
 
 .product-details {
