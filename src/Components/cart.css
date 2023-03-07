@@ -150,8 +150,126 @@
   animation: fadein 0.4s ease;
 }
 
-.congrats {
-  font-family: "Poppins";
+.congrats > p {
   color: #013d01;
-  background-color: #0cd80c;
+  font-family: "Poppins";
+  padding: 8px;
+  border-radius: 6px;
+  font-size: 15px;
+  background-color: #0cd80c62;
+}
+
+.promocode {
+  display: flex;
+  justify-content: center;
+}
+
+.promocode > input {
+  outline: none;
+  border: 1.5px solid rgb(193, 193, 193);
+  padding: 10px;
+  border-radius: 5px;
+  width: 230px;
+  height: 25px;
+}
+
+.promocode-btn {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  border: none;
+  background-color: #1c2228;
+  padding-left: 12px;
+  padding-right: 12px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  color: white;
+  transition: all 0.3s ease;
+  font-size: 17px;
+  border-radius: 5px;
+  margin-left: 6px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 18px 50px -10px;
+  transition: all 0.13s;
+}
+
+.promocode-btn:hover {
+  transform: scale(1.06);
+}
+
+.promocode-btn:active {
+  transform: scale(1);
+}
+
+.payment {
+  cursor: pointer;
+  height: 50px;
+  padding: 3px;
+  border: none;
+  background-color: rgb(255, 149, 0);
+  padding-left: 22px;
+  padding-right: 22px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  color: white;
+  transition: all 0.3s ease;
+  font-size: 18px;
+  border-radius: 5px;
+  transition: all 0.13s;
+  margin-bottom: 14px;
+  margin-top: 18px;
+}
+
+.payment:hover {
+  transform: scale(1.05);
+}
+
+.payment:active {
+  transform: scale(1);
+}
+
+.money-data {
+  font-family: "Poppins";
+  display: flex;
+  flex-direction: column;
+}
+
+.payment-btn {
+  display: flex;
+  flex-direction: column;
+}
+
+.total,
+.total-price {
+  margin: 0;
+  font-weight: bolder;
+  font-size: 18px;
+}
+
+.money-1,
+.money-2,
+.money-3,
+.money-4,
+.money-5 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.money-2,
+.money-3,
+.money-4 {
+  font-size: 13.5px;
+  color: rgb(92, 92, 92);
+}
+
+.money-2 > p,
+.money-3 > p,
+.money-4 > p {
+  margin-bottom: 0px;
+}
+
+.money-5 {
+  font-weight: bolder;
+  font-family: "Poppins";
+  font-size: 18px;
 }

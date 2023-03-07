@@ -26,10 +26,10 @@ function CartSection() {
     setSubTotal(newSubtotal);
   }, [CartItems]);
 
-  const totalQuantity = CartItems.reduce(
-    (total, item) => total + item.quantity,
-    0
-  );
+  // const totalQuantity = CartItems.reduce(
+  //   (total, item) => total + item.quantity,
+  //   0
+  // );
 
   useEffect(() => {
     // Update the added ids whenever the list items change
@@ -41,6 +41,9 @@ function CartSection() {
     // Check if the item id is in the added ids
     return AddedIds.includes(itemId);
   };
+
+  const DiscountPrice = (SubTotal * 0.2).toFixed(1);
+  const TaxPrice = (SubTotal * 0.05).toFixed(1);
 
   return (
     <>
@@ -155,9 +158,41 @@ function CartSection() {
                 Congrats! You're eligible for <b>Free Delivery</b>.
               </p>
             </div>
-            <div className="total">Sub-Total: ${SubTotal.toFixed(1)}</div>
-            <p className="total-items">Number of items: {totalQuantity}</p>
-            <button className="payment">Payment</button>
+            <hr className="horizontal" />
+            <div className="promocode">
+              <input type="text" placeholder="Promocode" />
+              <button className="promocode-btn">Apply</button>
+            </div>
+            <hr className="horizontal" />
+
+            <div className="money-data">
+              <div className="money-1">
+                <p className="total">Sub-Total</p>
+                <p className="total-price">${SubTotal.toFixed(1)}</p>
+              </div>
+              <div className="money-2">
+                <p className="item-discount">Discount</p>
+                <p className="item-discount2">(20%) - ${DiscountPrice}</p>
+              </div>
+              <div className="money-3">
+                <p className="item-delivery">Delivery</p>
+                <p className="item-delivery2">$0.00</p>
+              </div>
+              <div className="money-4">
+                <p className="item-tax">Tax</p>
+                <p className="item-tax2">+ ${TaxPrice}</p>
+              </div>
+            </div>
+            <hr className="horizontal" />
+            <div className="money-5">
+              <p className="total">Total</p>
+              <p className="total-price">
+                ${(parseInt(SubTotal) - parseInt(DiscountPrice) + parseInt(TaxPrice)).toFixed(1)}
+              </p>
+            </div>
+            <div className="payment-btn">
+              <button className="payment">Proceed to Payment</button>
+            </div>
           </div>
         </div>
       </div>
