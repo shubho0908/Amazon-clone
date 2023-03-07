@@ -141,11 +141,9 @@
 }
 
 .wishlist-head {
-  text-align: left;
+  text-align: center;
   font-family: "Poppins", sans-serif;
   position: relative;
-  width: 200px;
-  left: 230px;
   font-weight: 600;
   font-size: 30px;
 }

@@ -8,6 +8,7 @@ import { RemoveCart } from "../action/Cart";
 import save from "../imgs/save.png";
 import saved from "../imgs/saved.png";
 import Delete from "../imgs/delete.png";
+import Empty from "../imgs/cart-empty.png";
 import { useSelector, useDispatch } from "react-redux";
 
 function CartSection() {
@@ -51,12 +52,22 @@ function CartSection() {
         <div
           style={
             CartItems && CartItems.length === 0
-              ? { height: "35vh" }
+              ? { height: "40vh" }
               : { height: "100%" }
           }
           className="cart-section"
         >
           <div className="cart-details">
+            <div
+              style={
+                CartItems && CartItems.length === 0
+                  ? { display: "block" }
+                  : { display: "none" }
+              }
+              className="empty-cart"
+            >
+              <img src={Empty} className="empty-cart-img" />
+            </div>
             <div className="cart-item">
               {CartItems.map((item) => {
                 return (
@@ -100,14 +111,20 @@ function CartSection() {
                           </button>
                         </div>
                         <div className="right-btns">
-                          <div onClick={()=>{
-                            if (!isAdded(item.id)) {
-                              dispatch(AddToList(item));
-                            } else {
-                              dispatch(RemoveList(item.id));
-                            }
-                          }} className="save-btn">
-                            <img src={isAdded(item.id) ? saved : save} className="save-img" />
+                          <div
+                            onClick={() => {
+                              if (!isAdded(item.id)) {
+                                dispatch(AddToList(item));
+                              } else {
+                                dispatch(RemoveList(item.id));
+                              }
+                            }}
+                            className="save-btn"
+                          >
+                            <img
+                              src={isAdded(item.id) ? saved : save}
+                              className="save-img"
+                            />
                             <p>Save</p>
                           </div>
                           <div
@@ -133,7 +150,6 @@ function CartSection() {
             }
             className="checkout-section"
           >
-            <p className="checkout-title">Checkout</p>
             <div className="congrats">
               <p>
                 Congrats! You're eligible for <b>Free Delivery</b>.

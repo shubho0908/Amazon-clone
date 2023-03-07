@@ -15,12 +15,11 @@
   margin-top: 20px;
   background-color: white;
   margin-left: 25px;
-  max-width: 450px;
+  max-width: fit-content;
   padding: 15px;
   padding-left: 30px;
   padding-right: 30px;
-  height: auto;
-  max-height: 250px;
+  height: fit-content;
   background-color: white;
   border-radius: 10px;
 }
@@ -28,7 +27,7 @@
 .cart-section {
   display: flex;
   justify-content: center;
-  width: 50%;
+  width: 70%;
   height: 30vh;
   position: relative;
   top: 25px;
@@ -51,7 +50,8 @@
 }
 .cart-head {
   font-family: "Poppins";
-  font-size: 25px;
+  font-size: 30px;
+  padding-top: 20px;
   font-weight: bolder;
 }
 .cart-title {
@@ -137,7 +137,21 @@
   display: flex;
   align-items: center;
 }
-.save-btn>p,
-.delete-btn>p {
+.save-btn > p,
+.delete-btn > p {
   margin-left: 6px;
+}
+
+.empty-cart-img {
+  width: 350px;
+}
+
+.empty-cart {
+  animation: fadein 0.4s ease;
+}
+
+.congrats {
+  font-family: "Poppins";
+  color: #013d01;
+  background-color: #0cd80c;
 }
