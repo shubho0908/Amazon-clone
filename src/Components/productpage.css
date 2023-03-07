@@ -268,3 +268,11 @@
 .similar-head {
   margin: 0;
 }
+
+.lists-items2 {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 250px);
+  /* grid-template-rows: repeat(auto-fill, 450px); */
+  grid-gap: 10px; /* adjust as needed */
+  justify-content: center;
+}

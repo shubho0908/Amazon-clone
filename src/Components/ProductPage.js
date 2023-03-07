@@ -8,6 +8,9 @@ import added from "../imgs/added.png";
 import add from "../imgs/not-added.png";
 import free from "../imgs/free.png";
 import Add from "../imgs/heart.png";
+import Added from "../imgs/red-heart.png";
+import { AddToList, RemoveList } from "../action/List";
+import { useSelector, useDispatch } from "react-redux";
 import tick from "../imgs/tick.png";
 import VanillaTilt from "vanilla-tilt";
 
@@ -17,12 +20,16 @@ function ProductPage() {
   const [Size, setSize] = useState("");
   const [cart, setCart] = useState(false);
   const [pincode, setPincode] = useState("");
+  const [AddedIds, setAddedIds] = useState([]);
   const [pinDisplay, setpinDisplay] = useState("none");
   const [invalidDisplay, setinvalidDisplay] = useState("none");
   const [reviews, setReviews] = useState(null);
   const [similar, setSimilar] = useState([]);
 
   const tiltRef = useRef(null);
+
+  const ListItems = useSelector((state) => state.ItemsAdded.ListItems);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const getProducts = async () => {
@@ -46,6 +53,15 @@ function ProductPage() {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  useEffect(() => {
+    const ids = ListItems.map((item) => item.id);
+    setAddedIds(ids);
+  }, [ListItems]);
+
+  const isAdded = (itemId) => {
+    return AddedIds.includes(itemId);
+  };
 
   const handlePincode = (e) => {
     setPincode(e.target.value);
@@ -203,14 +219,24 @@ function ProductPage() {
       </div>
       <div className="similar-items">
         <p className="similar-head">Similar Items you might like</p>
-        <div className="lists-items">
+        <div className="lists-items2">
           {similar &&
             similar.map((items) => {
               return (
                 <div className="card" key={items.id}>
                   <div className="card-img-data">
                     <img src={items.image} className="card-img" />
-                    <img onClick={() => {}} src={Add} className="add-list3" />
+                    <img
+                      onClick={() => {
+                        if (!isAdded(items.id)) {
+                          dispatch(AddToList(items));
+                        } else {
+                          dispatch(RemoveList(items.id));
+                        }
+                      }}
+                      src={isAdded(items.id) ? Added : Add}
+                      className="add-list3"
+                    />
                     <NavLink to={`/product/${items.id}`} key={items.id}>
                       <button className="view">View product</button>
                     </NavLink>
