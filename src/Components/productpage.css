@@ -8,7 +8,7 @@
   justify-content: center;
 }
 
-.similar-items{
+.similar-items {
   background-color: #f6f5f5;
   padding-bottom: 60px;
 }
@@ -55,11 +55,13 @@
 }
 
 .img-style {
+  cursor: pointer;
   background-color: white;
   padding: 60px;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
     rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
   border-radius: 12px;
+  transition: transform 0.15s ease-out;
 }
 
 .horizontal {
@@ -239,7 +241,7 @@
   height: 24px;
   margin-top: 20px;
   border-radius: 6px;
-  transition: all .2s ease;
+  transition: all 0.2s ease;
 }
 
 .available {
@@ -253,7 +255,7 @@
   font-size: 15px;
   height: 24px;
   margin-top: 20px;
-  transition: all .2s ease;
+  transition: all 0.2s ease;
 }
 
 .add-list3 {
@@ -263,6 +265,6 @@
   left: 194px;
 }
 
-.similar-head{
+.similar-head {
   margin: 0;
 }

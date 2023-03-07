@@ -6,7 +6,7 @@ import cart from "../imgs/cart.png";
 import notify from "../imgs/notify.png";
 import Default from "../imgs/default.png";
 import { useSelector } from "react-redux";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import "./navbar.css";
 import { app } from "../Firebase";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
@@ -18,6 +18,8 @@ function Navbar() {
   const [user, setUser] = useState(null);
   const [searchText, setSearchText] = useState("");
   const [Products, setProducts] = useState([]);
+
+  const navigate = useNavigate();
 
   const searchResultsRef = useRef(null);
 
@@ -61,9 +63,7 @@ function Navbar() {
     <>
       <div className="navbar">
         <div className="left-section">
-          <Link to="/home">
-            <img src={Logo} className="logo" />
-          </Link>
+          <img onClick={() => navigate({ pathname: "/home" })} src={Logo} className="logo" />
           <div className="search-bar">
             <input
               type="text"

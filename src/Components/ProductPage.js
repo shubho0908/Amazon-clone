@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useParams, NavLink } from "react-router-dom";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
@@ -9,6 +9,7 @@ import add from "../imgs/not-added.png";
 import free from "../imgs/free.png";
 import Add from "../imgs/heart.png";
 import tick from "../imgs/tick.png";
+import VanillaTilt from "vanilla-tilt";
 
 function ProductPage() {
   const { id } = useParams();
@@ -20,6 +21,8 @@ function ProductPage() {
   const [invalidDisplay, setinvalidDisplay] = useState("none");
   const [reviews, setReviews] = useState(null);
   const [similar, setSimilar] = useState([]);
+
+  const tiltRef = useRef(null);
 
   useEffect(() => {
     const getProducts = async () => {
@@ -48,6 +51,15 @@ function ProductPage() {
     setPincode(e.target.value);
   };
 
+  useEffect(() => {
+    VanillaTilt.init(tiltRef.current, {
+      max: 10,
+      speed: 100,
+      transition: true,
+      easing: "ease-out",
+    });
+  }, []);
+
   return (
     <>
       <Navbar />
@@ -55,6 +67,7 @@ function ProductPage() {
         <div className="product-dataa">
           <div className="item-image">
             <img
+              ref={tiltRef}
               src={product.image}
               className={`item-img ${product.image ? "img-style" : ""}`}
             />
