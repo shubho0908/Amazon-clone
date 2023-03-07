@@ -7,9 +7,7 @@ import Rating from "../imgs/rating.png";
 import added from "../imgs/added.png";
 import add from "../imgs/not-added.png";
 import free from "../imgs/free.png";
-import Add from "../imgs/heart.png";
-import Added from "../imgs/red-heart.png";
-import { AddToList, RemoveList } from "../action/List";
+import { AddToCart, RemoveCart } from "../action/Cart";
 import { useSelector, useDispatch } from "react-redux";
 import tick from "../imgs/tick.png";
 import VanillaTilt from "vanilla-tilt";
@@ -18,17 +16,15 @@ function ProductPage() {
   const { id } = useParams();
   const [product, setProduct] = useState("");
   const [Size, setSize] = useState("");
-  const [cart, setCart] = useState(false);
   const [pincode, setPincode] = useState("");
   const [AddedIds, setAddedIds] = useState([]);
   const [pinDisplay, setpinDisplay] = useState("none");
   const [invalidDisplay, setinvalidDisplay] = useState("none");
   const [reviews, setReviews] = useState(null);
-  const [similar, setSimilar] = useState([]);
 
   const tiltRef = useRef(null);
 
-  const ListItems = useSelector((state) => state.ItemsAdded.ListItems);
+  const CartItems = useSelector((state) => state.CartItemsAdded.CartItems);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -36,12 +32,6 @@ function ProductPage() {
       const data = await fetch(`https://fakestoreapi.com/products/${id}`);
       const new_data = await data.json();
       setProduct(new_data);
-      const data2 = await fetch(
-        `https://fakestoreapi.com/products/category/${new_data.category}`
-      );
-      const new_data2 = await data2.json();
-      const slicedData = new_data2.slice(0, 3);
-      setSimilar(slicedData);
     };
 
     const randomNumber = Math.floor(Math.random() * 81) + 20;
@@ -55,9 +45,9 @@ function ProductPage() {
   }, []);
 
   useEffect(() => {
-    const ids = ListItems.map((item) => item.id);
+    const ids = CartItems.map((item) => item.id);
     setAddedIds(ids);
-  }, [ListItems]);
+  }, [CartItems]);
 
   const isAdded = (itemId) => {
     return AddedIds.includes(itemId);
@@ -158,17 +148,20 @@ function ProductPage() {
               <button className="buy-btn">Buy Now</button>
               <button
                 onClick={() => {
-                  setCart(true);
-                  if (cart === true) {
-                    setCart(false);
+                  if (!isAdded(product.id)) {
+                    dispatch(AddToCart(product));
                   } else {
+                    dispatch(RemoveCart(product.id));
                   }
                 }}
                 className="add-cart-btn"
               >
-                <img src={cart === true ? added : add} className="cart-img" />
+                <img
+                  src={isAdded(product.id) ? added : add}
+                  className="cart-img"
+                />
                 <p style={{ marginLeft: "8px" }} className="cart-text">
-                  {cart === true ? "Added" : "Add"}
+                  {isAdded(product.id) ? "Added" : "Add"}
                 </p>
               </button>
             </div>
@@ -182,11 +175,12 @@ function ProductPage() {
               </div>
               <div className="free-data">
                 <input
-                  type="text"
+                  type="number"
+                  inputMode="numeric"
                   className="pincode"
                   placeholder="Pincode"
                   onChange={handlePincode}
-                  maxLength="6"
+                  maxlength="6"
                   value={pincode}
                 />
                 <button
@@ -217,57 +211,7 @@ function ProductPage() {
           </div>
         </div>
       </div>
-      <div className="similar-items">
-        <p className="similar-head">Similar Items you might like</p>
-        <div className="lists-items2">
-          {similar &&
-            similar.map((items) => {
-              return (
-                <div className="card" key={items.id}>
-                  <div className="card-img-data">
-                    <img src={items.image} className="card-img" />
-                    <img
-                      onClick={() => {
-                        if (!isAdded(items.id)) {
-                          dispatch(AddToList(items));
-                        } else {
-                          dispatch(RemoveList(items.id));
-                        }
-                      }}
-                      src={isAdded(items.id) ? Added : Add}
-                      className="add-list3"
-                    />
-                    <NavLink to={`/product/${items.id}`} key={items.id}>
-                      <button className="view">View product</button>
-                    </NavLink>
-                  </div>
-                  <div className="card-data">
-                    <p className="card-title">
-                      {items.title.length >= 32
-                        ? items.title.slice(0, 32) + ".."
-                        : items.title}
-                    </p>
-                    <div className="category-rating">
-                      <p className="card-category">{items.category}</p>
-                      <div className="rating">
-                        <img src={Rating} className="rating-img" />
-                        <img src={Rating} className="rating-img" />
-                        <img src={Rating} className="rating-img" />
-                        <img src={Rating} className="rating-img" />
-                        <img src={Rating} className="rating-img" />
-                        <p className="rating-text">5</p>
-                      </div>
-                    </div>
-                    <div className="card-price">
-                      <p className="discount">${items.price}</p>
-                      <p className="mrp">${Math.round(items.price * 1.66)}</p>
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
-        </div>
-      </div>
+
       <Footer />
     </>
   );

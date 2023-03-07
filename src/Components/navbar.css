@@ -85,7 +85,6 @@ a {
 
 .notify {
   width: 30px;
-  margin-left: 20px;
 }
 
 .default {
@@ -101,6 +100,21 @@ a {
   position: relative;
   bottom: 12px;
   right: 10px;
+  font-size: 13px;
+  padding-top: 2px;
+  padding-bottom: 4px;
+  padding-left: 8px;
+  padding-right: 8px;
+  text-align: center;
+  background-color: #e99317;
+  border-radius: 50px;
+}
+
+.cart-count {
+  color: white;
+  position: relative;
+  bottom: 12px;
+  right: 22px;
   font-size: 13px;
   padding-top: 2px;
   padding-bottom: 4px;

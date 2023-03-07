@@ -14,6 +14,7 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 const auth = getAuth(app);
 
 function Navbar() {
+  const CartItems = useSelector((state) => state.CartItemsAdded.CartItems);
   const ListItems = useSelector((state) => state.ItemsAdded.ListItems);
   const [user, setUser] = useState(null);
   const [searchText, setSearchText] = useState("");
@@ -63,7 +64,11 @@ function Navbar() {
     <>
       <div className="navbar">
         <div className="left-section">
-          <img onClick={() => navigate({ pathname: "/home" })} src={Logo} className="logo" />
+          <img
+            onClick={() => navigate({ pathname: "/home" })}
+            src={Logo}
+            className="logo"
+          />
           <div className="search-bar">
             <input
               type="text"
@@ -92,6 +97,16 @@ function Navbar() {
             </p>
           </Link>
           <img src={cart} className="cart" />
+          <p
+              style={
+                CartItems && CartItems.length > 0
+                  ? { opacity: 1 }
+                  : { opacity: 0 }
+              }
+              className="cart-count"
+            >
+              {CartItems.length}
+            </p>
           <img src={notify} className="notify" />
           <img
             src={user && user.photoURL ? user.photoURL : Default}
