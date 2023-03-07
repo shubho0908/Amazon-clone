@@ -60,7 +60,6 @@ function Signup() {
   const CreateUser = async () => {
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        const user = userCredential.user;
         navigate("/home");
       })
       .catch((error) => {
@@ -71,10 +70,6 @@ function Signup() {
   const GoogleAuth = async () => {
     signInWithPopup(auth, provider)
       .then((result) => {
-        const credential = GoogleAuthProvider.credentialFromResult(result);
-        const token = credential.accessToken;
-        // The signed-in user info.
-        const user = result.user;
         navigate("/home");
       })
       .catch((error) => {

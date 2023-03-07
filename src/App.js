@@ -9,6 +9,7 @@ import Load from "./imgs/spin.gif";
 import { app } from "./Firebase";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import ProductPage from "./Components/ProductPage";
+import CartSection from "./Components/CartSection";
 
 const auth = getAuth(app);
 
@@ -50,6 +51,7 @@ function App() {
             <Route path="/" element={<Navigate to="/home" />} />
             <Route path="/home" element={<Home />} />
             <Route path="/wishlists" element={<Lists />} />
+            <Route path="/cart" element={<CartSection />} />
             <Route path="/product/:id" element={<ProductPage />} />
           </>
         )}

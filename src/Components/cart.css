@@ -1,0 +1,15 @@
+.entire-section {
+  display: flex;
+    flex-direction: column;
+    align-items: center;
+  padding-top: 120px;
+}
+
+.cart-section {
+    display: flex;
+  width: 50%;
+}
+.cart-data {
+  display: flex;
+  align-items: center;
+}

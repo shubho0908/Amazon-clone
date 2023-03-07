@@ -73,18 +73,28 @@ a {
 }
 
 .wishlist {
+  cursor: pointer;
   width: 28px;
+  transition: all .2s ease;
 }
 
 .cart {
+  cursor: pointer;
   width: 28px;
   padding: 12px;
   border-radius: 9px;
   filter: invert(1);
+  transition: all .2s ease;
 }
 
 .notify {
+  cursor: pointer;
   width: 30px;
+  transition: all .2s ease;
+}
+
+.wishlist:hover, .cart:hover, .notify:hover{
+  transform: scale(1.15);
 }
 
 .default {

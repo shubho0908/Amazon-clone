@@ -96,7 +96,7 @@ function Navbar() {
               {ListItems.length}
             </p>
           </Link>
-          <img src={cart} className="cart" />
+          <Link to="/cart"><img src={cart} className="cart" /></Link>
           <p
               style={
                 CartItems && CartItems.length > 0
