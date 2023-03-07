@@ -21,6 +21,7 @@ function ProductPage() {
   const [pinDisplay, setpinDisplay] = useState("none");
   const [invalidDisplay, setinvalidDisplay] = useState("none");
   const [reviews, setReviews] = useState(null);
+  const Quantity = 1
 
   const tiltRef = useRef(null);
 
@@ -74,6 +75,7 @@ function ProductPage() {
         price: product.price,
         image: product.image,
         size: Size,
+        quantity: Quantity,
       };
       dispatch(AddToCart(item));
     } else {
@@ -83,7 +85,6 @@ function ProductPage() {
 
   const limited = product && product.description;
   const DescLimited = limited ? limited.slice(0, 200) : "";
-  
 
   return (
     <>
@@ -165,7 +166,12 @@ function ProductPage() {
               className="buying-buttons"
             >
               <button className="buy-btn">Buy Now</button>
-              <button onClick={handleAddToCart} className="add-cart-btn">
+              <button
+                onClick={() => {
+                  handleAddToCart();
+                }}
+                className="add-cart-btn"
+              >
                 <img
                   src={isAdded(product.id) ? added : add}
                   className="cart-img"

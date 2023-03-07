@@ -11,6 +11,23 @@ const AddToCart = (data) => {
       id: id,
     };
   };
+
+
+  const IncreaseQuantity = (id) => {
+    return {
+      type: "INCREASE_QUANTITY",
+      id: id,
+    };
+  };
+
+  const DecreaseQuantity = (id) => {
+    return {
+      type: "DECREASE_QUANTITY",
+      id: id,
+    };
+  };
   
-  export { AddToCart, RemoveCart };
+
+  
+  export { AddToCart, RemoveCart,IncreaseQuantity,DecreaseQuantity };
   

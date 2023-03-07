@@ -13,11 +13,10 @@
 .cart-section {
   display: flex;
   width: 50%;
-  height: 100%;
+  height: 30vh;
   position: relative;
   top: 25px;
   margin-bottom: 125px;
-
 }
 .cart-data {
   display: flex;
@@ -42,8 +41,13 @@
 .cart-all-data {
   margin-left: 20px;
 }
-.item-no {
-  text-align: center;
-  width: 30px;
-  padding: 0;
+.quantity-section {
+  display: flex;
+  align-items: center;
+}
+.increase {
+  margin-right: 10px;
+}
+.decrease {
+  margin-left: 10px;
 }

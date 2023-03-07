@@ -60,6 +60,9 @@ function Navbar() {
       product.title.toLowerCase().includes(searchText.toLowerCase()) ||
       product.description.toLowerCase().includes(searchText.toLowerCase())
   );
+
+  const totalQuantity = CartItems.reduce((total, item) => total + item.quantity, 0);
+
   return (
     <>
       <div className="navbar">
@@ -105,7 +108,7 @@ function Navbar() {
               }
               className="cart-count"
             >
-              {CartItems.length}
+              {totalQuantity}
             </p>
           <img src={notify} className="notify" />
           <img
