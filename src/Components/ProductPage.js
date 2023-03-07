@@ -66,6 +66,25 @@ function ProductPage() {
     });
   }, []);
 
+  const handleAddToCart = () => {
+    if (!isAdded(product.id)) {
+      const item = {
+        id: product.id,
+        title: product.title,
+        price: product.price,
+        image: product.image,
+        size: Size,
+      };
+      dispatch(AddToCart(item));
+    } else {
+      dispatch(RemoveCart(product.id));
+    }
+  };
+
+  const limited = product && product.description;
+  const DescLimited = limited ? limited.slice(0, 200) : "";
+  
+
   return (
     <>
       <Navbar />
@@ -80,7 +99,7 @@ function ProductPage() {
           </div>
           <div className="product-details">
             <p className="item-title">{product.title}</p>
-            <p className="item-desc">{product.description}</p>
+            <p className="item-desc">{DescLimited}.</p>
             <div className="item-rating">
               <img src={product && Rating} className="rating-img" />
               <img src={product && Rating} className="rating-img" />
@@ -146,16 +165,7 @@ function ProductPage() {
               className="buying-buttons"
             >
               <button className="buy-btn">Buy Now</button>
-              <button
-                onClick={() => {
-                  if (!isAdded(product.id)) {
-                    dispatch(AddToCart(product));
-                  } else {
-                    dispatch(RemoveCart(product.id));
-                  }
-                }}
-                className="add-cart-btn"
-              >
+              <button onClick={handleAddToCart} className="add-cart-btn">
                 <img
                   src={isAdded(product.id) ? added : add}
                   className="cart-img"
