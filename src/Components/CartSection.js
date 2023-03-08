@@ -17,7 +17,9 @@ function CartSection() {
   const dispatch = useDispatch();
   const [AddedIds, setAddedIds] = useState([]);
   const [SubTotal, setSubTotal] = useState(0);
-  const [promocode, setPromocode] = useState("");
+  const [promocode, setPromocode] = useState(
+    localStorage.getItem("promocode") || ""
+  );
   const [CorrectCode, setCorrectCode] = useState();
 
   useEffect(() => {
@@ -27,11 +29,6 @@ function CartSection() {
     );
     setSubTotal(newSubtotal);
   }, [CartItems]);
-
-  // const totalQuantity = CartItems.reduce(
-  //   (total, item) => total + item.quantity,
-  //   0
-  // );
 
   useEffect(() => {
     // Update the added ids whenever the list items change
@@ -44,16 +41,22 @@ function CartSection() {
     return AddedIds.includes(itemId);
   };
 
+  const code = localStorage.getItem("promocode");
   const DiscountPrice = (SubTotal * 0.2).toFixed(1);
   const TaxPrice = (SubTotal * 0.05).toFixed(1);
 
   const handlePromocode = (event) => {
-    setPromocode(event.target.value);
+    const value = event.target.value;
+    setPromocode(value);
+    setTimeout(() => {
+      localStorage.setItem("promocode", value);
+    }, 1000);
   };
 
   return (
     <>
       <Navbar />
+
       <div className="entire-section">
         <p style={{ margin: 0 }} className="cart-head">
           Your Cart
@@ -173,7 +176,7 @@ function CartSection() {
               />
               <button
                 onClick={() => {
-                  if (promocode === "SHUBHO69") {
+                  if (promocode === "SHUBHO20") {
                     setCorrectCode(true);
                   } else {
                     setCorrectCode(false);
@@ -186,19 +189,15 @@ function CartSection() {
             </div>
             <p
               style={
-                CorrectCode === true
-                  ? { display: "block" }
-                  : { display: "none" }
+                code === "SHUBHO20" ? { display: "block" } : { display: "none" }
               }
               className="applied"
             >
-              <b>SHUBHO69</b> has been applied!
+              <b>SHUBHO20</b> has been applied!
             </p>
             <p
               style={
-                CorrectCode === false
-                  ? { display: "block" }
-                  : { display: "none" }
+                code !== "SHUBHO20" ? { display: "block" } : { display: "none" }
               }
               className="applied2"
             >
@@ -213,7 +212,7 @@ function CartSection() {
               </div>
               <div
                 style={
-                  CorrectCode === true
+                  code === "SHUBHO20"
                     ? { display: "flex" }
                     : { display: "none" }
                 }
@@ -236,7 +235,7 @@ function CartSection() {
               <p className="total">Total</p>
               <p
                 style={
-                  CorrectCode === true
+                  code === "SHUBHO20"
                     ? { display: "block" }
                     : { display: "none" }
                 }
@@ -244,14 +243,14 @@ function CartSection() {
               >
                 $
                 {(
-                  parseInt(SubTotal) -
-                  parseInt(DiscountPrice) +
-                  parseInt(TaxPrice)
+                  parseInt(SubTotal) +
+                  parseInt(TaxPrice) -
+                  parseInt(DiscountPrice)
                 ).toFixed(1)}
               </p>
               <p
                 style={
-                  CorrectCode !== true
+                  code !== "SHUBHO20"
                     ? { display: "block" }
                     : { display: "none" }
                 }
