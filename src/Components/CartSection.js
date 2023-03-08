@@ -10,6 +10,7 @@ import saved from "../imgs/saved.png";
 import Delete from "../imgs/delete.png";
 import Empty from "../imgs/cart-empty.png";
 import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 function CartSection() {
   const CartItems = useSelector((state) => state.CartItemsAdded.CartItems);
@@ -20,9 +21,9 @@ function CartSection() {
   const [promocode, setPromocode] = useState("");
   const [discountCode, setdiscountCode] = useState("");
   const [CorrectCode, setCorrectCode] = useState(false);
-  const [total, setTotal] = useState(0)
+  const [total, setTotal] = useState(0);
 
-
+  const navigate = useNavigate();
 
   useEffect(() => {
     const newSubtotal = CartItems.reduce(
@@ -62,12 +63,11 @@ function CartSection() {
   ).toFixed(2);
   const totalPrice2 = (parseFloat(SubTotal) + parseFloat(TaxPrice)).toFixed(2);
 
-  const TotalValue=(data)=>{
-  const totalAmount = localStorage.getItem('TotalAmount')
+  const TotalValue = (data) => {
+    const totalAmount = localStorage.getItem("TotalAmount");
     setTotal(data);
-    localStorage.setItem('TotalAmount', data);
-  }
-  
+    localStorage.setItem("TotalAmount", data);
+  };
 
   return (
     <>
@@ -197,12 +197,10 @@ function CartSection() {
                 onClick={() => {
                   if (promocode === "SHUBHO20") {
                     TotalValue(totalPrice1);
-                    setdiscountCode(promocode)
+                    setdiscountCode(promocode);
                     setCorrectCode(true);
-                  } else if (
-                    promocode !== "SHUBHO20"
-                  ) {
-                    setdiscountCode(promocode)
+                  } else if (promocode !== "SHUBHO20") {
+                    setdiscountCode(promocode);
                     TotalValue(totalPrice2);
                     setCorrectCode(false);
                   }
@@ -214,7 +212,7 @@ function CartSection() {
             </div>
             <p
               style={
-                CorrectCode === true 
+                CorrectCode === true
                   ? { display: "block" }
                   : { display: "none" }
               }
@@ -284,14 +282,19 @@ function CartSection() {
               </p>
             </div>
             <div className="payment-btn">
-              <button onClick={()=>{
-                if (CorrectCode === true) {
-                  TotalValue(totalPrice1)
-                }
-                else{
-                  TotalValue(totalPrice2)
-                }
-              }} className="payment">Proceed to Payment</button>
+              <button
+                onClick={() => {
+                  navigate("/payment")
+                  if (CorrectCode === true) {
+                    TotalValue(totalPrice1);
+                  } else {
+                    TotalValue(totalPrice2);
+                  }
+                }}
+                className="payment"
+              >
+                Proceed to Payment
+              </button>
             </div>
           </div>
         </div>

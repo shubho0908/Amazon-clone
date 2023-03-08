@@ -10,6 +10,7 @@ import { app } from "./Firebase";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import ProductPage from "./Components/ProductPage";
 import CartSection from "./Components/CartSection";
+import Payment from './Components/Payment'
 
 const auth = getAuth(app);
 
@@ -52,6 +53,7 @@ function App() {
             <Route path="/home" element={<Home />} />
             <Route path="/wishlists" element={<Lists />} />
             <Route path="/cart" element={<CartSection />} />
+            <Route path="/payment" element={<Payment />} />
             <Route path="/product/:id" element={<ProductPage />} />
           </>
         )}
