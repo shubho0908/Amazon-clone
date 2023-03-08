@@ -17,10 +17,9 @@ function CartSection() {
   const dispatch = useDispatch();
   const [AddedIds, setAddedIds] = useState([]);
   const [SubTotal, setSubTotal] = useState(0);
-  const [promocode, setPromocode] = useState(
-    localStorage.getItem("promocode") || ""
-  );
-  const [CorrectCode, setCorrectCode] = useState();
+  const [promocode, setPromocode] = useState("");
+  const [CorrectCode, setCorrectCode] = useState(false);
+  const [total, setTotal] = useState(0)
 
   useEffect(() => {
     const newSubtotal = CartItems.reduce(
@@ -29,6 +28,10 @@ function CartSection() {
     );
     setSubTotal(newSubtotal);
   }, [CartItems]);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   useEffect(() => {
     // Update the added ids whenever the list items change
@@ -41,17 +44,17 @@ function CartSection() {
     return AddedIds.includes(itemId);
   };
 
-  const code = localStorage.getItem("promocode");
   const DiscountPrice = (SubTotal * 0.2).toFixed(1);
   const TaxPrice = (SubTotal * 0.05).toFixed(1);
 
   const handlePromocode = (event) => {
     const value = event.target.value;
     setPromocode(value);
-    setTimeout(() => {
-      localStorage.setItem("promocode", value);
-    }, 1000);
   };
+
+  const totalPrice1 = (parseInt(SubTotal) + parseInt(TaxPrice) - parseInt(DiscountPrice)).toFixed(1);
+  const totalPrice2 = (parseInt(SubTotal) + parseInt(TaxPrice)).toFixed(1);
+
 
   return (
     <>
@@ -164,6 +167,9 @@ function CartSection() {
             <div className="congrats">
               <p>
                 Congrats! You're eligible for <b>Free Delivery</b>.
+                <p style={{ marginTop: "5px", marginBottom: "0px" }}>
+                  Use code <b>SHUBHO20</b> for 20% discount.
+                </p>
               </p>
             </div>
             <hr className="horizontal" />
@@ -189,7 +195,9 @@ function CartSection() {
             </div>
             <p
               style={
-                code === "SHUBHO20" ? { display: "block" } : { display: "none" }
+                CorrectCode === true
+                  ? { display: "block" }
+                  : { display: "none" }
               }
               className="applied"
             >
@@ -197,7 +205,9 @@ function CartSection() {
             </p>
             <p
               style={
-                code !== "SHUBHO20" ? { display: "block" } : { display: "none" }
+                CorrectCode === false
+                  ? { display: "block" }
+                  : { display: "none" }
               }
               className="applied2"
             >
@@ -212,7 +222,7 @@ function CartSection() {
               </div>
               <div
                 style={
-                  code === "SHUBHO20"
+                  CorrectCode === true
                     ? { display: "flex" }
                     : { display: "none" }
                 }
@@ -235,28 +245,24 @@ function CartSection() {
               <p className="total">Total</p>
               <p
                 style={
-                  code === "SHUBHO20"
+                  CorrectCode === true
                     ? { display: "block" }
                     : { display: "none" }
                 }
                 className="total-price"
               >
                 $
-                {(
-                  parseInt(SubTotal) +
-                  parseInt(TaxPrice) -
-                  parseInt(DiscountPrice)
-                ).toFixed(1)}
+                {totalPrice1}
               </p>
               <p
                 style={
-                  code !== "SHUBHO20"
+                  CorrectCode !== true
                     ? { display: "block" }
                     : { display: "none" }
                 }
                 className="total-price2"
               >
-                ${(parseInt(SubTotal) + parseInt(TaxPrice)).toFixed(1)}
+                ${totalPrice2}
               </p>
             </div>
             <div className="payment-btn">
