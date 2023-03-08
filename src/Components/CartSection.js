@@ -17,6 +17,8 @@ function CartSection() {
   const dispatch = useDispatch();
   const [AddedIds, setAddedIds] = useState([]);
   const [SubTotal, setSubTotal] = useState(0);
+  const [promocode, setPromocode] = useState("");
+  const [CorrectCode, setCorrectCode] = useState();
 
   useEffect(() => {
     const newSubtotal = CartItems.reduce(
@@ -44,6 +46,10 @@ function CartSection() {
 
   const DiscountPrice = (SubTotal * 0.2).toFixed(1);
   const TaxPrice = (SubTotal * 0.05).toFixed(1);
+
+  const handlePromocode = (event) => {
+    setPromocode(event.target.value);
+  };
 
   return (
     <>
@@ -114,27 +120,26 @@ function CartSection() {
                           </button>
                         </div>
                         <div className="right-btns">
-                          <div
-                            onClick={() => {
-                              if (!isAdded(item.id)) {
-                                dispatch(AddToList(item));
-                              } else {
-                                dispatch(RemoveList(item.id));
-                              }
-                            }}
-                            className="save-btn"
-                          >
+                          <div className="save-btn">
                             <img
+                              onClick={() => {
+                                if (!isAdded(item.id)) {
+                                  dispatch(AddToList(item));
+                                } else {
+                                  dispatch(RemoveList(item.id));
+                                }
+                              }}
                               src={isAdded(item.id) ? saved : save}
                               className="save-img"
                             />
                             <p>Save</p>
                           </div>
-                          <div
-                            onClick={() => dispatch(RemoveCart(item.id))}
-                            className="delete-btn"
-                          >
-                            <img src={Delete} className="delete-img" />
+                          <div className="delete-btn">
+                            <img
+                              onClick={() => dispatch(RemoveCart(item.id))}
+                              src={Delete}
+                              className="delete-img"
+                            />
                             <p>Delete</p>
                           </div>
                         </div>
@@ -160,9 +165,45 @@ function CartSection() {
             </div>
             <hr className="horizontal" />
             <div className="promocode">
-              <input type="text" placeholder="Promocode" />
-              <button className="promocode-btn">Apply</button>
+              <input
+                type="text"
+                placeholder="Promocode"
+                onChange={handlePromocode}
+                value={promocode}
+              />
+              <button
+                onClick={() => {
+                  if (promocode === "SHUBHO69") {
+                    setCorrectCode(true);
+                  } else {
+                    setCorrectCode(false);
+                  }
+                }}
+                className="promocode-btn"
+              >
+                Apply
+              </button>
             </div>
+            <p
+              style={
+                CorrectCode === true
+                  ? { display: "block" }
+                  : { display: "none" }
+              }
+              className="applied"
+            >
+              <b>SHUBHO69</b> has been applied!
+            </p>
+            <p
+              style={
+                CorrectCode === false
+                  ? { display: "block" }
+                  : { display: "none" }
+              }
+              className="applied2"
+            >
+              Enter a valid promocode.
+            </p>
             <hr className="horizontal" />
 
             <div className="money-data">
@@ -170,7 +211,14 @@ function CartSection() {
                 <p className="total">Sub-Total</p>
                 <p className="total-price">${SubTotal.toFixed(1)}</p>
               </div>
-              <div className="money-2">
+              <div
+                style={
+                  CorrectCode === true
+                    ? { display: "flex" }
+                    : { display: "none" }
+                }
+                className="money-2"
+              >
                 <p className="item-discount">Discount</p>
                 <p className="item-discount2">(20%) - ${DiscountPrice}</p>
               </div>
@@ -186,8 +234,30 @@ function CartSection() {
             <hr className="horizontal" />
             <div className="money-5">
               <p className="total">Total</p>
-              <p className="total-price">
-                ${(parseInt(SubTotal) - parseInt(DiscountPrice) + parseInt(TaxPrice)).toFixed(1)}
+              <p
+                style={
+                  CorrectCode === true
+                    ? { display: "block" }
+                    : { display: "none" }
+                }
+                className="total-price"
+              >
+                $
+                {(
+                  parseInt(SubTotal) -
+                  parseInt(DiscountPrice) +
+                  parseInt(TaxPrice)
+                ).toFixed(1)}
+              </p>
+              <p
+                style={
+                  CorrectCode !== true
+                    ? { display: "block" }
+                    : { display: "none" }
+                }
+                className="total-price2"
+              >
+                ${(parseInt(SubTotal) + parseInt(TaxPrice)).toFixed(1)}
               </p>
             </div>
             <div className="payment-btn">
