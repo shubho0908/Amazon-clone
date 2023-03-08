@@ -20,6 +20,9 @@ function CartSection() {
   const [promocode, setPromocode] = useState("");
   const [discountCode, setdiscountCode] = useState("");
   const [CorrectCode, setCorrectCode] = useState(false);
+  const [total, setTotal] = useState(0)
+
+
 
   useEffect(() => {
     const newSubtotal = CartItems.reduce(
@@ -58,6 +61,13 @@ function CartSection() {
     parseFloat(DiscountPrice)
   ).toFixed(2);
   const totalPrice2 = (parseFloat(SubTotal) + parseFloat(TaxPrice)).toFixed(2);
+
+  const TotalValue=(data)=>{
+  const totalAmount = localStorage.getItem('TotalAmount')
+    setTotal(data);
+    localStorage.setItem('TotalAmount', data);
+  }
+  
 
   return (
     <>
@@ -186,12 +196,14 @@ function CartSection() {
               <button
                 onClick={() => {
                   if (promocode === "SHUBHO20") {
+                    TotalValue(totalPrice1);
                     setdiscountCode(promocode)
                     setCorrectCode(true);
                   } else if (
                     promocode !== "SHUBHO20"
                   ) {
                     setdiscountCode(promocode)
+                    TotalValue(totalPrice2);
                     setCorrectCode(false);
                   }
                 }}
@@ -272,7 +284,14 @@ function CartSection() {
               </p>
             </div>
             <div className="payment-btn">
-              <button className="payment">Proceed to Payment</button>
+              <button onClick={()=>{
+                if (CorrectCode === true) {
+                  TotalValue(totalPrice1)
+                }
+                else{
+                  TotalValue(totalPrice2)
+                }
+              }} className="payment">Proceed to Payment</button>
             </div>
           </div>
         </div>

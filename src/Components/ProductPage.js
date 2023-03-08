@@ -148,9 +148,7 @@ function ProductPage() {
                 </p>
                 <p
                   onClick={() => setSize("XXL")}
-                  className={`size ${
-                    Size === "XXL" ? "size-clicked" : ""
-                  }`}
+                  className={`size ${Size === "XXL" ? "size-clicked" : ""}`}
                 >
                   XXL
                 </p>
@@ -229,7 +227,7 @@ function ProductPage() {
         </div>
       </div>
 
-      <Footer />
+      {product ? <Footer />:""}
     </>
   );
 }
