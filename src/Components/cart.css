@@ -20,6 +20,8 @@
   padding-left: 30px;
   padding-right: 30px;
   height: fit-content;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
+    rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
   background-color: white;
   border-radius: 10px;
 }
@@ -121,12 +123,31 @@
 .save-img {
   cursor: pointer;
   width: 22px;
+  transition: all 0.15s ease;
+}
+
+.save-img:hover {
+  transform: scale(1.18);
+}
+
+.save-img:active {
+  transform: scale(1);
 }
 
 .delete-img {
   cursor: pointer;
+  transition: all 0.15s ease;
   width: 24px;
 }
+
+.delete-img:hover {
+  transform: scale(1.18);
+}
+
+.delete-img:active {
+  transform: scale(1);
+}
+
 .right-btns {
   margin-top: 20px;
   margin-left: 45px;
@@ -160,7 +181,8 @@
   background-color: #0cd80c62;
 }
 
-.applied,.applied2{
+.applied,
+.applied2 {
   font-family: "Poppins";
   color: rgb(156, 0, 0);
   font-size: 15px;
@@ -248,7 +270,8 @@
 }
 
 .total,
-.total-price, .total-price2 {
+.total-price,
+.total-price2 {
   margin: 0;
   font-weight: bolder;
   font-size: 18px;

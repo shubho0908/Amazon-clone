@@ -18,8 +18,8 @@ function CartSection() {
   const [AddedIds, setAddedIds] = useState([]);
   const [SubTotal, setSubTotal] = useState(0);
   const [promocode, setPromocode] = useState("");
+  const [discountCode, setdiscountCode] = useState("");
   const [CorrectCode, setCorrectCode] = useState(false);
-  const [total, setTotal] = useState(0)
 
   useEffect(() => {
     const newSubtotal = CartItems.reduce(
@@ -44,17 +44,20 @@ function CartSection() {
     return AddedIds.includes(itemId);
   };
 
-  const DiscountPrice = (SubTotal * 0.2).toFixed(1);
-  const TaxPrice = (SubTotal * 0.05).toFixed(1);
+  const DiscountPrice = (SubTotal * 0.2).toFixed(2);
+  const TaxPrice = (SubTotal * 0.05).toFixed(2);
 
   const handlePromocode = (event) => {
     const value = event.target.value;
     setPromocode(value);
   };
 
-  const totalPrice1 = (parseInt(SubTotal) + parseInt(TaxPrice) - parseInt(DiscountPrice)).toFixed(1);
-  const totalPrice2 = (parseInt(SubTotal) + parseInt(TaxPrice)).toFixed(1);
-
+  const totalPrice1 = (
+    parseFloat(SubTotal) +
+    parseFloat(TaxPrice) -
+    parseFloat(DiscountPrice)
+  ).toFixed(2);
+  const totalPrice2 = (parseFloat(SubTotal) + parseFloat(TaxPrice)).toFixed(2);
 
   return (
     <>
@@ -183,8 +186,12 @@ function CartSection() {
               <button
                 onClick={() => {
                   if (promocode === "SHUBHO20") {
+                    setdiscountCode(promocode)
                     setCorrectCode(true);
-                  } else {
+                  } else if (
+                    promocode !== "SHUBHO20"
+                  ) {
+                    setdiscountCode(promocode)
                     setCorrectCode(false);
                   }
                 }}
@@ -195,7 +202,7 @@ function CartSection() {
             </div>
             <p
               style={
-                CorrectCode === true
+                CorrectCode === true 
                   ? { display: "block" }
                   : { display: "none" }
               }
@@ -205,7 +212,7 @@ function CartSection() {
             </p>
             <p
               style={
-                CorrectCode === false
+                CorrectCode === false && discountCode !== ""
                   ? { display: "block" }
                   : { display: "none" }
               }
@@ -218,7 +225,7 @@ function CartSection() {
             <div className="money-data">
               <div className="money-1">
                 <p className="total">Sub-Total</p>
-                <p className="total-price">${SubTotal.toFixed(1)}</p>
+                <p className="total-price">${SubTotal.toFixed(2)}</p>
               </div>
               <div
                 style={
@@ -251,8 +258,7 @@ function CartSection() {
                 }
                 className="total-price"
               >
-                $
-                {totalPrice1}
+                ${totalPrice1}
               </p>
               <p
                 style={
