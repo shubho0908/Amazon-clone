@@ -83,6 +83,21 @@ function ProductPage() {
       dispatch(RemoveCart(product.id));
     }
   };
+  const handleAddToCart2 = () => {
+    if (!isAdded(product.id)) {
+      const item = {
+        id: product.id,
+        title: product.title,
+        price: product.price,
+        image: product.image,
+        size: Size,
+        category: product.category,
+        quantity: Quantity,
+      };
+      dispatch(AddToCart(item));
+    } else {
+    }
+  };
 
   const limited = product && product.description;
   const DescLimited = limited ? limited.slice(0, 200) : "";
@@ -164,8 +179,8 @@ function ProductPage() {
               style={product ? { display: "flex" } : { display: "none" }}
               className="buying-buttons"
             >
-              <Link to="/payment">
-                <button onClick={handleAddToCart} className="buy-btn">
+              <Link to="/cart">
+                <button onClick={handleAddToCart2} className="buy-btn">
                   Buy Now
                 </button>
               </Link>

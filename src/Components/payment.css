@@ -10,7 +10,8 @@
   justify-content: center;
 }
 
-.shipping-data {
+.shipping-data,
+.payment-data {
   background-color: white;
   padding: 50px;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
@@ -18,10 +19,20 @@
   border-radius: 10px;
 }
 
-.shipping-head {
+.payment-data {
+  height: fit-content;
+  margin-left: 35px;
+}
+
+.shipping-head,
+.payment-method {
   font-family: "Poppins";
   font-weight: bold;
   font-size: 24px;
+}
+
+.payment-method {
+  margin-top: 0;
 }
 
 .country > input,
@@ -74,4 +85,83 @@
 
 .save-address:active {
   transform: scale(1);
+}
+
+.choose-option {
+  display: flex;
+  flex-direction: column;
+}
+
+.cod,
+.credit,
+.upi {
+  font-family: "Poppins";
+  margin-top: 10px;
+}
+
+.cod > input,
+.credit > input,
+.upi > input {
+  margin-right: 10px;
+}
+
+.confirm-btn {
+  cursor: pointer;
+  border: none;
+  background-color: rgb(255, 149, 0);
+  padding: 12px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  color: white;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px,
+    rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+  font-size: 18px;
+  border-radius: 6px;
+  transition: all 0.13s;
+}
+
+.confirm-btn:hover {
+  transform: scale(1.06);
+}
+
+.confirm-btn:active {
+  transform: scale(1);
+}
+
+.total-amount {
+  font-family: "Poppins";
+  display: flex;
+  align-items: center;
+}
+
+.main-amount {
+  margin-left: 8px;
+  font-weight: bolder;
+  font-size: 19px;
+}
+
+.credit-body {
+  cursor: pointer;
+
+  background-image: url("../imgs/world.png"),linear-gradient(74deg, rgba(235, 99, 26, 0.81) 11.32%, rgb(255, 196, 108) 100.00%);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-blend-mode:color-burn;
+  height: 200px;
+  display: flex;
+  width: auto;
+  flex-direction: column;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+  border-radius: 14px;
+  transition: transform 0.25s ease-out;
+  margin-top: 40px;
+}
+
+.paying-data{
+  margin-top: 50px;
+}
+
+.credit-chip{
+  width: 40px;
 }
