@@ -1,9 +1,77 @@
-.payment-page{
-    margin: 0;
+.payment-page {
+  background-color: #f6f5f5;
+  margin: 0;
 }
 
-.more-data{
-    padding-top: 120px;
-    display: flex;
-    justify-content: center;
+.more-data {
+  padding-top: 160px;
+  padding-bottom: 120px;
+  display: flex;
+  justify-content: center;
+}
+
+.shipping-data {
+  background-color: white;
+  padding: 50px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
+    rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+  border-radius: 10px;
+}
+
+.shipping-head {
+  font-family: "Poppins";
+  font-weight: bold;
+  font-size: 24px;
+}
+
+.country > input,
+.user-name > input,
+.user-contact > input,
+.user-email > input,
+.user-address > input {
+  height: 35px;
+  font-family: "Poppins";
+  padding: 8px;
+  font-size: 15px;
+  border-radius: 4px;
+  outline: none;
+  border: 1.5px solid rgb(174, 174, 174);
+  width: 420px;
+}
+
+.country > p,
+.user-name > p,
+.user-contact > p,
+.user-email > p,
+.user-address > p {
+  font-family: "Poppins";
+  font-size: 15px;
+}
+
+.save-address {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  border: none;
+  background-color: rgb(0, 136, 255);
+  padding: 8px;
+  padding-left: 20px;
+  padding-right: 20px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  color: white;
+  transition: all 0.3s ease;
+  font-size: 17px;
+  border-radius: 5px;
+  margin-top: 26px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 18px 50px -10px;
+  transition: all 0.13s;
+}
+
+.save-address:hover {
+  transform: scale(1.06);
+}
+
+.save-address:active {
+  transform: scale(1);
 }

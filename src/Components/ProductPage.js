@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useParams, NavLink } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import "./productpage.css";
@@ -164,7 +164,11 @@ function ProductPage() {
               style={product ? { display: "flex" } : { display: "none" }}
               className="buying-buttons"
             >
-              <button className="buy-btn">Buy Now</button>
+              <Link to="/payment">
+                <button onClick={handleAddToCart} className="buy-btn">
+                  Buy Now
+                </button>
+              </Link>
               <button
                 onClick={() => {
                   handleAddToCart();
@@ -227,7 +231,7 @@ function ProductPage() {
         </div>
       </div>
 
-      {product ? <Footer />:""}
+      {product ? <Footer /> : ""}
     </>
   );
 }

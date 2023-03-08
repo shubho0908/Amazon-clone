@@ -3,7 +3,7 @@ import Logo from "../imgs/logo.png";
 import search from "../imgs/search.png";
 import wishlist from "../imgs/wishlist.png";
 import cart from "../imgs/cart.png";
-import notify from "../imgs/notify.png";
+import orders from "../imgs/orders.png";
 import Default from "../imgs/default.png";
 import { useSelector } from "react-redux";
 import { Link, NavLink, useNavigate } from "react-router-dom";
@@ -110,7 +110,7 @@ function Navbar() {
             >
               {totalQuantity}
             </p>
-          <img src={notify} className="notify" />
+          <img src={orders} className="orders" />
           <img
             src={user && user.photoURL ? user.photoURL : Default}
             className="default"
