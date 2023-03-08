@@ -1,3 +1,8 @@
+@font-face {
+  font-family: Credit-Card;
+  src: url("../font/CREDC___.ttf");
+}
+
 .payment-page {
   background-color: #f6f5f5;
   margin: 0;
@@ -13,6 +18,7 @@
 .shipping-data,
 .payment-data {
   background-color: white;
+  height: fit-content;
   padding: 50px;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
     rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
@@ -143,25 +149,130 @@
 .credit-body {
   cursor: pointer;
 
-  background-image: url("../imgs/world.png"),linear-gradient(74deg, rgba(235, 99, 26, 0.81) 11.32%, rgb(255, 196, 108) 100.00%);
+  background-image: url("../imgs/world.png"),
+    linear-gradient(
+      74deg,
+      rgba(235, 99, 26, 0.81) 11.32%,
+      rgb(255, 196, 108) 100%
+    );
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  background-blend-mode:color-burn;
+  background-blend-mode: color-burn;
   height: 200px;
   display: flex;
-  width: auto;
+  width: 360px;
   flex-direction: column;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px,
+    rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
   border-radius: 14px;
   transition: transform 0.25s ease-out;
   margin-top: 40px;
 }
 
-.paying-data{
-  margin-top: 50px;
+.paying-data {
+  margin-top: 30px;
 }
 
-.credit-chip{
-  width: 40px;
+.first-layer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 15px;
+  padding-right: 18px;
+}
+
+.credit-chip {
+  position: relative;
+  right: 34px;
+  width: 110px;
+}
+
+.card-company {
+  width: 50px;
+}
+
+.middle-layer {
+  display: flex;
+  align-items: center;
+  margin-top: 12px;
+  justify-content: center;
+}
+
+.account-number,
+.holder-name,
+.cvv-number,
+.exp-date {
+  font-family: Credit-Card;
+  font-weight: 200;
+  color: white;
+  font-size: 20px;
+  margin-top: 14px;
+  background-color: rgba(255, 255, 255, 0);
+  border: none;
+  outline: none;
+}
+
+.acc-number-inp::-webkit-inner-spin-button,
+.acc-number-inp::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.acc-cvv-inp::-webkit-inner-spin-button,
+.acc-cvv-inp::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.acc-exp-inp::-webkit-inner-spin-button,
+.acc-exp-inp::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.last-layer {
+  display: flex;
+  margin-top: 10px;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.cvv-number{
+  margin-left: 100px;
+}
+
+.cvv-number,.exp-date{
+  font-size: 14px;
+}
+
+.online-card-section{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.online-card-form{
+  margin-top: 30px;
+}
+
+.card-head-details{
+  font-family: "Poppins";
+  font-size: 25px;
+  font-weight: bolder;
+}
+
+.acc-name>p,.acc-number>p,.acc-cvv>p,.acc-exp>p{
+  font-family: "Poppins";
+}
+
+.acc-name>input,.acc-number>input,.acc-cvv>input,.acc-exp>input{
+  height: 35px;
+  font-family: "Poppins";
+  padding: 8px;
+  font-size: 15px;
+  border-radius: 4px;
+  outline: none;
+  border: 1.5px solid rgb(174, 174, 174);
+  width: 420px;
 }

@@ -5,7 +5,10 @@ import "./payment.css";
 import { app } from "../Firebase";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import VanillaTilt from "vanilla-tilt";
-import chip from '../imgs/chip.png'
+import chip from "../imgs/chip.png";
+import american from "../imgs/american.png";
+import visa from "../imgs/visa2.png";
+import master from "../imgs/master.png";
 import { getFirestore, collection, addDoc } from "firebase/firestore";
 
 const auth = getAuth(app);
@@ -25,6 +28,10 @@ function Payment() {
   const [NameError, setNameError] = useState("");
   const [AddressError, setAddressError] = useState("");
   const [paymentMode, setPaymentMode] = useState("COD");
+  const [cardName, setcardName] = useState("");
+  const [cardNumber, setcardNumber] = useState();
+  const [cardCVV, setcardCVV] = useState();
+  const [cardEXP, setcardEXP] = useState("");
   const tiltRef = useRef(null);
 
   const handleCountry = (event) => {
@@ -102,9 +109,6 @@ function Payment() {
       }
     });
   }, []);
-  useEffect(() => {
-    console.log(paymentMode);
-  }, [paymentMode]);
 
   useEffect(() => {
     VanillaTilt.init(tiltRef.current, {
@@ -131,6 +135,39 @@ function Payment() {
     } catch (e) {
       console.error(e);
     }
+  };
+
+  function detectCreditCardType(cardNumber) {
+    // Visa
+    if (/^4[0-9]{12}(?:[0-9]{3})?$/.test(cardNumber)) {
+      return "Visa";
+    }
+    // Mastercard
+    if (/^5[1-5][0-9]{14}$/.test(cardNumber)) {
+      return "Mastercard";
+    }
+    // American Express
+    if (/^3[47][0-9]{13}$/.test(cardNumber)) {
+      return "American Express";
+    }
+    // Unknown card type
+    return "Unknown";
+  }
+
+  const accName = (event) => {
+    setcardName(event.target.value);
+  };
+
+  const accNumber = (event) => {
+    setcardNumber(event.target.value);
+  };
+
+  const accCVV = (event) => {
+    setcardCVV(event.target.value);
+  };
+
+  const accEXP = (event) => {
+    setcardEXP(event.target.value);
   };
 
   return (
@@ -266,7 +303,61 @@ function Payment() {
               <div className="online-card-section">
                 <div ref={tiltRef} className="credit-body">
                   <div className="first-layer">
-                    {/* <img src={chip} className="credit-chip" /> */}
+                    <img src={chip} className="credit-chip" />
+                    <img src={visa} className="card-company" />
+                  </div>
+                  <div className="middle-layer">
+                    <p className="account-number">{cardNumber && cardNumber.slice(0,16) + ""}</p>
+                  </div>
+                  <div className="last-layer">
+                    <p className="holder-name">{cardName.toUpperCase()}</p>
+                    <p className="cvv-number">{cardCVV && cardCVV.slice(0,3) + ""}</p>
+                    <p className="exp-date">{cardEXP}</p>
+                  </div>
+                </div>
+                <div className="online-card-form">
+                  <p className="card-head-details">Card Details</p>
+                  <div className="acc-name">
+                    <p className="acc-name-head">Card Holder's Name*</p>
+                    <input
+                      type="text"
+                      className="acc-name-inp"
+                      onChange={accName}
+                      value={cardName}
+                      placeholder="Ex: John Doe"
+                    />
+                  </div>
+                  <div className="acc-number">
+                    <p className="acc-number-head">Account Number*</p>
+                    <input
+                      type="number"
+                      className="acc-number-inp"
+                      onChange={accNumber}
+                      placeholder="1234-4567-8901-2345"
+                      value={cardNumber}
+                      maxLength="16"
+                    />
+                  </div>
+                  <div className="acc-cvv">
+                    <p className="acc-cvv-head">CVV Number*</p>
+                    <input
+                      type="number"
+                      className="acc-cvv-inp"
+                      onChange={accCVV}
+                      placeholder="123"
+                      maxLength="3"
+                      value={cardCVV}
+                    />
+                  </div>
+                  <div className="acc-exp">
+                    <p className="acc-exp-head">Expiry Date*</p>
+                    <input
+                      type="number"
+                      className="acc-exp-inp"
+                      onChange={accEXP}
+                      placeholder="01/20"
+                      value={cardEXP}
+                    />
                   </div>
                 </div>
               </div>
