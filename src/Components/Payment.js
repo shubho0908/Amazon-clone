@@ -166,7 +166,7 @@ function Payment() {
         country: Country,
         address: Address,
         pincode: Pincode,
-        orderID: OrderID
+        orderID: OrderID,
       });
     } catch (e) {
       console.error(e);
@@ -214,6 +214,58 @@ function Payment() {
 
   const checkRadioData = () => {
     if (paymentMode === "COD" || paymentMode === "UPI") {
+    }
+  };
+
+  // VALIDATING CARD DETAILS
+
+  const [CardNumberError, setCardNumberError] = useState("");
+  const [CardNameError, setCardNameError] = useState("");
+  const [CardCVVError, setCardCVVError] = useState("");
+  const [CardEXPError, setCardEXPError] = useState("");
+
+  const handleCardNumber = (event) => {
+    if (event.target.value === "") {
+      setCardNumberError("Please enter your card details.");
+    } else if (cardType === "American" && event.target.value.length !== 15) {
+      setCardNumberError("Please enter valid card number.");
+    } else if (
+      cardType === "Visa" ||
+      (cardType === "Mastercard" && event.target.value.length !== 16)
+    ) {
+      setCardNumberError("Please enter valid card number.");
+    } else {
+      setCardNumberError("");
+    }
+  };
+
+  const handleCardName = (event) => {
+    if (event.target.value === "") {
+      setCardNameError("Please enter Card Holder's name.");
+    } else {
+      setCardNameError("");
+    }
+  };
+
+  const handleCardCVV = (event) => {
+    if (event.target.value === "") {
+      setCardCVVError("Please enter Card's CVV number.");
+    } else if (event.target.value.length !== 3) {
+      setCardCVVError("Please enter a valid CVV number.");
+    } else {
+      setCardCVVError("");
+    }
+  };
+
+  const handleCardEXP = (event) => {
+    const month = event.target.value.slice(0, 2);
+    const year = event.target.value.slice(2, 4);
+    if (event.target.value === "") {
+      setCardEXPError("Please enter Card's expiry date.");
+    } else if (month < 1 || month > 12 || event.target.value.length !== 4) {
+      setCardEXPError("Please enter a valid expiry date.");
+    } else {
+      setCardEXPError("");
     }
   };
 
@@ -411,10 +463,14 @@ function Payment() {
                       type="number"
                       className="acc-number-inp"
                       onChange={accNumber}
+                      onBlur={handleCardNumber}
                       placeholder="1234-4567-8901-2345"
                       value={cardNumber}
                       maxLength="16"
                     />
+                    {CardNumberError && (
+                      <div className="error-message">{CardNumberError}</div>
+                    )}
                   </div>
                   <div className="acc-name">
                     <p className="acc-name-head">Card Holder's Name*</p>
@@ -422,9 +478,13 @@ function Payment() {
                       type="text"
                       className="acc-name-inp"
                       onChange={accName}
+                      onBlur={handleCardName}
                       value={cardName}
                       placeholder="Ex: John Doe"
                     />
+                    {CardNameError && (
+                      <div className="error-message">{CardNameError}</div>
+                    )}
                   </div>
                   <div className="acc-cvv">
                     <p className="acc-cvv-head">CVV Number*</p>
@@ -432,10 +492,14 @@ function Payment() {
                       type="number"
                       className="acc-cvv-inp"
                       onChange={accCVV}
+                      onBlur={handleCardCVV}
                       placeholder="123"
                       maxLength="3"
                       value={cardCVV}
                     />
+                    {CardCVVError && (
+                      <div className="error-message">{CardCVVError}</div>
+                    )}
                   </div>
                   <div className="acc-exp">
                     <p className="acc-exp-head">Expiry Date*</p>
@@ -443,9 +507,13 @@ function Payment() {
                       type="number"
                       className="acc-exp-inp"
                       onChange={accEXP}
-                      placeholder="01/20"
+                      onBlur={handleCardEXP}
+                      placeholder="Ex: 0120 (01/20)"
                       value={cardEXP}
                     />
+                    {CardEXPError && (
+                      <div className="error-message">{CardEXPError}</div>
+                    )}
                   </div>
                 </div>
               </div>
@@ -454,7 +522,30 @@ function Payment() {
                 <p className="subtotal-amount">Total Amount :</p>
                 <p className="main-amount">${TotalAmount}</p>
               </div>
-              <button className="confirm-btn">Place Order</button>
+              <button
+                onClick={() => {
+                  if (
+                    cardNumber === null ||
+                    cardName.length === 0 ||
+                    cardCVV === null ||
+                    cardEXP.length === 0
+                  ) {
+                    alert("Fill out empty details.");
+                  } else if (
+                    CardNameError.length !== 0 ||
+                    CardNumberError.length !== 0 ||
+                    CardCVVError.length !== 0 ||
+                    CardEXPError.length !== 0
+                  ) {
+                    alert("Error in card details.");
+                  } else {
+                    alert("DONE");
+                  }
+                }}
+                className="confirm-btn"
+              >
+                Place Order
+              </button>
             </div>
           </div>
         </div>
