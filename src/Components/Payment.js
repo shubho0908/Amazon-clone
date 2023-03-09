@@ -19,10 +19,10 @@ function Payment() {
   const [user, setUser] = useState([]);
   const [Country, setCountry] = useState("");
   const [Name, setName] = useState("");
-  const [Number, setNumber] = useState("");
+  const [Number, setNumber] = useState(null);
   const [Email, setEmail] = useState("");
   const [Address, setAddress] = useState("");
-  const [Pincode, setPincode] = useState();
+  const [Pincode, setPincode] = useState(null);
   const [OrderID, setOrderID] = useState(0);
   const [isDisabled, setDisabled] = useState(false);
   const [emailError, setEmailError] = useState("");
@@ -37,6 +37,9 @@ function Payment() {
   const [cardCVV, setcardCVV] = useState(null);
   const [cardEXP, setcardEXP] = useState("");
   const [cardType, setCardType] = useState("");
+  const [shippingDisplay, setshippingDisplay] = useState("block");
+  const [cardDisplay, setcardDisplay] = useState("none");
+
   const CartItems = useSelector((state) => state.CartItemsAdded.CartItems);
 
   const tiltRef = useRef(null);
@@ -274,7 +277,7 @@ function Payment() {
       <Navbar />
       <div className="payment-page">
         <div className="more-data">
-          <div className="shipping-data">
+          <div style={{display:shippingDisplay}} className="shipping-data">
             <div className="shipping-head">Shipping details</div>
             <div className="user-data-form">
               <p className="order-id">Order ID: {OrderID}</p>
@@ -368,21 +371,37 @@ function Payment() {
               </div>
               <button
                 onClick={() => {
-                  AddUserData();
-                  setDisabled(true);
+                  if (
+                    Name.length !== 0 ||
+                    Address.length !== 0 ||
+                    Country.length !== 0 ||
+                    Pincode !== null ||
+                    Number !== null ||
+                    Email.length !== 0
+                  ) {
+                    setDisabled(true);
+                    setshippingDisplay("none")
+                    setcardDisplay("block")
+                  } else if (
+                    NameError.length !== 0 ||
+                    AddressError.length !== 0 ||
+                    CountryError.length !== 0 ||
+                    PincodeError.length !== null ||
+                    NumberError.length !== null ||
+                    emailError.length !== 0
+                  ) {
+                    alert("Error in Input Fields.");
+                  } else {
+                    alert("Something went wrong");
+                  }
                 }}
                 className="save-address"
-                disabled={
-                  !Name || !Country || !Email || !Address || !Number
-                    ? true
-                    : false
-                }
               >
                 Save
               </button>
             </div>
           </div>
-          <div className="payment-data">
+          <div style={{display:cardDisplay}} className="payment-data">
             <div className="payment-option">
               <p className="payment-method">Choose your payment method</p>
               <div className="choose-option">
@@ -524,21 +543,24 @@ function Payment() {
               </div>
               <button
                 onClick={() => {
-                  if (
-                    cardNumber === null ||
-                    cardName.length === 0 ||
-                    cardCVV === null ||
-                    cardEXP.length === 0
-                  ) {
-                    alert("Fill out empty details.");
-                  } else if (
-                    CardNameError.length !== 0 ||
-                    CardNumberError.length !== 0 ||
-                    CardCVVError.length !== 0 ||
-                    CardEXPError.length !== 0
-                  ) {
-                    alert("Error in card details.");
+                  if (paymentMode === "Credit") {
+                    if (
+                      cardNumber === null ||
+                      cardName.length === 0 ||
+                      cardCVV === null ||
+                      cardEXP.length === 0
+                    ) {
+                      alert("Fill out empty details.");
+                    } else if (
+                      CardNameError.length !== 0 ||
+                      CardNumberError.length !== 0 ||
+                      CardCVVError.length !== 0 ||
+                      CardEXPError.length !== 0
+                    ) {
+                      alert("Error in card details.");
+                    }
                   } else {
+                    AddUserData();
                     alert("DONE");
                   }
                 }}

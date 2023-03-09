@@ -28,7 +28,7 @@
 .payment-data {
   height: fit-content;
   margin-left: 35px;
-  transition: height .5s ease;
+  transition: height 0.5s ease;
 }
 
 .shipping-head,
@@ -46,7 +46,8 @@
 .user-name > input,
 .user-contact > input,
 .user-email > input,
-.user-address > input, .user-pincode>input {
+.user-address > input,
+.user-pincode > input {
   height: 35px;
   font-family: "Poppins";
   padding: 8px;
@@ -61,7 +62,8 @@
 .user-name > p,
 .user-contact > p,
 .user-email > p,
-.user-address > p ,.user-pincode>p {
+.user-address > p,
+.user-pincode > p {
   font-family: "Poppins";
   font-size: 15px;
 }
@@ -191,9 +193,8 @@
 
 .card-company {
   width: 50px;
-  transition: all .8s ease;
+  transition: all 0.8s ease;
 }
-
 
 .middle-layer {
   display: flex;
@@ -216,7 +217,7 @@
   outline: none;
 }
 
-.holder-name{
+.holder-name {
   position: absolute;
   left: 14px;
   font-size: 17px;
@@ -246,56 +247,61 @@
   align-items: center;
 }
 
-.cvv-number{
+.cvv-number {
   position: absolute;
   right: 84px;
 }
 
-.cvv-number,.exp-date{
+.cvv-number,
+.exp-date {
   font-size: 14px;
 }
 
-.exp-date{
+.exp-date {
   position: absolute;
   right: 14px;
 }
 
-.online-card-section{
+.online-card-section {
   display: flex;
   flex-direction: column;
   align-items: center;
-  transition: all .5s ease;
-  animation: FADEIN .5s ease;
+  transition: all 0.5s ease;
+  animation: FADEIN 0.5s ease;
 }
 
 @keyframes FADEIN {
-  0%{
+  0% {
     opacity: 0;
     transform: scale(0.95);
-
   }
-  100%{
+  100% {
     opacity: 1;
     transform: scale(1);
-
   }
 }
 
-.online-card-form{
+.online-card-form {
   margin-top: 30px;
 }
 
-.card-head-details{
+.card-head-details {
   font-family: "Poppins";
   font-size: 25px;
   font-weight: bolder;
 }
 
-.acc-name>p,.acc-number>p,.acc-cvv>p,.acc-exp>p{
+.acc-name > p,
+.acc-number > p,
+.acc-cvv > p,
+.acc-exp > p {
   font-family: "Poppins";
 }
 
-.acc-name>input,.acc-number>input,.acc-cvv>input,.acc-exp>input{
+.acc-name > input,
+.acc-number > input,
+.acc-cvv > input,
+.acc-exp > input {
   height: 35px;
   font-family: "Poppins";
   padding: 8px;
@@ -306,7 +312,7 @@
   width: 355px;
 }
 
-.order-id{
+.order-id {
   font-family: "Poppins";
   margin-bottom: 25px;
 }
