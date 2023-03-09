@@ -1,0 +1,27 @@
+.orders-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  background-color: #f6f5f5;
+  padding-top: 120px;
+  padding-bottom: 120px;
+  height: fit-content;
+}
+
+.order {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  padding: 25px;
+  margin-top: 15px;
+  border-radius: 10px;
+}
+
+.order-img {
+  width: 50px;
+}
+
+.order-text{
+    margin-left: 32px;
+}
