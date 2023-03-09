@@ -10,6 +10,7 @@ import american from "../imgs/american.png";
 import visa from "../imgs/visa2.png";
 import master from "../imgs/master.png";
 import { getFirestore, collection, addDoc } from "firebase/firestore";
+import { useSelector } from "react-redux";
 
 const auth = getAuth(app);
 const db = getFirestore(app);
@@ -22,6 +23,7 @@ function Payment() {
   const [Email, setEmail] = useState("");
   const [Address, setAddress] = useState("");
   const [Pincode, setPincode] = useState();
+  const [OrderID, setOrderID] = useState(0);
   const [isDisabled, setDisabled] = useState(false);
   const [emailError, setEmailError] = useState("");
   const [NumberError, setNumberError] = useState("");
@@ -35,7 +37,8 @@ function Payment() {
   const [cardCVV, setcardCVV] = useState(null);
   const [cardEXP, setcardEXP] = useState("");
   const [cardType, setCardType] = useState("");
-  const [creditDisplay, setcreditDisplay] = useState("none")
+  const CartItems = useSelector((state) => state.CartItemsAdded.CartItems);
+
   const tiltRef = useRef(null);
 
   // SHIPPING DETAILS
@@ -112,11 +115,9 @@ function Payment() {
   const handlePincodeBlur = (event) => {
     if (event.target.value === "") {
       setPincodeError("Please enter your pincode.");
-    }
-    else if (Pincode.length !== 6) {
+    } else if (Pincode.length !== 6) {
       setPincodeError("Please enter a valid pincode.");
-    }
-    else {
+    } else {
       setPincodeError("");
     }
   };
@@ -128,6 +129,13 @@ function Payment() {
       } else {
       }
     });
+  }, []);
+
+  useEffect(() => {
+    const storedID = parseInt(localStorage.getItem("OrderID"), 10) || 126244;
+    const updateID = storedID + 2;
+    setOrderID(updateID);
+    localStorage.setItem("OrderID", updateID.toString());
   }, []);
 
   useEffect(() => {
@@ -143,6 +151,12 @@ function Payment() {
 
   const TotalAmount = localStorage.getItem("TotalAmount");
 
+  useEffect(() => {
+    if (CartItems.length === 0) {
+      localStorage.setItem("TotalAmount", 0);
+    }
+  }, []);
+
   const AddUserData = async () => {
     try {
       await addDoc(collection(db, "Users"), {
@@ -151,6 +165,8 @@ function Payment() {
         number: Number,
         country: Country,
         address: Address,
+        pincode: Pincode,
+        orderID: OrderID
       });
     } catch (e) {
       console.error(e);
@@ -176,7 +192,7 @@ function Payment() {
   }
 
   useEffect(() => {
-    detectCreditCardType(cardNumber && cardNumber.slice(0,16));
+    detectCreditCardType(cardNumber && cardNumber.slice(0, 16));
   }, [cardNumber]);
 
   // CARD DETAILS
@@ -196,12 +212,10 @@ function Payment() {
     setcardEXP(event.target.value);
   };
 
-  const checkRadioData = ()=>{
+  const checkRadioData = () => {
     if (paymentMode === "COD" || paymentMode === "UPI") {
-      
     }
-  }
-
+  };
 
   return (
     <>
@@ -211,6 +225,7 @@ function Payment() {
           <div className="shipping-data">
             <div className="shipping-head">Shipping details</div>
             <div className="user-data-form">
+              <p className="order-id">Order ID: {OrderID}</p>
               <div className="country">
                 <p className="country-name">Country*</p>
                 <input
@@ -338,17 +353,15 @@ function Payment() {
                   />
                   Credit/Debit card
                 </div>
-                <div className="upi">
-                  <input
-                    type="radio"
-                    name="payment-method"
-                    onChange={radioChange}
-                    value="UPI"
-                  />
-                  UPI Payment
-                </div>
               </div>
-              <div style={paymentMode === "Credit" ? {display:"flex"}:{display:"none"}} className="online-card-section">
+              <div
+                style={
+                  paymentMode === "Credit"
+                    ? { display: "flex" }
+                    : { display: "none" }
+                }
+                className="online-card-section"
+              >
                 <div ref={tiltRef} className="credit-body">
                   <div className="first-layer">
                     <img src={chip} className="credit-chip" />
@@ -367,7 +380,14 @@ function Payment() {
                   </div>
                   <div className="middle-layer">
                     <p className="account-number">
-                      {cardNumber && cardNumber.slice(0, 4) + " " + cardNumber.slice(4, 8) + " " + cardNumber.slice(8, 12) + " " + cardNumber.slice(12, 16)}
+                      {cardNumber &&
+                        cardNumber.slice(0, 4) +
+                          " " +
+                          cardNumber.slice(4, 8) +
+                          " " +
+                          cardNumber.slice(8, 12) +
+                          " " +
+                          cardNumber.slice(12, 16)}
                     </p>
                   </div>
                   <div className="last-layer">

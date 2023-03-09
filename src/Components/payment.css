@@ -305,3 +305,8 @@
   border: 1.5px solid rgb(174, 174, 174);
   width: 420px;
 }
+
+.order-id{
+  font-family: "Poppins";
+  margin-bottom: 25px;
+}
