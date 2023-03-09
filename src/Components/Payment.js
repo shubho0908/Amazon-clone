@@ -9,7 +9,7 @@ import chip from "../imgs/chip.png";
 import american from "../imgs/american.png";
 import visa from "../imgs/visa2.png";
 import master from "../imgs/master.png";
-import { getFirestore, collection, addDoc } from "firebase/firestore";
+import { getFirestore, collection, addDoc, getDocs } from "firebase/firestore";
 import { useSelector } from "react-redux";
 
 const auth = getAuth(app);
@@ -39,6 +39,7 @@ function Payment() {
   const [cardType, setCardType] = useState("");
   const [shippingDisplay, setshippingDisplay] = useState("block");
   const [cardDisplay, setcardDisplay] = useState("none");
+  const [currentDateTime, setCurrentDateTime] = useState("");
 
   const CartItems = useSelector((state) => state.CartItemsAdded.CartItems);
 
@@ -86,6 +87,8 @@ function Payment() {
       setNumberError("Please enter a valid contact number.");
     } else if (event.target.value.includes("+")) {
       setNumberError("Country code isn't required.");
+    } else if (event.target.value.length !== 10) {
+      setNumberError("Please enter a 10-digit valid contact number.");
     } else {
       setNumberError("");
     }
@@ -135,6 +138,24 @@ function Payment() {
   }, []);
 
   useEffect(() => {
+    const intervalId = setInterval(() => {
+      const now = new Date();
+      const currentDate = `${now.getDate().toString().padStart(2, "0")}-${(
+        now.getMonth() + 1
+      )
+        .toString()
+        .padStart(2, "0")}-${now.getFullYear()}`;
+      const currentTime = `${now.getHours().toString().padStart(2, "0")}:${now
+        .getMinutes()
+        .toString()
+        .padStart(2, "0")}`;
+      setCurrentDateTime(`Date: ${currentDate} and time: ${currentTime}`);
+    }, 1000); // Update every second
+
+    return () => clearInterval(intervalId); // Cleanup interval on unmount
+  }, []);
+
+  useEffect(() => {
     const storedID = parseInt(localStorage.getItem("OrderID"), 10) || 126244;
     const updateID = storedID + 2;
     setOrderID(updateID);
@@ -169,11 +190,23 @@ function Payment() {
         country: Country,
         address: Address,
         pincode: Pincode,
+        amount: TotalAmount,
+        paymethod: paymentMode,
         orderID: OrderID,
+        order: CartItems,
+        transaction_time: currentDateTime,
       });
     } catch (e) {
       console.error(e);
     }
+  };
+
+  const getUserData = async () => {
+    const querySnapshot = await getDocs(collection(db, "Users"));
+    querySnapshot.forEach((doc) => {
+      const data = doc.data()
+      console.log(data.order[0].title);
+    });
   };
 
   function detectCreditCardType(cardNumber) {
@@ -215,11 +248,6 @@ function Payment() {
     setcardEXP(event.target.value);
   };
 
-  const checkRadioData = () => {
-    if (paymentMode === "COD" || paymentMode === "UPI") {
-    }
-  };
-
   // VALIDATING CARD DETAILS
 
   const [CardNumberError, setCardNumberError] = useState("");
@@ -231,11 +259,15 @@ function Payment() {
     if (event.target.value === "") {
       setCardNumberError("Please enter your card details.");
     } else if (cardType === "American" && event.target.value.length !== 15) {
+      console.log("Not an american");
       setCardNumberError("Please enter valid card number.");
     } else if (
-      cardType === "Visa" ||
+      (cardType === "Visa" && event.target.value.length !== 16) ||
       (cardType === "Mastercard" && event.target.value.length !== 16)
     ) {
+      console.log("Not an visa or master");
+      setCardNumberError("Please enter valid card number.");
+    } else if (cardType === "") {
       setCardNumberError("Please enter valid card number.");
     } else {
       setCardNumberError("");
@@ -265,7 +297,12 @@ function Payment() {
     const year = event.target.value.slice(2, 4);
     if (event.target.value === "") {
       setCardEXPError("Please enter Card's expiry date.");
-    } else if (month < 1 || month > 12 || event.target.value.length !== 4) {
+    } else if (
+      month < 1 ||
+      month > 12 ||
+      year < 23 ||
+      event.target.value.length !== 4
+    ) {
       setCardEXPError("Please enter a valid expiry date.");
     } else {
       setCardEXPError("");
@@ -277,97 +314,105 @@ function Payment() {
       <Navbar />
       <div className="payment-page">
         <div className="more-data">
-          <div style={{display:shippingDisplay}} className="shipping-data">
+          <div style={{ display: shippingDisplay }} className="shipping-data">
             <div className="shipping-head">Shipping details</div>
             <div className="user-data-form">
               <p className="order-id">Order ID: {OrderID}</p>
-              <div className="country">
-                <p className="country-name">Country*</p>
-                <input
-                  type="text"
-                  placeholder="India"
-                  onChange={handleCountry}
-                  onBlur={handleCountryBlur}
-                  value={Country}
-                  disabled={isDisabled}
-                  required
-                />
-                {CountryError && (
-                  <div className="error-message">{CountryError}</div>
-                )}
-              </div>
-              <div className="user-name">
-                <p className="user-fullname">Name*</p>
-                <input
-                  type="text"
-                  placeholder="Full name"
-                  onChange={handleName}
-                  onBlur={handleNameBlur}
-                  value={Name}
-                  disabled={isDisabled}
-                  required
-                />
-                {NameError && <div className="error-message">{NameError}</div>}
-              </div>
-              <div className="user-contact">
-                <p className="user-number">Contact Number*</p>
-                <input
-                  type="text"
-                  placeholder="Number"
-                  onChange={handleNumber}
-                  onBlur={handleNumberBlur}
-                  value={Number}
-                  disabled={isDisabled}
-                  required
-                />
-                {NumberError && (
-                  <div className="error-message">{NumberError}</div>
-                )}
-              </div>
-              <div className="user-email">
-                <p className="user-fullname">Email address*</p>
-                <input
-                  type="text"
-                  placeholder="Email"
-                  onChange={handleEmail}
-                  onBlur={handleEmailBlur}
-                  value={Email}
-                  disabled={isDisabled}
-                  required
-                />
-                {emailError && (
-                  <div className="error-message">{emailError}</div>
-                )}
-              </div>
-              <div className="user-address">
-                <p className="user-fulladdress">Home Address*</p>
-                <input
-                  type="text"
-                  placeholder="Address"
-                  onBlur={handleAddressBlur}
-                  onChange={handleAddress}
-                  value={Address}
-                  disabled={isDisabled}
-                  required
-                />
-                {AddressError && (
-                  <div className="error-message">{AddressError}</div>
-                )}
-              </div>
-              <div className="user-pincode">
-                <p className="user-pin-number">Pincode*</p>
-                <input
-                  type="number"
-                  placeholder="Pincode"
-                  onBlur={handlePincodeBlur}
-                  onChange={handlePincode}
-                  value={Pincode}
-                  disabled={isDisabled}
-                  required
-                />
-                {PincodeError && (
-                  <div className="error-message">{PincodeError}</div>
-                )}
+              <div className="all-data-of-user">
+                <div className="user-data1">
+                  <div className="country">
+                    <p className="country-name">Country*</p>
+                    <input
+                      type="text"
+                      placeholder="India"
+                      onChange={handleCountry}
+                      onBlur={handleCountryBlur}
+                      value={Country}
+                      disabled={isDisabled}
+                      required
+                    />
+                    {CountryError && (
+                      <div className="error-message">{CountryError}</div>
+                    )}
+                  </div>
+                  <div className="user-name">
+                    <p className="user-fullname">Name*</p>
+                    <input
+                      type="text"
+                      placeholder="Full name"
+                      onChange={handleName}
+                      onBlur={handleNameBlur}
+                      value={Name}
+                      disabled={isDisabled}
+                      required
+                    />
+                    {NameError && (
+                      <div className="error-message">{NameError}</div>
+                    )}
+                  </div>
+                  <div className="user-contact">
+                    <p className="user-number">Contact Number*</p>
+                    <input
+                      type="text"
+                      placeholder="Number"
+                      onChange={handleNumber}
+                      onBlur={handleNumberBlur}
+                      value={Number}
+                      disabled={isDisabled}
+                      required
+                    />
+                    {NumberError && (
+                      <div className="error-message">{NumberError}</div>
+                    )}
+                  </div>
+                </div>
+                <div className="user-data2">
+                  <div className="user-email">
+                    <p className="user-fullname">Email address*</p>
+                    <input
+                      type="text"
+                      placeholder="Email"
+                      onChange={handleEmail}
+                      onBlur={handleEmailBlur}
+                      value={Email}
+                      disabled={isDisabled}
+                      required
+                    />
+                    {emailError && (
+                      <div className="error-message">{emailError}</div>
+                    )}
+                  </div>
+                  <div className="user-address">
+                    <p className="user-fulladdress">Home Address*</p>
+                    <input
+                      type="text"
+                      placeholder="Address"
+                      onBlur={handleAddressBlur}
+                      onChange={handleAddress}
+                      value={Address}
+                      disabled={isDisabled}
+                      required
+                    />
+                    {AddressError && (
+                      <div className="error-message">{AddressError}</div>
+                    )}
+                  </div>
+                  <div className="user-pincode">
+                    <p className="user-pin-number">Pincode*</p>
+                    <input
+                      type="number"
+                      placeholder="Pincode"
+                      onBlur={handlePincodeBlur}
+                      onChange={handlePincode}
+                      value={Pincode}
+                      disabled={isDisabled}
+                      required
+                    />
+                    {PincodeError && (
+                      <div className="error-message">{PincodeError}</div>
+                    )}
+                  </div>
+                </div>
               </div>
               <button
                 onClick={() => {
@@ -380,8 +425,9 @@ function Payment() {
                     Email.length !== 0
                   ) {
                     setDisabled(true);
-                    setshippingDisplay("none")
-                    setcardDisplay("block")
+                    setshippingDisplay("none");
+                    setcardDisplay("block");
+                    getUserData();
                   } else if (
                     NameError.length !== 0 ||
                     AddressError.length !== 0 ||
@@ -401,7 +447,7 @@ function Payment() {
               </button>
             </div>
           </div>
-          <div style={{display:cardDisplay}} className="payment-data">
+          <div style={{ display: cardDisplay }} className="payment-data">
             <div className="payment-option">
               <p className="payment-method">Choose your payment method</p>
               <div className="choose-option">
@@ -476,63 +522,69 @@ function Payment() {
                 </div>
                 <div className="online-card-form">
                   <p className="card-head-details">Card Details</p>
-                  <div className="acc-number">
-                    <p className="acc-number-head">Account Number*</p>
-                    <input
-                      type="number"
-                      className="acc-number-inp"
-                      onChange={accNumber}
-                      onBlur={handleCardNumber}
-                      placeholder="1234-4567-8901-2345"
-                      value={cardNumber}
-                      maxLength="16"
-                    />
-                    {CardNumberError && (
-                      <div className="error-message">{CardNumberError}</div>
-                    )}
-                  </div>
-                  <div className="acc-name">
-                    <p className="acc-name-head">Card Holder's Name*</p>
-                    <input
-                      type="text"
-                      className="acc-name-inp"
-                      onChange={accName}
-                      onBlur={handleCardName}
-                      value={cardName}
-                      placeholder="Ex: John Doe"
-                    />
-                    {CardNameError && (
-                      <div className="error-message">{CardNameError}</div>
-                    )}
-                  </div>
-                  <div className="acc-cvv">
-                    <p className="acc-cvv-head">CVV Number*</p>
-                    <input
-                      type="number"
-                      className="acc-cvv-inp"
-                      onChange={accCVV}
-                      onBlur={handleCardCVV}
-                      placeholder="123"
-                      maxLength="3"
-                      value={cardCVV}
-                    />
-                    {CardCVVError && (
-                      <div className="error-message">{CardCVVError}</div>
-                    )}
-                  </div>
-                  <div className="acc-exp">
-                    <p className="acc-exp-head">Expiry Date*</p>
-                    <input
-                      type="number"
-                      className="acc-exp-inp"
-                      onChange={accEXP}
-                      onBlur={handleCardEXP}
-                      placeholder="Ex: 0120 (01/20)"
-                      value={cardEXP}
-                    />
-                    {CardEXPError && (
-                      <div className="error-message">{CardEXPError}</div>
-                    )}
+                  <div className="all-data-of-card">
+                    <div className="card-data1">
+                      <div className="acc-number">
+                        <p className="acc-number-head">Account Number*</p>
+                        <input
+                          type="number"
+                          className="acc-number-inp"
+                          onChange={accNumber}
+                          onBlur={handleCardNumber}
+                          placeholder="1234-4567-8901-2345"
+                          value={cardNumber}
+                          maxLength="16"
+                        />
+                        {CardNumberError && (
+                          <div className="error-message">{CardNumberError}</div>
+                        )}
+                      </div>
+                      <div className="acc-name">
+                        <p className="acc-name-head">Card Holder's Name*</p>
+                        <input
+                          type="text"
+                          className="acc-name-inp"
+                          onChange={accName}
+                          onBlur={handleCardName}
+                          value={cardName}
+                          placeholder="Ex: John Doe"
+                        />
+                        {CardNameError && (
+                          <div className="error-message">{CardNameError}</div>
+                        )}
+                      </div>
+                    </div>
+                    <div className="card-data2">
+                      <div className="acc-cvv">
+                        <p className="acc-cvv-head">CVV Number*</p>
+                        <input
+                          type="number"
+                          className="acc-cvv-inp"
+                          onChange={accCVV}
+                          onBlur={handleCardCVV}
+                          placeholder="123"
+                          maxLength="3"
+                          value={cardCVV}
+                        />
+                        {CardCVVError && (
+                          <div className="error-message">{CardCVVError}</div>
+                        )}
+                      </div>
+                      <div className="acc-exp">
+                        <p className="acc-exp-head">Expiry Date*</p>
+                        <input
+                          type="number"
+                          className="acc-exp-inp"
+                          onChange={accEXP}
+                          onBlur={handleCardEXP}
+                          placeholder="Ex: 0120 (01/20)"
+                          value={cardEXP}
+                        />
+                        {CardEXPError && (
+                          <div className="error-message">{CardEXPError}</div>
+                        )}
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -558,6 +610,9 @@ function Payment() {
                       CardEXPError.length !== 0
                     ) {
                       alert("Error in card details.");
+                    } else {
+                      AddUserData();
+                      alert("DONE");
                     }
                   } else {
                     AddUserData();

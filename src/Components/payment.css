@@ -316,3 +316,11 @@
   font-family: "Poppins";
   margin-bottom: 25px;
 }
+
+.all-data-of-user, .all-data-of-card{
+  display: flex;
+}
+
+.user-data2, .card-data2{
+  margin-left: 30px;
+}
