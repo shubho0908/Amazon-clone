@@ -307,26 +307,20 @@ function Payment() {
                     <img src={visa} className="card-company" />
                   </div>
                   <div className="middle-layer">
-                    <p className="account-number">{cardNumber && cardNumber.slice(0,16) + ""}</p>
+                    <p className="account-number">
+                      {cardNumber && cardNumber.slice(0, 16) + ""}
+                    </p>
                   </div>
                   <div className="last-layer">
-                    <p className="holder-name">{cardName.toUpperCase()}</p>
-                    <p className="cvv-number">{cardCVV && cardCVV.slice(0,3) + ""}</p>
-                    <p className="exp-date">{cardEXP}</p>
+                    <p className="holder-name">{(cardName.toUpperCase()).slice(0,15)}</p>
+                    <p className="cvv-number">
+                      {cardCVV && cardCVV.slice(0, 3) + ""}
+                    </p>
+                    <p className="exp-date">{cardEXP && cardEXP.slice(0,2) + "/" + cardEXP.slice(2,4)}</p>
                   </div>
                 </div>
                 <div className="online-card-form">
                   <p className="card-head-details">Card Details</p>
-                  <div className="acc-name">
-                    <p className="acc-name-head">Card Holder's Name*</p>
-                    <input
-                      type="text"
-                      className="acc-name-inp"
-                      onChange={accName}
-                      value={cardName}
-                      placeholder="Ex: John Doe"
-                    />
-                  </div>
                   <div className="acc-number">
                     <p className="acc-number-head">Account Number*</p>
                     <input
@@ -336,6 +330,16 @@ function Payment() {
                       placeholder="1234-4567-8901-2345"
                       value={cardNumber}
                       maxLength="16"
+                    />
+                  </div>
+                  <div className="acc-name">
+                    <p className="acc-name-head">Card Holder's Name*</p>
+                    <input
+                      type="text"
+                      className="acc-name-inp"
+                      onChange={accName}
+                      value={cardName}
+                      placeholder="Ex: John Doe"
                     />
                   </div>
                   <div className="acc-cvv">

@@ -213,6 +213,11 @@
   outline: none;
 }
 
+.holder-name{
+  position: absolute;
+  left: 14px;
+}
+
 .acc-number-inp::-webkit-inner-spin-button,
 .acc-number-inp::-webkit-outer-spin-button {
   -webkit-appearance: none;
@@ -233,17 +238,22 @@
 
 .last-layer {
   display: flex;
-  margin-top: 10px;
+  margin-top: 40px;
   align-items: center;
-  justify-content: space-evenly;
 }
 
 .cvv-number{
-  margin-left: 100px;
+  position: absolute;
+  right: 84px;
 }
 
 .cvv-number,.exp-date{
   font-size: 14px;
+}
+
+.exp-date{
+  position: absolute;
+  right: 14px;
 }
 
 .online-card-section{
