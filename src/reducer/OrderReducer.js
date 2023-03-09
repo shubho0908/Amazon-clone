@@ -4,7 +4,7 @@ const OrderData = {
 
 const OrderAdded = (state = OrderData, action) => {
   switch (action.type) {
-    case "ADD":
+    case "ADD_ORDER":
       const productData = action.data;
       const updatedOrder = [...state.OrderItems, productData];
       localStorage.setItem("OrderItems", JSON.stringify(updatedOrder)); // Update local storage

@@ -1,6 +1,6 @@
 const AddOrder = (data) => {
     return {
-      type: "ADD",
+      type: "ADD_ORDER",
       data: data,
     };
 

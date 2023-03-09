@@ -46,7 +46,7 @@ function Payment() {
   const navigate = useNavigate();
 
   const CartItems = useSelector((state) => state.CartItemsAdded.CartItems);
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const tiltRef = useRef(null);
 
@@ -605,7 +605,7 @@ function Payment() {
                     ) {
                       alert("Error in card details.");
                     } else {
-                      dispatch(AddOrder(CartData))
+                      dispatch(AddOrder(JSON.parse(CartData)));
                       AddUserData();
                       alert("DONE");
                       localStorage.removeItem("CartItems");
@@ -613,7 +613,7 @@ function Payment() {
                       window.location.reload();
                     }
                   } else {
-                    dispatch(AddOrder(CartData))
+                    dispatch(AddOrder(JSON.parse(CartData)));
                     AddUserData();
                     alert("DONE");
                     localStorage.removeItem("CartItems");
