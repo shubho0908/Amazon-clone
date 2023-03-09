@@ -29,11 +29,14 @@ function Payment() {
   const [AddressError, setAddressError] = useState("");
   const [paymentMode, setPaymentMode] = useState("COD");
   const [cardName, setcardName] = useState("");
-  const [cardNumber, setcardNumber] = useState();
-  const [cardCVV, setcardCVV] = useState();
+  const [cardNumber, setcardNumber] = useState(null);
+  const [cardCVV, setcardCVV] = useState(null);
   const [cardEXP, setcardEXP] = useState("");
+  const [cardType, setCardType] = useState("");
+  const [creditDisplay, setcreditDisplay] = useState("none")
   const tiltRef = useRef(null);
 
+  // SHIPPING DETAILS
   const handleCountry = (event) => {
     setCountry(event.target.value);
   };
@@ -140,20 +143,26 @@ function Payment() {
   function detectCreditCardType(cardNumber) {
     // Visa
     if (/^4[0-9]{12}(?:[0-9]{3})?$/.test(cardNumber)) {
-      return "Visa";
+      setCardType("Visa");
     }
     // Mastercard
-    if (/^5[1-5][0-9]{14}$/.test(cardNumber)) {
-      return "Mastercard";
+    else if (/^5[1-5][0-9]{14}$/.test(cardNumber)) {
+      setCardType("Mastercard");
     }
     // American Express
-    if (/^3[47][0-9]{13}$/.test(cardNumber)) {
-      return "American Express";
+    else if (/^3[47][0-9]{13}$/.test(cardNumber)) {
+      setCardType("American");
+    } else {
+      // Unknown card type
+      setCardType("");
     }
-    // Unknown card type
-    return "Unknown";
   }
 
+  useEffect(() => {
+    detectCreditCardType(cardNumber && cardNumber.slice(0,16));
+  }, [cardNumber]);
+
+  // CARD DETAILS
   const accName = (event) => {
     setcardName(event.target.value);
   };
@@ -169,6 +178,13 @@ function Payment() {
   const accEXP = (event) => {
     setcardEXP(event.target.value);
   };
+
+  const checkRadioData = ()=>{
+    if (paymentMode === "COD" || paymentMode === "UPI") {
+      
+    }
+  }
+
 
   return (
     <>
@@ -300,23 +316,39 @@ function Payment() {
                   UPI Payment
                 </div>
               </div>
-              <div className="online-card-section">
+              <div style={paymentMode === "Credit" ? {display:"flex"}:{display:"none"}} className="online-card-section">
                 <div ref={tiltRef} className="credit-body">
                   <div className="first-layer">
                     <img src={chip} className="credit-chip" />
-                    <img src={visa} className="card-company" />
+                    <img
+                      src={
+                        cardType === "Visa"
+                          ? visa
+                          : cardType === "Mastercard"
+                          ? master
+                          : cardType === "American"
+                          ? american
+                          : ""
+                      }
+                      className="card-company"
+                    />
                   </div>
                   <div className="middle-layer">
                     <p className="account-number">
-                      {cardNumber && cardNumber.slice(0, 16) + ""}
+                      {cardNumber && cardNumber.slice(0, 4) + " " + cardNumber.slice(4, 8) + " " + cardNumber.slice(8, 12) + " " + cardNumber.slice(12, 16)}
                     </p>
                   </div>
                   <div className="last-layer">
-                    <p className="holder-name">{(cardName.toUpperCase()).slice(0,15)}</p>
+                    <p className="holder-name">
+                      {cardName.toUpperCase().slice(0, 19)}
+                    </p>
                     <p className="cvv-number">
                       {cardCVV && cardCVV.slice(0, 3) + ""}
                     </p>
-                    <p className="exp-date">{cardEXP && cardEXP.slice(0,2) + "/" + cardEXP.slice(2,4)}</p>
+                    <p className="exp-date">
+                      {cardEXP &&
+                        cardEXP.slice(0, 2) + "/" + cardEXP.slice(2, 4)}
+                    </p>
                   </div>
                 </div>
                 <div className="online-card-form">

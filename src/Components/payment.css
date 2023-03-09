@@ -28,6 +28,7 @@
 .payment-data {
   height: fit-content;
   margin-left: 35px;
+  transition: height .5s ease;
 }
 
 .shipping-head,
@@ -190,7 +191,9 @@
 
 .card-company {
   width: 50px;
+  transition: all .8s ease;
 }
+
 
 .middle-layer {
   display: flex;
@@ -216,6 +219,7 @@
 .holder-name{
   position: absolute;
   left: 14px;
+  font-size: 17px;
 }
 
 .acc-number-inp::-webkit-inner-spin-button,
@@ -260,6 +264,21 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  transition: all .5s ease;
+  animation: FADEIN .5s ease;
+}
+
+@keyframes FADEIN {
+  0%{
+    opacity: 0;
+    transform: scale(0.95);
+
+  }
+  100%{
+    opacity: 1;
+    transform: scale(1);
+
+  }
 }
 
 .online-card-form{
