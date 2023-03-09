@@ -57,7 +57,7 @@ function Lists() {
             </div>
           </div>
           <div className="lists-items">
-            {ListItems &&
+            {ListItems && ListItems.length > 0 &&
               ListItems.map((items) => {
                 return (
                   <div className="card" key={items.id}>

@@ -9,8 +9,10 @@ import chip from "../imgs/chip.png";
 import american from "../imgs/american.png";
 import visa from "../imgs/visa2.png";
 import master from "../imgs/master.png";
-import { getFirestore, collection, addDoc, getDocs } from "firebase/firestore";
-import { useSelector } from "react-redux";
+import { getFirestore, collection, addDoc } from "firebase/firestore";
+import { AddOrder } from "../action/Orders";
+import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const auth = getAuth(app);
 const db = getFirestore(app);
@@ -41,7 +43,10 @@ function Payment() {
   const [cardDisplay, setcardDisplay] = useState("none");
   const [currentDateTime, setCurrentDateTime] = useState("");
 
+  const navigate = useNavigate();
+
   const CartItems = useSelector((state) => state.CartItemsAdded.CartItems);
+  const dispatch = useDispatch()
 
   const tiltRef = useRef(null);
 
@@ -174,6 +179,7 @@ function Payment() {
   }, []);
 
   const TotalAmount = localStorage.getItem("TotalAmount");
+  const CartData = localStorage.getItem("CartItems");
 
   useEffect(() => {
     if (CartItems.length === 0) {
@@ -199,14 +205,6 @@ function Payment() {
     } catch (e) {
       console.error(e);
     }
-  };
-
-  const getUserData = async () => {
-    const querySnapshot = await getDocs(collection(db, "Users"));
-    querySnapshot.forEach((doc) => {
-      const data = doc.data()
-      console.log(data.order[0].title);
-    });
   };
 
   function detectCreditCardType(cardNumber) {
@@ -417,26 +415,22 @@ function Payment() {
               <button
                 onClick={() => {
                   if (
-                    Name.length !== 0 ||
-                    Address.length !== 0 ||
-                    Country.length !== 0 ||
-                    Pincode !== null ||
-                    Number !== null ||
-                    Email.length !== 0
+                    Name.length !== 0 &&
+                    Address.length !== 0 &&
+                    Country.length !== 0 &&
+                    Pincode !== null &&
+                    Number !== null &&
+                    Email.length !== 0 &&
+                    NameError.length === 0 &&
+                    AddressError.length === 0 &&
+                    CountryError.length === 0 &&
+                    PincodeError.length === 0 &&
+                    NumberError.length === 0 &&
+                    emailError.length === 0
                   ) {
                     setDisabled(true);
                     setshippingDisplay("none");
                     setcardDisplay("block");
-                    getUserData();
-                  } else if (
-                    NameError.length !== 0 ||
-                    AddressError.length !== 0 ||
-                    CountryError.length !== 0 ||
-                    PincodeError.length !== null ||
-                    NumberError.length !== null ||
-                    emailError.length !== 0
-                  ) {
-                    alert("Error in Input Fields.");
                   } else {
                     alert("Something went wrong");
                   }
@@ -611,12 +605,20 @@ function Payment() {
                     ) {
                       alert("Error in card details.");
                     } else {
+                      dispatch(AddOrder(CartData))
                       AddUserData();
                       alert("DONE");
+                      localStorage.removeItem("CartItems");
+                      navigate("/orders");
+                      window.location.reload();
                     }
                   } else {
+                    dispatch(AddOrder(CartData))
                     AddUserData();
                     alert("DONE");
+                    localStorage.removeItem("CartItems");
+                    navigate("/orders");
+                    window.location.reload();
                   }
                 }}
                 className="confirm-btn"

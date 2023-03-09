@@ -110,7 +110,7 @@ function Navbar() {
             >
               {totalQuantity}
             </p>
-          <img src={orders} className="orders" />
+          <Link to="/orders"><img src={orders} className="orders" /></Link>
           <img
             src={user && user.photoURL ? user.photoURL : Default}
             className="default"
