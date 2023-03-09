@@ -46,7 +46,7 @@
 .user-name > input,
 .user-contact > input,
 .user-email > input,
-.user-address > input {
+.user-address > input, .user-pincode>input {
   height: 35px;
   font-family: "Poppins";
   padding: 8px;
@@ -61,7 +61,7 @@
 .user-name > p,
 .user-contact > p,
 .user-email > p,
-.user-address > p {
+.user-address > p ,.user-pincode>p {
   font-family: "Poppins";
   font-size: 15px;
 }

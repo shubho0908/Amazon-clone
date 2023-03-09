@@ -52,7 +52,7 @@ function CartSection() {
   const TaxPrice = (SubTotal * 0.05).toFixed(2);
 
   const handlePromocode = (event) => {
-    const value = event.target.value;
+    const value = event.target.value.replace(/\s+/g, "");
     setPromocode(value);
   };
 

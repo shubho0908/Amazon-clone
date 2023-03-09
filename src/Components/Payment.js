@@ -21,12 +21,14 @@ function Payment() {
   const [Number, setNumber] = useState("");
   const [Email, setEmail] = useState("");
   const [Address, setAddress] = useState("");
+  const [Pincode, setPincode] = useState();
   const [isDisabled, setDisabled] = useState(false);
   const [emailError, setEmailError] = useState("");
   const [NumberError, setNumberError] = useState("");
   const [CountryError, setCountryError] = useState("");
   const [NameError, setNameError] = useState("");
   const [AddressError, setAddressError] = useState("");
+  const [PincodeError, setPincodeError] = useState("");
   const [paymentMode, setPaymentMode] = useState("COD");
   const [cardName, setcardName] = useState("");
   const [cardNumber, setcardNumber] = useState(null);
@@ -51,6 +53,9 @@ function Payment() {
   };
   const handleAddress = (event) => {
     setAddress(event.target.value);
+  };
+  const handlePincode = (event) => {
+    setPincode(event.target.value);
   };
   const radioChange = (event) => {
     setPaymentMode(event.target.value);
@@ -101,6 +106,18 @@ function Payment() {
       setAddressError("Please enter your address.");
     } else {
       setAddressError("");
+    }
+  };
+
+  const handlePincodeBlur = (event) => {
+    if (event.target.value === "") {
+      setPincodeError("Please enter your pincode.");
+    }
+    else if (Pincode.length !== 6) {
+      setPincodeError("Please enter a valid pincode.");
+    }
+    else {
+      setPincodeError("");
     }
   };
 
@@ -265,6 +282,21 @@ function Payment() {
                 />
                 {AddressError && (
                   <div className="error-message">{AddressError}</div>
+                )}
+              </div>
+              <div className="user-pincode">
+                <p className="user-pin-number">Pincode*</p>
+                <input
+                  type="number"
+                  placeholder="Pincode"
+                  onBlur={handlePincodeBlur}
+                  onChange={handlePincode}
+                  value={Pincode}
+                  disabled={isDisabled}
+                  required
+                />
+                {PincodeError && (
+                  <div className="error-message">{PincodeError}</div>
                 )}
               </div>
               <button
