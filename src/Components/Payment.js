@@ -350,6 +350,16 @@ function Payment() {
     }
   };
 
+  window.addEventListener("popstate", function (event) {
+    event.preventDefault();
+    swal({
+      title: "Error",
+      text: "Purchase wasn't successful!",
+      icon: "error",
+      buttons: "Ok",
+    });
+  });
+
   return (
     <>
       <Navbar />
@@ -667,7 +677,6 @@ function Payment() {
                         text: `Thanks for shopping with us.`,
                         icon: "success",
                         buttons: "Ok",
-                        
                       }).then((willNavigate) => {
                         if (willNavigate) {
                           localStorage.removeItem("CartItems");
