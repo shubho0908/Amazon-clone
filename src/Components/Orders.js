@@ -31,11 +31,11 @@ function Orders() {
                         <p className="order-head">{item.title}</p>
                         <p className="order-category">{item.category}</p>
                         <p className="order-quantity">
-                          Number of items: {item.quantity}
+                          Number of items: <b>{item.quantity}</b>
                         </p>
                         {item.category === "men's clothing" ||
                         item.category === "women's clothing" ? (
-                          <p className="order-size">Size: {item.size}</p>
+                          <p className="order-size">Size: <b>{item.size}</b></p>
                         ) : (
                           ""
                         )}

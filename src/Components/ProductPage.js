@@ -100,13 +100,13 @@ function ProductPage() {
   };
 
   const limited = product && product.description;
-  const DescLimited = limited ? limited.slice(0, 200) : "";
+  const DescLimited = limited ? limited.slice(0, 200) + "." : "";
 
   return (
     <>
       <Navbar />
       <div className="product-page">
-        <div className="product-dataa">
+        <div className={product ? (`product-dataa animate`):(`product-dataa`)}>
           <div className="item-image">
             <img
               ref={tiltRef}
@@ -116,7 +116,7 @@ function ProductPage() {
           </div>
           <div className="product-details">
             <p className="item-title">{product.title}</p>
-            <p className="item-desc">{DescLimited + "."}</p>
+            <p className="item-desc">{DescLimited}</p>
             <div className="item-rating">
               <img src={product && Rating} className="rating-img" />
               <img src={product && Rating} className="rating-img" />

@@ -35,7 +35,7 @@ function Lists() {
     <>
       <Navbar />
       <div style={{ height: "100%" }} className="content">
-        <div className="lists">
+        <div className={ListItems ? (`lists animate`):(`lists`)}>
           <p className="wishlist-head">Wishlist</p>
           <div
             style={

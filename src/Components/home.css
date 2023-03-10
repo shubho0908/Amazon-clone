@@ -1,5 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@800&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:wght@800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
 
 .poster-area {
   background: rgb(233, 147, 23);
@@ -21,13 +21,13 @@
 
 .poster-head {
   font-size: 39px;
-  font-family: 'Noto Sans', sans-serif;
+  font-family: "Noto Sans", sans-serif;
   color: white;
 }
 
 .poster-desc {
   font-size: 17px;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   width: 28%;
   color: white;
 }
@@ -35,6 +35,16 @@
 .poster-data {
   position: relative;
   bottom: 18px;
+  animation: animate1 0.4s ease;
+}
+
+@keyframes animate1 {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 .browse-btn {
@@ -49,14 +59,15 @@
   font-weight: 600;
   font-size: 17px;
   padding: 15px;
-  transition: all .16s ease;
+  animation: animate1 0.4s ease;
+  transition: all 0.16s ease;
 }
 
-.browse-btn:hover{
+.browse-btn:hover {
   transform: scale(1.04);
 }
 
-.browse-btn:active{
+.browse-btn:active {
   transform: scale(1);
 }
 
@@ -65,19 +76,17 @@
   width: 400px;
   right: 250px;
   top: 95px;
-animation: float .6s ease-out;
+  animation: float 0.6s ease-out;
 }
 
 @keyframes float {
-
-  0%{
+  0% {
     top: 120px;
     opacity: 0;
   }
-  
-  100%{
+
+  100% {
     top: 95px;
     opacity: 1;
   }
-  
 }

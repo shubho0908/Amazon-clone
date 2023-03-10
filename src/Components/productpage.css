@@ -259,3 +259,19 @@
   margin-top: 20px;
   transition: all 0.2s ease;
 }
+
+.animate{
+  animation: floatzoom .5s ease;
+  transition: all 0.5s ease;
+}
+
+@keyframes floatzoom {
+  0%{
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  100%{
+    opacity: 1;
+    transform: scale(1);
+  }
+}
