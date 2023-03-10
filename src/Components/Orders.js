@@ -1,13 +1,16 @@
 import React from "react";
 import Navbar from "./Navbar";
-import Footer from './Footer'
-import './orders.css'
+import Footer from "./Footer";
+import "./orders.css";
+import { NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import Done from '../imgs/order-done.png'
 
 function Orders() {
   const OrderItems = useSelector((state) => state.OrderAdded.OrderItems);
   const navigate = useNavigate();
+  const total = localStorage.getItem("TotalAmount");
   return (
     <>
       <Navbar />
@@ -17,22 +20,38 @@ function Orders() {
             OrderItems.map((order) => {
               return order.map((item) => {
                 return (
-                  <div className="order">
-                    <img src={item.image} className="order-img" />
-                    <div className="order-text">
-                      <p className="order-head">{item.title}</p>
-                      <p className="order-quantity">Number of items: {item.quantity}</p>
-                      {item.category === "men's clothing" || item.category === "women's clothing" ? (<p className="order-size">Size: {item.size}</p>) : ""}
-                      <p className="order-price">Price: {item.price}</p>
-                      <p className="order-dispatch">Soon to be dispatch!</p>
+                  <NavLink
+                    to={`/product/${item.id}`}
+                    key={item.id}
+                    className="nav-link2"
+                  >
+                    <div className="order">
+                      <img src={item.image} className="order-img" />
+                      <div className="order-text">
+                        <p className="order-head">{item.title}</p>
+                        <p className="order-category">{item.category}</p>
+                        <p className="order-quantity">
+                          Number of items: {item.quantity}
+                        </p>
+                        {item.category === "men's clothing" ||
+                        item.category === "women's clothing" ? (
+                          <p className="order-size">Size: {item.size}</p>
+                        ) : (
+                          ""
+                        )}
+                        <div className="order-success">
+                        <img src={Done} className="order-done" />
+                        <p style={{marginLeft:"5px", marginTop:0, marginBottom:0}} className="order-dispatch">Ordered succesfully! Soon to be dispatch!</p>
+                        </div>
+                      </div>
                     </div>
-                  </div>
+                  </NavLink>
                 );
               });
             })}
         </div>
       </div>
-      <Footer/>
+      <Footer />
     </>
   );
 }

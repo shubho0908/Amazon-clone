@@ -101,7 +101,7 @@ a {
 
 .default {
   cursor: pointer;
-  margin-left: 30px;
+  margin-left: 15px;
   width: 40px;
   border-radius: 50%;
   border: 2px solid white;
@@ -123,6 +123,21 @@ a {
 }
 
 .cart-count {
+  color: white;
+  position: relative;
+  bottom: 12px;
+  right: 22px;
+  font-size: 13px;
+  padding-top: 2px;
+  padding-bottom: 4px;
+  padding-left: 8px;
+  padding-right: 8px;
+  text-align: center;
+  background-color: #e99317;
+  border-radius: 50px;
+}
+
+.order-count {
   color: white;
   position: relative;
   bottom: 12px;

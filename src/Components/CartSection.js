@@ -63,8 +63,8 @@ function CartSection() {
   ).toFixed(2);
   const totalPrice2 = (parseFloat(SubTotal) + parseFloat(TaxPrice)).toFixed(2);
 
+  const totalAmount = localStorage.getItem("TotalAmount");
   const TotalValue = (data) => {
-    const totalAmount = localStorage.getItem("TotalAmount");
     setTotal(data);
     localStorage.setItem("TotalAmount", data);
   };
@@ -284,7 +284,7 @@ function CartSection() {
             <div className="payment-btn">
               <button
                 onClick={() => {
-                  navigate("/payment")
+                  navigate("/payment");
                   if (CorrectCode === true) {
                     TotalValue(totalPrice1);
                   } else {

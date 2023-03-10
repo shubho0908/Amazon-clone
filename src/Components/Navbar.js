@@ -16,6 +16,7 @@ const auth = getAuth(app);
 function Navbar() {
   const CartItems = useSelector((state) => state.CartItemsAdded.CartItems);
   const ListItems = useSelector((state) => state.ItemsAdded.ListItems);
+  const OrderItems = useSelector((state) => state.OrderAdded.OrderItems);
   const [user, setUser] = useState(null);
   const [searchText, setSearchText] = useState("");
   const [Products, setProducts] = useState([]);
@@ -23,6 +24,17 @@ function Navbar() {
   const navigate = useNavigate();
 
   const searchResultsRef = useRef(null);
+
+  const totalLength = OrderItems.reduce((acc, item) => {
+    // if the item is an array, add its length to the accumulator
+    if (Array.isArray(item)) {
+      return acc + item.length;
+    }
+    // otherwise, just add 1 to the accumulator
+    return acc + 1;
+  }, 0);
+
+  console.log(totalLength);
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
@@ -61,7 +73,10 @@ function Navbar() {
       product.description.toLowerCase().includes(searchText.toLowerCase())
   );
 
-  const totalQuantity = CartItems.reduce((total, item) => total + item.quantity, 0);
+  const totalQuantity = CartItems.reduce(
+    (total, item) => total + item.quantity,
+    0
+  );
 
   return (
     <>
@@ -99,18 +114,32 @@ function Navbar() {
               {ListItems.length}
             </p>
           </Link>
-          <Link to="/cart"><img src={cart} className="cart" /></Link>
+          <Link to="/cart">
+            <img src={cart} className="cart" />
+          </Link>
           <p
+            style={
+              CartItems && CartItems.length > 0
+                ? { opacity: 1 }
+                : { opacity: 0 }
+            }
+            className="cart-count"
+          >
+            {totalQuantity}
+          </p>
+          <Link to="/orders">
+            <img src={orders} className="orders" />
+            <p
               style={
-                CartItems && CartItems.length > 0
+                OrderItems && OrderItems.length > 0
                   ? { opacity: 1 }
                   : { opacity: 0 }
               }
-              className="cart-count"
+              className="order-count"
             >
-              {totalQuantity}
+              {totalLength}
             </p>
-          <Link to="/orders"><img src={orders} className="orders" /></Link>
+          </Link>
           <img
             src={user && user.photoURL ? user.photoURL : Default}
             className="default"

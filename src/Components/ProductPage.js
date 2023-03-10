@@ -116,7 +116,7 @@ function ProductPage() {
           </div>
           <div className="product-details">
             <p className="item-title">{product.title}</p>
-            <p className="item-desc">{DescLimited}.</p>
+            <p className="item-desc">{DescLimited + "."}</p>
             <div className="item-rating">
               <img src={product && Rating} className="rating-img" />
               <img src={product && Rating} className="rating-img" />

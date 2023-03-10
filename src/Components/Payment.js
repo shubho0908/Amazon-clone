@@ -307,6 +307,7 @@ function Payment() {
     }
   };
 
+
   return (
     <>
       <Navbar />
@@ -600,6 +601,7 @@ function Payment() {
                     } else if (
                       CardNameError.length !== 0 ||
                       CardNumberError.length !== 0 ||
+                      CardCVVError.length !== 0 ||
                       CardCVVError.length !== 0 ||
                       CardEXPError.length !== 0
                     ) {
