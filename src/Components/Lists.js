@@ -35,7 +35,7 @@ function Lists() {
     <>
       <Navbar />
       <div style={{ height: "100%" }} className="content">
-        <div className={ListItems ? (`lists animate`):(`lists`)}>
+        <div className={ListItems ? `lists animate` : `lists`}>
           <p className="wishlist-head">Wishlist</p>
           <div
             style={
@@ -57,7 +57,8 @@ function Lists() {
             </div>
           </div>
           <div className="lists-items">
-            {ListItems && ListItems.length > 0 &&
+            {ListItems &&
+              ListItems.length > 0 &&
               ListItems.map((items) => {
                 return (
                   <div className="card" key={items.id}>
@@ -75,8 +76,8 @@ function Lists() {
                         className="add-list2"
                       />
                       <NavLink to={`/product/${items.id}`} key={items.id}>
-                    <button className="view">View product</button>
-                  </NavLink>
+                        <button className="view">View product</button>
+                      </NavLink>
                     </div>
                     <div className="card-data">
                       <p className="card-title">
@@ -98,6 +99,7 @@ function Lists() {
                       <div className="card-price">
                         <p className="discount">${items.price}</p>
                         <p className="mrp">${Math.round(items.price * 1.66)}</p>
+                        <p className="price-off">(60% OFF)</p>
                       </div>
                     </div>
                   </div>

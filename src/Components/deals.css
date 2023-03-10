@@ -72,6 +72,12 @@
   color: rgb(72, 72, 72);
 }
 
+.price-off {
+  margin-left: 8px;
+  font-weight: 700;
+  color: rgb(172, 0, 0);
+}
+
 .discount {
   font-family: "Noto Sans", sans-serif;
   font-weight: 600;
