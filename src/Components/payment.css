@@ -328,3 +328,16 @@
 input[type=radio]{
   cursor: pointer;
 }
+.animation{
+  animation: FadeIn .35s ease;
+  transition: all 0.35s ease;
+}
+
+@keyframes FadeIn {
+  0%{
+    opacity: 0;
+  }
+  100%{
+    opacity: 1;
+  }
+}

@@ -12,7 +12,10 @@ import master from "../imgs/master.png";
 import { getFirestore, collection, addDoc } from "firebase/firestore";
 import { AddOrder } from "../action/Orders";
 import { useSelector, useDispatch } from "react-redux";
+import swal from "sweetalert";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const auth = getAuth(app);
 const db = getFirestore(app);
@@ -42,6 +45,18 @@ function Payment() {
   const [shippingDisplay, setshippingDisplay] = useState("block");
   const [cardDisplay, setcardDisplay] = useState("none");
   const [currentDateTime, setCurrentDateTime] = useState("");
+
+  const notify1 = () =>
+    toast.error("Please fill-up the form correctly!", {
+      position: "top-center",
+      autoClose: 1800,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+    });
 
   const navigate = useNavigate();
 
@@ -307,13 +322,16 @@ function Payment() {
     }
   };
 
-
   return (
     <>
       <Navbar />
+      <ToastContainer />
       <div className="payment-page">
         <div className="more-data">
-          <div style={{ display: shippingDisplay }} className="shipping-data animate">
+          <div
+            style={{ display: shippingDisplay }}
+            className="shipping-data animate"
+          >
             <div className="shipping-head">Shipping details</div>
             <div className="user-data-form">
               <p className="order-id">Order ID: {OrderID}</p>
@@ -433,7 +451,7 @@ function Payment() {
                     setshippingDisplay("none");
                     setcardDisplay("block");
                   } else {
-                    alert("Something went wrong");
+                    notify1();
                   }
                 }}
                 className="save-address"
@@ -442,7 +460,10 @@ function Payment() {
               </button>
             </div>
           </div>
-          <div style={{ display: cardDisplay }} className="payment-data animate">
+          <div
+            style={{ display: cardDisplay }}
+            className="payment-data animate"
+          >
             <div className="payment-option">
               <p className="payment-method">Choose your payment method</p>
               <div className="choose-option">
@@ -487,7 +508,11 @@ function Payment() {
                           ? american
                           : ""
                       }
-                      className="card-company"
+                      className={
+                        cardType !== ""
+                          ? `card-company animation`
+                          : `card-company`
+                      }
                     />
                   </div>
                   <div className="middle-layer">
@@ -617,10 +642,18 @@ function Payment() {
                   } else {
                     dispatch(AddOrder(JSON.parse(CartData)));
                     AddUserData();
-                    alert("DONE");
-                    localStorage.removeItem("CartItems");
-                    navigate("/orders");
-                    window.location.reload();
+                    swal({
+                      title: "Transaction successful!",
+                      text: `ORDER ID: ${OrderID}. \nThanks for shopping with us.`,
+                      icon: "success",
+                      buttons: "Ok",
+                    }).then((willNavigate) => {
+                      if (willNavigate) {
+                        navigate("/orders");
+                        localStorage.removeItem("CartItems");
+                        window.location.reload();
+                      }
+                    });
                   }
                 }}
                 className="confirm-btn"

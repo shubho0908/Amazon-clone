@@ -99,10 +99,10 @@
   transition: all 0.3s;
   opacity: 0;
   visibility: hidden;
-  transition: all .18s ease;
+  transition: all 0.18s ease;
 }
 
-.view:hover{
+.view:hover {
   transform: scale(1.06);
 }
 
@@ -129,6 +129,14 @@
   position: relative;
   bottom: 246px;
   left: 92px;
+  transition: all 0.2s ease;
+}
+
+.add-list:hover {
+  transform: scale(1.16);
+}
+.add-list:active {
+  transform: scale(0.82);
 }
 
 .rating-img {
@@ -138,8 +146,9 @@
   display: flex;
   align-items: center;
 }
-.rating-text{
-  font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+.rating-text {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   font-weight: 600;
   margin-left: 6px;
 }

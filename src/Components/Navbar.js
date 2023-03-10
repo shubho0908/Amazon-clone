@@ -10,6 +10,7 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 import "./navbar.css";
 import { app } from "../Firebase";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
+import swal from "sweetalert";
 
 const auth = getAuth(app);
 
@@ -33,8 +34,6 @@ function Navbar() {
     // otherwise, just add 1 to the accumulator
     return acc + 1;
   }, 0);
-
-  console.log(totalLength);
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
@@ -83,7 +82,22 @@ function Navbar() {
       <div className="navbar">
         <div className="left-section">
           <img
-            onClick={() => navigate({ pathname: "/home" })}
+            onClick={() => {
+              if (window.location.href.includes("/payment")) {
+                swal({
+                  title: "Are you sure?",
+                  text: "Your transaction is still pending!",
+                  icon: "warning",
+                  buttons: ["Cancel", "Yes"],
+                }).then((willNavigate) => {
+                  if (willNavigate) {
+                    navigate({ pathname: "/home" });
+                  }
+                });
+              } else {
+                navigate({ pathname: "/home" });
+              }
+            }}
             src={Logo}
             className="logo"
           />

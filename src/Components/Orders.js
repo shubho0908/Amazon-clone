@@ -5,7 +5,8 @@ import "./orders.css";
 import { NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import Done from '../imgs/order-done.png'
+import Done from "../imgs/order-done.png";
+import OrderNow from "../imgs/order-now.gif";
 
 function Orders() {
   const OrderItems = useSelector((state) => state.OrderAdded.OrderItems);
@@ -15,8 +16,28 @@ function Orders() {
     <>
       <Navbar />
       <div className="orders-section">
-        <div className={OrderItems ? (`ordered-data animate`):(`ordered-data`)}>
+        <div
+          style={
+            OrderItems.length === 0
+              ? { textAlign: "center" }
+              : { textAlign: "unset" }
+          }
+          className={OrderItems ? `ordered-data animate` : `ordered-data`}
+        >
           <p className="order-head-text">Your Orders</p>
+          <div
+            style={
+              OrderItems.length === 0
+                ? { display: "block" }
+                : { display: "none" }
+            }
+            className="order-now-section"
+          >
+            <div className="empty-order">
+              <img src={OrderNow} className="no-orders" />
+              <div className="no-orders-txt"></div>
+            </div>
+          </div>
           {OrderItems &&
             OrderItems.map((order) => {
               return order.map((item) => {
@@ -36,13 +57,24 @@ function Orders() {
                         </p>
                         {item.category === "men's clothing" ||
                         item.category === "women's clothing" ? (
-                          <p className="order-size">Size: <b>{item.size}</b></p>
+                          <p className="order-size">
+                            Size: <b>{item.size}</b>
+                          </p>
                         ) : (
                           ""
                         )}
                         <div className="order-success">
-                        <img src={Done} className="order-done" />
-                        <p style={{marginLeft:"5px", marginTop:0, marginBottom:0}} className="order-dispatch">Ordered succesfully! Soon to be dispatch!</p>
+                          <img src={Done} className="order-done" />
+                          <p
+                            style={{
+                              marginLeft: "5px",
+                              marginTop: 0,
+                              marginBottom: 0,
+                            }}
+                            className="order-dispatch"
+                          >
+                            Ordered succesfully! Soon to be dispatch!
+                          </p>
                         </div>
                       </div>
                     </div>

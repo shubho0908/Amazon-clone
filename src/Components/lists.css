@@ -124,6 +124,14 @@
   position: relative;
   bottom: 244px;
   left: 92px;
+  transition: all 0.2s ease;
+}
+
+.add-list2:hover {
+  transform: scale(1.16);
+}
+.add-list2:active {
+  transform: scale(0.82);
 }
 
 .rating-img {
