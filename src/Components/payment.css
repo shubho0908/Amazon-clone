@@ -241,6 +241,12 @@
   margin: 0;
 }
 
+.user-pincode>input::-webkit-inner-spin-button,
+.user-pincode>input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 .last-layer {
   display: flex;
   margin-top: 40px;

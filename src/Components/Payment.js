@@ -58,6 +58,30 @@ function Payment() {
       theme: "colored",
     });
 
+  const notify2 = () =>
+    toast.error("Please fill-up the card details correctly!", {
+      position: "top-center",
+      autoClose: 1800,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+    });
+
+  const notify3 = () =>
+    toast.error("Card credentials can't be empty!", {
+      position: "top-center",
+      autoClose: 1800,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+    });
+
   const navigate = useNavigate();
 
   const CartItems = useSelector((state) => state.CartItemsAdded.CartItems);
@@ -155,6 +179,10 @@ function Payment() {
       } else {
       }
     });
+  }, []);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
   }, []);
 
   useEffect(() => {
@@ -622,7 +650,7 @@ function Payment() {
                       cardCVV === null ||
                       cardEXP.length === 0
                     ) {
-                      alert("Fill out empty details.");
+                      notify3();
                     } else if (
                       CardNameError.length !== 0 ||
                       CardNumberError.length !== 0 ||
@@ -630,21 +658,30 @@ function Payment() {
                       CardCVVError.length !== 0 ||
                       CardEXPError.length !== 0
                     ) {
-                      alert("Error in card details.");
+                      notify2();
                     } else {
                       dispatch(AddOrder(JSON.parse(CartData)));
                       AddUserData();
-                      alert("DONE");
-                      localStorage.removeItem("CartItems");
-                      navigate("/orders");
-                      window.location.reload();
+                      swal({
+                        title: "Transaction successful!",
+                        text: `Thanks for shopping with us.`,
+                        icon: "success",
+                        buttons: "Ok",
+                        
+                      }).then((willNavigate) => {
+                        if (willNavigate) {
+                          localStorage.removeItem("CartItems");
+                          navigate("/orders");
+                          window.location.reload();
+                        }
+                      });
                     }
                   } else {
                     dispatch(AddOrder(JSON.parse(CartData)));
                     AddUserData();
                     swal({
-                      title: "Transaction successful!",
-                      text: `ORDER ID: ${OrderID}. \nThanks for shopping with us.`,
+                      title: "Purchase successful!",
+                      text: `Thanks for shopping with us.`,
                       icon: "success",
                       buttons: "Ok",
                     }).then((willNavigate) => {

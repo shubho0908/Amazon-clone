@@ -115,22 +115,58 @@ function Navbar() {
           </div>
         </div>
         <div className="right-section">
-          <Link to="/wishlists">
-            <img src={wishlist} className="wishlist" />
-            <p
-              style={
-                ListItems && ListItems.length > 0
-                  ? { opacity: 1 }
-                  : { opacity: 0 }
+          <img
+            onClick={() => {
+              if (window.location.href.includes("/payment")) {
+                swal({
+                  title: "Are you sure?",
+                  text: "Your transaction is still pending!",
+                  icon: "warning",
+                  buttons: ["Cancel", "Yes"],
+                }).then((willNavigate) => {
+                  if (willNavigate) {
+                    navigate("/wishlists");
+                  }
+                });
+              } else {
+                navigate("/wishlists");
               }
-              className="list-count"
-            >
-              {ListItems.length}
-            </p>
-          </Link>
-          <Link to="/cart">
-            <img src={cart} className="cart" />
-          </Link>
+            }}
+            src={wishlist}
+            className="wishlist"
+          />
+          <p
+            style={
+              ListItems && ListItems.length > 0
+                ? { opacity: 1 }
+                : { opacity: 0 }
+            }
+            className="list-count"
+          >
+            {ListItems.length}
+          </p>
+
+          <img
+            onClick={() => {
+              if (window.location.href.includes("/payment")) {
+                swal({
+                  title: "Are you sure?",
+                  text: "Your transaction is still pending!",
+                  icon: "warning",
+                  buttons: ["Cancel", "Yes"],
+                }).then((willNavigate) => {
+                  if (willNavigate) {
+                    navigate("/cart");
+                  }
+                });
+              } else {
+                navigate("/cart");
+              }
+            }}
+            src={cart}
+            className="cart"
+          />
+
           <p
             style={
               CartItems && CartItems.length > 0
@@ -141,19 +177,34 @@ function Navbar() {
           >
             {totalQuantity}
           </p>
-          <Link to="/orders">
-            <img src={orders} className="orders" />
-            <p
-              style={
-                OrderItems && OrderItems.length > 0
-                  ? { opacity: 1 }
-                  : { opacity: 0 }
-              }
-              className="order-count"
-            >
-              {totalLength}
-            </p>
-          </Link>
+
+          <img onClick={()=>{
+            if (window.location.href.includes("/payment")) {
+              swal({
+                title: "Are you sure?",
+                text: "Your transaction is still pending!",
+                icon: "warning",
+                buttons: ["Cancel", "Yes"],
+              }).then((willNavigate) => {
+                if (willNavigate) {
+                  navigate("/orders");
+                }
+              });
+            } else {
+              navigate("/orders");
+            }
+          }} src={orders} className="orders" />
+          <p
+            style={
+              OrderItems && OrderItems.length > 0
+                ? { opacity: 1 }
+                : { opacity: 0 }
+            }
+            className="order-count"
+          >
+            {totalLength}
+          </p>
+
           <img
             src={user && user.photoURL ? user.photoURL : Default}
             className="default"

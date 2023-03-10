@@ -1,17 +1,19 @@
-import React from "react";
+import {React, useEffect} from "react";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import "./orders.css";
 import { NavLink } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Done from "../imgs/order-done.png";
 import OrderNow from "../imgs/order-now.gif";
 
 function Orders() {
   const OrderItems = useSelector((state) => state.OrderAdded.OrderItems);
-  const navigate = useNavigate();
-  const total = localStorage.getItem("TotalAmount");
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <>
       <Navbar />
@@ -19,12 +21,14 @@ function Orders() {
         <div
           style={
             OrderItems.length === 0
-              ? { textAlign: "center" }
-              : { textAlign: "unset" }
+              ? { textAlign: "center", height:"48vh" }
+              : { textAlign: "unset", height:"fit-content" }
           }
           className={OrderItems ? `ordered-data animate` : `ordered-data`}
         >
-          <p className="order-head-text">Your Orders</p>
+          <p style={OrderItems.length === 0
+              ? { marginBottom:"0px" }
+              : { marginBottom:"16px" }} className="order-head-text">Your Orders</p>
           <div
             style={
               OrderItems.length === 0

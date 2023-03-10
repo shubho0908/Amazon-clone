@@ -4,7 +4,7 @@
   align-items: center;
   position: relative;
   background-color: #f6f5f5;
-  padding-top: 130px;
+  padding-top: 150px;
   padding-bottom: 120px;
   height: fit-content;
 }
@@ -78,18 +78,18 @@
   background-color: #0cd80c62;
 }
 
-.order-head-text{
+.order-head-text {
   font-family: "Poppins";
   font-size: 30px;
   margin: 0;
   font-weight: bold;
 }
 
-.no-orders-head{
+.no-orders-head {
   font-family: "Poppins";
-
 }
 
-.no-orders{
+.no-orders {
   width: 550px;
 }
+
