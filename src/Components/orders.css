@@ -4,7 +4,7 @@
   align-items: center;
   position: relative;
   background-color: #f6f5f5;
-  padding-top: 120px;
+  padding-top: 130px;
   padding-bottom: 120px;
   height: fit-content;
 }
@@ -23,7 +23,7 @@
     rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
   margin-top: 25px;
   border-radius: 10px;
-  width: 600px;
+  width: 750px;
 }
 
 .order-img {
@@ -76,4 +76,11 @@
   font-size: 15px;
   width: fit-content;
   background-color: #0cd80c62;
+}
+
+.order-head-text{
+  font-family: "Poppins";
+  font-size: 25px;
+  margin: 0;
+  font-weight: bold;
 }

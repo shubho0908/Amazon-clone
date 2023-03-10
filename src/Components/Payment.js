@@ -313,7 +313,7 @@ function Payment() {
       <Navbar />
       <div className="payment-page">
         <div className="more-data">
-          <div style={{ display: shippingDisplay }} className="shipping-data">
+          <div style={{ display: shippingDisplay }} className="shipping-data animate">
             <div className="shipping-head">Shipping details</div>
             <div className="user-data-form">
               <p className="order-id">Order ID: {OrderID}</p>
@@ -442,7 +442,7 @@ function Payment() {
               </button>
             </div>
           </div>
-          <div style={{ display: cardDisplay }} className="payment-data">
+          <div style={{ display: cardDisplay }} className="payment-data animate">
             <div className="payment-option">
               <p className="payment-method">Choose your payment method</p>
               <div className="choose-option">

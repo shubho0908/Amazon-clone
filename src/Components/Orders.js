@@ -15,7 +15,8 @@ function Orders() {
     <>
       <Navbar />
       <div className="orders-section">
-        <div className="ordered-data">
+        <div className={OrderItems ? (`ordered-data animate`):(`ordered-data`)}>
+          <p className="order-head-text">Your Orders</p>
           {OrderItems &&
             OrderItems.map((order) => {
               return order.map((item) => {

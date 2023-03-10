@@ -74,7 +74,7 @@ function CartSection() {
       <Navbar />
 
       <div className="entire-section">
-        <p style={{ margin: 0 }} className="cart-head">
+        <p style={{ margin: 0 }} className={CartItems ? (`cart-head animate`):(`cart-head`)}>
           Your Cart
         </p>
         <div
@@ -83,7 +83,7 @@ function CartSection() {
               ? { height: "40vh" }
               : { height: "100%" }
           }
-          className="cart-section"
+          className={CartItems ? (`cart-section animate`):(`cart-section`)}
         >
           <div className="cart-details">
             <div
