@@ -90,3 +90,34 @@
     opacity: 1;
   }
 }
+
+
+@media (max-width: 1200px) {
+  .delivery{
+    top: 121px;
+  }
+  
+}
+
+@media (max-width: 1100px) {
+  .delivery{
+   display: none;
+  }
+
+  .poster-area{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-left: 40px;
+    margin-right: 40px;
+  }
+  .poster-head{
+    text-align: center;
+  }
+  .poster-desc{
+    width: fit-content;
+    text-align: center;
+  }
+}
