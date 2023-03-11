@@ -7,6 +7,7 @@ import { AddToList, RemoveList } from "../action/List";
 import { useSelector, useDispatch } from "react-redux";
 import Footer from "./Footer";
 import Spinner from "./Spinner";
+import LowerNav from "./LowerNav";
 import { NavLink } from "react-router-dom";
 
 function Deals() {
@@ -100,6 +101,9 @@ function Deals() {
               </div>
             );
           })}
+      </div>
+      <div className="lowerNav">
+        <LowerNav />
       </div>
       <Footer />
     </div>

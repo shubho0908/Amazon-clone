@@ -243,3 +243,43 @@ a {
   color: inherit;
   text-decoration: none;
 }
+.lowerNav{
+  display: none;
+}
+
+
+/* MEDIA QUERIES */
+
+@media (max-width: 990px) {
+  .search-bar{
+    margin-left: 55px;
+  }
+  .search-box{
+    width: 240px;
+  }
+}
+
+@media (max-width: 830px) {
+  .search-bar{
+    margin-left: 25px;
+  }
+  .search-box{
+    width: 180px;
+  }
+}
+
+@media (max-width: 720px) {
+  .search-bar{
+    position: absolute;
+    right: 65px;
+  }
+  .search-box{
+    width: 180px;
+  }
+  .right-section{
+    display: none;
+  }
+  .lowerNav{
+    display: block;
+  }
+}
