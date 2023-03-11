@@ -1,19 +1,17 @@
 .signin-page {
   background-color: #f6f5f5;
   height: 100vh;
-  animation: fadein .35s ease;
+  animation: fadein 0.35s ease;
 }
 
 @keyframes fadein {
-
-  0%{
+  0% {
     opacity: 0;
   }
 
-  100%{
+  100% {
     opacity: 1;
   }
-  
 }
 
 .amazon-logo {
@@ -39,7 +37,7 @@
   font-family: "Poppins", sans-serif;
   font-weight: 600;
   color: white;
-  transition: all .3s ease;
+  transition: all 0.3s ease;
   font-size: 18px;
   border-radius: 7px;
 }
@@ -48,7 +46,8 @@
   margin-top: 25px;
 }
 
-.signin-btn:hover, .signup-btn:hover{
+.signin-btn:hover,
+.signup-btn:hover {
   background-color: rgb(255, 102, 0);
 }
 
@@ -78,6 +77,7 @@
   justify-content: center;
   position: relative;
   bottom: 30vw;
+  padding-bottom:22px
 }
 
 .main-form2 {
@@ -85,6 +85,7 @@
   justify-content: center;
   position: relative;
   bottom: 32vw;
+  padding-bottom:22px
 }
 
 .background {
@@ -119,7 +120,8 @@
 }
 
 .email,
-.password,.name {
+.password,
+.name {
   height: 35px;
   width: 350px;
   font-family: "Poppins", sans-serif;
@@ -133,7 +135,6 @@
 .extra-buttons {
   display: flex;
   flex-direction: column;
-  margin-top: 25px;
 }
 
 .google {
@@ -148,12 +149,11 @@
   color: rgba(0, 0, 0, 0.724);
   font-size: 18px;
   border-radius: 7px;
-  transition: all .3s ease;
+  transition: all 0.3s ease;
 }
 
-.google:hover{
+.google:hover {
   background-color: rgb(226, 226, 226);
-
 }
 
 .google-img {
@@ -167,4 +167,110 @@
   font-family: "Poppins", sans-serif;
   color: red;
   font-size: 14px;
+}
+
+/* MEDIA QUERIES  */
+
+@media (max-width: 1200px) {
+  .BG1,
+  .BG2 {
+    position: relative;
+    top: 7vw;
+  }
+}
+
+@media (max-width: 768px) {
+  .BG1,
+  .BG2 {
+    position: relative;
+    top: 12vw;
+  }
+}
+
+@media (max-width: 640px) {
+  .BG1,
+  .BG2 {
+    opacity: 0;
+  }
+
+  .main-form {
+    bottom: 25vw;
+  }
+}
+
+@media (max-width: 530px) {
+  .login-form {
+    padding: 30px;
+  }
+
+  .main-form {
+    bottom: 17vw;
+  }
+  .main-form2{
+    bottom: 24vw;
+  }
+}
+
+@media (max-width: 460px) {
+  .login-navbar {
+    flex-direction: column;
+  }
+  .main-form {
+    bottom: 20vw;
+  }
+  .email,
+  .password,
+  .name {
+    width: 260px;
+  }
+  .user {
+    font-size: 30px;
+  }
+  .user-desc {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 400px) {
+  .login-form {
+    padding: 0px;
+    box-shadow: none;
+  }
+
+  .main-form {
+    bottom: 12vw;
+  }
+  .main-form2{
+    bottom: 18vw;
+  }
+
+  .signin-page {
+    background-color: white;
+  }
+
+  .signup-btn,
+  .signin-btn {
+    padding: 8px;
+  }
+}
+
+@media (max-width: 310px) {
+  .email,
+  .password,
+  .name {
+    width: 205px;
+  }
+
+  .main-form2{
+    bottom: 14vw;
+  }
+
+  .some-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .user-desc {
+    width: 75%;
+  }
 }
