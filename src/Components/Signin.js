@@ -12,6 +12,7 @@ import {
   GoogleAuthProvider,
   signInWithPopup,
 } from "firebase/auth";
+import swal from "sweetalert";
 
 const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
