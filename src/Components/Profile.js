@@ -13,7 +13,25 @@ const auth = getAuth(app);
 
 function Profile() {
   const [user, setUser] = useState(null);
+  const [image, setImage] = useState("");
   const navigate = useNavigate();
+
+  
+  const checkDP = () => {
+    if (user && user.photoURL && user.photoURL.includes("https")) {
+      setImage(user.photoURL);
+    } else if (user && user.photoURL && user.photoURL.includes("http")) {
+      const newImage = user.photoURL.replace(/^http:\/\//i, "https://");
+      setImage(newImage);
+    } else {
+      setImage(Default);
+    }
+  };
+
+  useEffect(() => {
+    checkDP();
+  }, [user])
+  
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
@@ -23,6 +41,7 @@ function Profile() {
         setUser(null);
       }
     });
+
   }, []);
 
   return (
@@ -40,14 +59,7 @@ function Profile() {
           </div>
           <div className="account-section2">
             <div className="left-account-section">
-              <img
-                src={
-                  user && user.photoURL
-                    ? user.photoURL.replace(/^http:\/\//i, "https://") //replaces the http with https
-                    : Default
-                }
-                className="profile-img"
-              />
+              <img src={image} className="profile-img" />
               <p className="profile-name">
                 {user ? `${user.displayName}` : ""}
               </p>

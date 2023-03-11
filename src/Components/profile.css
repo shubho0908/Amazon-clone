@@ -77,7 +77,7 @@
   color: white;
   padding: 8px;
   font-family: "Poppins";
-  font-size: 18px;
+  font-size: 16px;
   font-weight: bold;
   border-radius: 5px;
   box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
@@ -157,4 +157,9 @@
 .personal-name > p,
 .personal-mail > p {
   margin: 0;
+}
+
+.left-account-section{
+  margin-right: 50px;
+
 }
