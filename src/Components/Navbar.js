@@ -210,7 +210,8 @@ function Navbar() {
             {totalLength}
           </p>
 
-          <img onClick={()=> navigate("/account")}
+          <img
+            onClick={() => navigate("/account")}
             src={
               user && user.photoURL
                 ? user.photoURL.replace(/^http:\/\//i, "https://") //replaces the http with https
@@ -227,7 +228,7 @@ function Navbar() {
         >
           {searchResults.length > 0 &&
             searchResults.map((product) => (
-              <NavLink
+              <div
                 onClick={() => {
                   if (window.location.href.includes("/payment")) {
                     swal({
@@ -244,27 +245,25 @@ function Navbar() {
                     navigate(`/product/${product.id}`);
                   }
                 }}
+                className="search-results2"
                 key={product.id}
-                className="nav-link"
               >
-                <div className="search-results2" key={product.id}>
-                  <div className="product-img">
-                    <img src={product.image} className="product-image" />
-                  </div>
-                  <div className="product-data">
-                    <p className="product-title">
-                      {product.title.length > 50
-                        ? product.title.slice(0, 50) + "..."
-                        : product.title}
-                    </p>
-                    <p className="product-desc">
-                      {product.description.length > 50
-                        ? product.description.slice(0, 50) + "..."
-                        : product.description}
-                    </p>
-                  </div>
+                <div className="product-img">
+                  <img src={product.image} className="product-image" />
                 </div>
-              </NavLink>
+                <div className="product-data">
+                  <p className="product-title">
+                    {product.title.length > 50
+                      ? product.title.slice(0, 50) + "..."
+                      : product.title}
+                  </p>
+                  <p className="product-desc">
+                    {product.description.length > 50
+                      ? product.description.slice(0, 50) + "..."
+                      : product.description}
+                  </p>
+                </div>
+              </div>
             ))}
         </div>
       )}
