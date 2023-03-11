@@ -8,6 +8,12 @@
 
 .cart-item-img {
   width: 55px;
+  cursor: pointer;
+  transition: all .3s ease;
+}
+
+.cart-item-img:hover {
+  transform: scale(1.1);
 }
 
 .checkout-section {

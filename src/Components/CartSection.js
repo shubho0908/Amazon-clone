@@ -100,7 +100,7 @@ function CartSection() {
               {CartItems.map((item) => {
                 return (
                   <div className="cart-data" key={item.id}>
-                    <img src={item.image} alt="" className="cart-item-img" />
+                    <img onClick={()=> navigate(`/product/${item.id}`)} src={item.image} alt="" className="cart-item-img" />
                     <div className="cart-all-data">
                       <p className="cart-title">{item.title}</p>
                       <div className="cart-price">

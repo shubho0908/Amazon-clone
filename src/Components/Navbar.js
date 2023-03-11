@@ -6,7 +6,7 @@ import cart from "../imgs/cart.png";
 import orders from "../imgs/orders.png";
 import Default from "../imgs/default.png";
 import { useSelector } from "react-redux";
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import "./navbar.css";
 import { app } from "../Firebase";
 import { getAuth, onAuthStateChanged } from "firebase/auth";

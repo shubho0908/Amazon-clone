@@ -1,0 +1,27 @@
+.profile-section {
+  background-color: #f6f5f5;
+  padding-top: 140px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.account-section{
+    width: 72%;
+}
+
+.welcome-mssg{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.profile-img{
+    border-radius: 50%;
+}
+
+.left-account-section{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
