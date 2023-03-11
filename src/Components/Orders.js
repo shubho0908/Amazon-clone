@@ -1,4 +1,4 @@
-import {React, useEffect} from "react";
+import { React, useEffect } from "react";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import "./orders.css";
@@ -6,6 +6,7 @@ import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Done from "../imgs/order-done.png";
 import OrderNow from "../imgs/order-now.gif";
+import Delete from "../imgs/delete-order.png";
 
 function Orders() {
   const OrderItems = useSelector((state) => state.OrderAdded.OrderItems);
@@ -21,16 +22,43 @@ function Orders() {
         <div
           style={
             OrderItems.length === 0
-              ? { textAlign: "center", height:"48vh" }
-              : { textAlign: "unset", height:"fit-content" }
+              ? { textAlign: "center", height: "48vh" }
+              : { textAlign: "unset", height: "fit-content" }
           }
           className={OrderItems ? `ordered-data animate` : `ordered-data`}
         >
-          <div className="head-texts">
-          <p style={OrderItems.length === 0
-              ? { marginBottom:"0px" }
-              : { marginBottom:"16px" }} className="order-head-text">Your Orders</p>
-              <button className="delete-orders">Clear Data</button>
+          <div
+            style={
+              OrderItems.length !== 0
+                ? { justifyContent: "space-between" }
+                : { justifyContent: "center" }
+            }
+            className="head-texts"
+          >
+            <p
+              style={
+                OrderItems.length === 0
+                  ? { marginBottom: "0px" }
+                  : { marginBottom: "16px" }
+              }
+              className="order-head-text"
+            >
+              Your Orders
+            </p>
+            <button
+              style={
+                OrderItems.length !== 0
+                  ? { display: "flex" }
+                  : { display: "none" }
+              }
+              onClick={() => {
+                localStorage.removeItem("OrderItems");
+                window.location.reload();
+              }}
+              className="delete-orders"
+            >
+              <img src={Delete} className="delete-order-btn" /> Clear Data
+            </button>
           </div>
           <div
             style={
