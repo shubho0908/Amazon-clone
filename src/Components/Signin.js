@@ -21,6 +21,7 @@ function Signin() {
   const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState("");
   const [PasswordError, setPasswordError] = useState("");
+  const [bgLoaded, setBgLoaded] = useState(false);
   const navigate = useNavigate();
 
   const handleEmailChange = (event) => {
@@ -55,22 +56,34 @@ function Signin() {
 
   const LogInUser = async () => {
     signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        const user = userCredential.user;
-      })
+      .then(() => {})
       .catch((error) => {
-        alert(error)
-
+        swal({
+          title: "Error!",
+          text: error.message,
+          icon: "error",
+          buttons: "Ok",
+        });
       });
   };
 
   const GoogleAuth = async () => {
     signInWithPopup(auth, provider)
-      .then((result) => {
+      .then(() => {
         navigate("/home");
       })
       .catch((error) => {
+        swal({
+          title: "Error!",
+          text: error.message,
+          icon: "error",
+          buttons: "Ok",
+        });
       });
+  };
+
+  const handleBgLoad = () => {
+    setBgLoaded(true);
   };
 
   return (
@@ -87,54 +100,58 @@ function Signin() {
           </div>
         </div>
         <div className="background">
-          <img src={BG1} className="BG1" />
-          <img src={BG2} className="BG2" />
+          <img src={BG1} className="BG1" onLoad={handleBgLoad} />
+          <img src={BG2} className="BG2" onLoad={handleBgLoad} />
         </div>
-        <div className="main-form">
-          <div className="login-form">
-            <div className="some-text">
-              <p className="user">User Login</p>
-              <p className="user-desc">
-                Hey, Enter your details to get sign in to your account
-              </p>
-            </div>
-            <div className="user-details">
-              <input
-                type="email"
-                placeholder="Enter Email"
-                className="email"
-                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
-                value={email}
-                onChange={handleEmailChange}
-                onBlur={handleEmailBlur}
-                required
-              />
-              {emailError && <div className="error-message">{emailError}</div>}
-              <input
-                type="password"
-                placeholder="Passcode"
-                className="password"
-                value={password}
-                onChange={handlePasswordChange}
-                onBlur={handlePasswordBlur}
-                required
-              />
-              {PasswordError && (
-                <div className="error-message">{PasswordError}</div>
-              )}
-              <button onClick={LogInUser} className="signin-btn">
-                Sign in
-              </button>
-              <div className="extra-buttons">
-                <p className="or">&#x2015; Or &#x2015;</p>
-                <button onClick={GoogleAuth} className="google">
-                  <p>Sign in with</p>
-                  <img src={google} className="google-img" />
+        {bgLoaded && (
+          <div className="main-form">
+            <div className="login-form">
+              <div className="some-text">
+                <p className="user">User Login</p>
+                <p className="user-desc">
+                  Hey, Enter your details to get sign in to your account
+                </p>
+              </div>
+              <div className="user-details">
+                <input
+                  type="email"
+                  placeholder="Enter Email"
+                  className="email"
+                  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                  value={email}
+                  onChange={handleEmailChange}
+                  onBlur={handleEmailBlur}
+                  required
+                />
+                {emailError && (
+                  <div className="error-message">{emailError}</div>
+                )}
+                <input
+                  type="password"
+                  placeholder="Passcode"
+                  className="password"
+                  value={password}
+                  onChange={handlePasswordChange}
+                  onBlur={handlePasswordBlur}
+                  required
+                />
+                {PasswordError && (
+                  <div className="error-message">{PasswordError}</div>
+                )}
+                <button onClick={LogInUser} className="signin-btn">
+                  Sign in
                 </button>
+                <div className="extra-buttons">
+                  <p className="or">&#x2015; Or &#x2015;</p>
+                  <button onClick={GoogleAuth} className="google">
+                    <p>Sign in with</p>
+                    <img src={google} className="google-img" />
+                  </button>
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        )}
       </div>
     </>
   );

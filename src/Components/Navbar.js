@@ -209,8 +209,12 @@ function Navbar() {
             {totalLength}
           </p>
 
-          <img
-            src={user && user.photoURL ? user.photoURL : Default}
+          <img onClick={()=> navigate("/account")}
+            src={
+              user && user.photoURL
+                ? user.photoURL.replace(/^http:\/\//i, "https://") //replaces the http with https
+                : Default
+            }
             className="default"
           />
         </div>

@@ -9,8 +9,12 @@ import { Link, useNavigate } from "react-router-dom";
 import {
   getAuth,
   createUserWithEmailAndPassword,
-  GoogleAuthProvider, signInWithPopup
+  GoogleAuthProvider,
+  signInWithPopup,
+  updateProfile,
 } from "firebase/auth";
+import swal from "sweetalert";
+
 
 const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
@@ -20,6 +24,7 @@ function Signup() {
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState("");
+  const [bgLoaded, setBgLoaded] = useState(false);
   const [PasswordError, setPasswordError] = useState("");
 
   const navigate = useNavigate();
@@ -58,13 +63,24 @@ function Signup() {
   };
 
   const CreateUser = async () => {
-    createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        navigate("/home");
-      })
-      .catch((error) => {
-        alert(error)
+    try {
+      const { user } = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      await updateProfile(user, {
+        displayName: name,
       });
+      navigate("/home");
+    } catch (error) {
+      swal({
+        title: "Error!",
+        text: error.message,
+        icon: "error",
+        buttons: "Ok",
+      })
+    }
   };
 
   const GoogleAuth = async () => {
@@ -73,7 +89,17 @@ function Signup() {
         navigate("/home");
       })
       .catch((error) => {
+        swal({
+          title: "Error!",
+          text: error.message,
+          icon: "error",
+          buttons: "Ok",
+        })
       });
+  };
+
+  const handleBgLoad = () => {
+    setBgLoaded(true);
   };
 
   return (
@@ -90,62 +116,66 @@ function Signup() {
           </div>
         </div>
         <div className="background">
-          <img src={BG1} className="BG1" />
-          <img src={BG2} className="BG2" />
+          <img src={BG1} className="BG1" onLoad={handleBgLoad} />
+          <img src={BG2} className="BG2" onLoad={handleBgLoad} />
         </div>
-        <div className="main-form2">
-          <div className="login-form">
-            <div className="some-text">
-              <p className="user">User Registration</p>
-              <p className="user-desc">
-                Hey, Enter your details to create a new account
-              </p>
-            </div>
-            <div className="user-details">
-              <input
-                type="text"
-                placeholder="Name"
-                className="name"
-                value={name}
-                onChange={handleNameChange}
-                required
-              />
-              <input
-                type="email"
-                placeholder="Enter Email"
-                className="email"
-                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
-                value={email}
-                onChange={handleEmailChange}
-                onBlur={handleEmailBlur}
-                required
-              />
-              {emailError && <div className="error-message">{emailError}</div>}
-              <input
-                type="password"
-                placeholder="Passcode"
-                className="password"
-                value={password}
-                onChange={handlePasswordChange}
-                onBlur={handlePasswordBlur}
-                required
-              />
-              {PasswordError && (
-                <div className="error-message">{PasswordError}</div>
-              )}
-              <button onClick={CreateUser} className="signin-btn">
-                Sign up
-              </button>
-              <div className="extra-buttons">
-                <p className="or">&#x2015; Or &#x2015;</p>
-                <button onClick={GoogleAuth} className="google">
-                  <p>Sign up with</p>
-                  <img src={google} className="google-img" />
+        {bgLoaded && (
+          <div className="main-form2">
+            <div className="login-form">
+              <div className="some-text">
+                <p className="user">User Registration</p>
+                <p className="user-desc">
+                  Hey, Enter your details to create a new account
+                </p>
+              </div>
+              <div className="user-details">
+                <input
+                  type="text"
+                  placeholder="Name"
+                  className="name"
+                  value={name}
+                  onChange={handleNameChange}
+                  required
+                />
+                <input
+                  type="email"
+                  placeholder="Enter Email"
+                  className="email"
+                  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                  value={email}
+                  onChange={handleEmailChange}
+                  onBlur={handleEmailBlur}
+                  required
+                />
+                {emailError && (
+                  <div className="error-message">{emailError}</div>
+                )}
+                <input
+                  type="password"
+                  placeholder="Passcode"
+                  className="password"
+                  value={password}
+                  onChange={handlePasswordChange}
+                  onBlur={handlePasswordBlur}
+                  required
+                />
+                {PasswordError && (
+                  <div className="error-message">{PasswordError}</div>
+                )}
+                <button onClick={CreateUser} className="signin-btn">
+                  Sign up
                 </button>
+                <div className="extra-buttons">
+                  <p className="or">&#x2015; Or &#x2015;</p>
+                  <button onClick={GoogleAuth} className="google">
+                    <p>Sign up with</p>
+                    <img src={google} className="google-img" />
+                  </button>
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        )}
       </div>
     </>
   );
