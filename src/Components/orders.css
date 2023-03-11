@@ -93,3 +93,8 @@
   width: 550px;
 }
 
+.head-texts{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

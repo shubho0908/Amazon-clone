@@ -178,22 +178,26 @@ function Navbar() {
             {totalQuantity}
           </p>
 
-          <img onClick={()=>{
-            if (window.location.href.includes("/payment")) {
-              swal({
-                title: "Are you sure?",
-                text: "Your transaction is still pending!",
-                icon: "warning",
-                buttons: ["Cancel", "Yes"],
-              }).then((willNavigate) => {
-                if (willNavigate) {
-                  navigate("/orders");
-                }
-              });
-            } else {
-              navigate("/orders");
-            }
-          }} src={orders} className="orders" />
+          <img
+            onClick={() => {
+              if (window.location.href.includes("/payment")) {
+                swal({
+                  title: "Are you sure?",
+                  text: "Your transaction is still pending!",
+                  icon: "warning",
+                  buttons: ["Cancel", "Yes"],
+                }).then((willNavigate) => {
+                  if (willNavigate) {
+                    navigate("/orders");
+                  }
+                });
+              } else {
+                navigate("/orders");
+              }
+            }}
+            src={orders}
+            className="orders"
+          />
           <p
             style={
               OrderItems && OrderItems.length > 0
@@ -219,7 +223,22 @@ function Navbar() {
           {searchResults.length > 0 &&
             searchResults.map((product) => (
               <NavLink
-                to={`/product/${product.id}`}
+                onClick={() => {
+                  if (window.location.href.includes("/payment")) {
+                    swal({
+                      title: "Are you sure?",
+                      text: "Your transaction is still pending!",
+                      icon: "warning",
+                      buttons: ["Cancel", "Yes"],
+                    }).then((willNavigate) => {
+                      if (willNavigate) {
+                        navigate(`/product/${product.id}`);
+                      }
+                    });
+                  } else {
+                    navigate(`/product/${product.id}`);
+                  }
+                }}
                 key={product.id}
                 className="nav-link"
               >

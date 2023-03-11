@@ -26,9 +26,12 @@ function Orders() {
           }
           className={OrderItems ? `ordered-data animate` : `ordered-data`}
         >
+          <div className="head-texts">
           <p style={OrderItems.length === 0
               ? { marginBottom:"0px" }
               : { marginBottom:"16px" }} className="order-head-text">Your Orders</p>
+              <button className="delete-orders">Clear Data</button>
+          </div>
           <div
             style={
               OrderItems.length === 0
