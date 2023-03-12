@@ -79,18 +79,6 @@ function Navbar() {
     0
   );
 
-  useEffect(() => {
-    function handleResize() {
-      if (window.innerWidth <= 450) {
-        setLogoSrc(LogoSmall);
-      } else {
-        setLogoSrc(Logo);
-      }
-    }
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
   return (
     <>
       <div className="navbar">
@@ -112,8 +100,28 @@ function Navbar() {
                 navigate({ pathname: "/home" });
               }
             }}
-            src={logoSrc}
+            src={Logo}
             className="logo"
+          />
+          <img
+            onClick={() => {
+              if (window.location.href.includes("/payment")) {
+                swal({
+                  title: "Are you sure?",
+                  text: "Your transaction is still pending!",
+                  icon: "warning",
+                  buttons: ["Cancel", "Yes"],
+                }).then((willNavigate) => {
+                  if (willNavigate) {
+                    navigate({ pathname: "/home" });
+                  }
+                });
+              } else {
+                navigate({ pathname: "/home" });
+              }
+            }}
+            src={LogoSmall}
+            className="logo2"
           />
 
           <div className="search-bar">

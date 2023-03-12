@@ -103,3 +103,18 @@
     height: 135px;
   }
 }
+
+@media (max-width: 360px) {
+  .link-section2 {
+    flex-direction: column;
+    padding-top: 22px;
+    padding-bottom: 22px;
+  }
+  .developer {
+    padding: 0;
+    flex-direction: column;
+  }
+  .dev-data {
+    margin: 0;
+  }
+}
