@@ -7,6 +7,7 @@ import { useSelector } from "react-redux";
 import Done from "../imgs/order-done.png";
 import OrderNow from "../imgs/order-now.gif";
 import Delete from "../imgs/delete-order.png";
+import LowerNav from "./LowerNav";
 
 function Orders() {
   const OrderItems = useSelector((state) => state.OrderAdded.OrderItems);
@@ -57,7 +58,8 @@ function Orders() {
               }}
               className="delete-orders"
             >
-              <img src={Delete} className="delete-order-btn" /> Clear Data
+              <img src={Delete} className="delete-order-btn" />
+              <p style={{ margin: 0 }}>Clear Data</p>
             </button>
           </div>
           <div
@@ -118,6 +120,9 @@ function Orders() {
               });
             })}
         </div>
+      </div>
+      <div className="lowerNav">
+        <LowerNav />
       </div>
       <Footer />
     </>

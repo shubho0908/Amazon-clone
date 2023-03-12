@@ -93,18 +93,18 @@
   width: 550px;
 }
 
-.head-texts{
+.head-texts {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-.delete-order-btn{
+.delete-order-btn {
   width: 22px;
   margin-right: 6px;
 }
 
-.delete-orders{
+.delete-orders {
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -116,13 +116,78 @@
   font-size: 14px;
   font-weight: bold;
   border-radius: 5px;
-  transition: all .2s ease;
+  transition: all 0.2s ease;
 }
 
-.delete-orders:hover{
+.delete-orders:hover {
   transform: scale(1.05);
 }
 
-.delete-orders:active{
+.delete-orders:active {
   transform: scale(0.92);
+}
+
+/* MEDIA QUERIES */
+
+@media (max-width: 720px) {
+  .order {
+    width: 500px;
+  }
+}
+
+@media (max-width: 600px) {
+  .no-orders {
+    position: relative;
+    right: 15px;
+    width: 85vw;
+  }
+}
+
+@media (max-width: 570px) {
+  .order {
+    width: 400px;
+  }
+  .order-head-text {
+    font-size: 25px;
+  }
+}
+
+@media (max-width: 475px) {
+  .order {
+    width: 300px;
+    flex-direction: column;
+  }
+  .order-img {
+    display: none;
+  }
+  .order-text {
+    margin-left: 0px;
+  }
+  .delete-orders > p {
+    display: none;
+  }
+  .delete-order-btn {
+    margin-right: 0px;
+  }
+  .no-orders {
+    top: 28px;
+  }
+}
+
+@media (max-width: 370px) {
+  .order {
+    width: 200px;
+  }
+  .order-head-text {
+    font-size: 25px;
+  }
+  .order-success {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 330px) {
+  .no-orders {
+    top: 80px;
+  }
 }

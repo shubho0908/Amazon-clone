@@ -13,6 +13,7 @@ import { getFirestore, collection, addDoc } from "firebase/firestore";
 import { AddOrder } from "../action/Orders";
 import { useSelector, useDispatch } from "react-redux";
 import swal from "sweetalert";
+import LowerNav from "./LowerNav";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -653,64 +654,69 @@ function Payment() {
                 <p className="subtotal-amount">Total Amount :</p>
                 <p className="main-amount">${TotalAmount}</p>
               </div>
-              <button
-                onClick={() => {
-                  if (paymentMode === "Credit") {
-                    if (
-                      cardNumber === null ||
-                      cardName.length === 0 ||
-                      cardCVV === null ||
-                      cardEXP.length === 0
-                    ) {
-                      notify3();
-                    } else if (
-                      CardNameError.length !== 0 ||
-                      CardNumberError.length !== 0 ||
-                      CardCVVError.length !== 0 ||
-                      CardCVVError.length !== 0 ||
-                      CardEXPError.length !== 0
-                    ) {
-                      notify2();
+              <div className="order-place-btn">
+                <button
+                  onClick={() => {
+                    if (paymentMode === "Credit") {
+                      if (
+                        cardNumber === null ||
+                        cardName.length === 0 ||
+                        cardCVV === null ||
+                        cardEXP.length === 0
+                      ) {
+                        notify3();
+                      } else if (
+                        CardNameError.length !== 0 ||
+                        CardNumberError.length !== 0 ||
+                        CardCVVError.length !== 0 ||
+                        CardCVVError.length !== 0 ||
+                        CardEXPError.length !== 0
+                      ) {
+                        notify2();
+                      } else {
+                        dispatch(AddOrder(JSON.parse(CartData)));
+                        AddUserData();
+                        swal({
+                          title: "Transaction successful!",
+                          text: `Thanks for shopping with us.`,
+                          icon: "success",
+                          buttons: "Ok",
+                        }).then((willNavigate) => {
+                          if (willNavigate) {
+                            localStorage.removeItem("CartItems");
+                            navigate("/orders");
+                            window.location.reload();
+                          }
+                        });
+                      }
                     } else {
                       dispatch(AddOrder(JSON.parse(CartData)));
                       AddUserData();
                       swal({
-                        title: "Transaction successful!",
+                        title: "Purchase successful!",
                         text: `Thanks for shopping with us.`,
                         icon: "success",
                         buttons: "Ok",
                       }).then((willNavigate) => {
                         if (willNavigate) {
-                          localStorage.removeItem("CartItems");
                           navigate("/orders");
+                          localStorage.removeItem("CartItems");
                           window.location.reload();
                         }
                       });
                     }
-                  } else {
-                    dispatch(AddOrder(JSON.parse(CartData)));
-                    AddUserData();
-                    swal({
-                      title: "Purchase successful!",
-                      text: `Thanks for shopping with us.`,
-                      icon: "success",
-                      buttons: "Ok",
-                    }).then((willNavigate) => {
-                      if (willNavigate) {
-                        navigate("/orders");
-                        localStorage.removeItem("CartItems");
-                        window.location.reload();
-                      }
-                    });
-                  }
-                }}
-                className="confirm-btn"
-              >
-                Place Order
-              </button>
+                  }}
+                  className="confirm-btn"
+                >
+                  Place Order
+                </button>
+              </div>
             </div>
           </div>
         </div>
+      </div>
+      <div className="lowerNav">
+        <LowerNav />
       </div>
       <Footer />
     </>

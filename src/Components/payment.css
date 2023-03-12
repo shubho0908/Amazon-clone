@@ -27,7 +27,6 @@
 
 .payment-data {
   height: fit-content;
-  margin-left: 35px;
   transition: height 0.5s ease;
 }
 
@@ -241,8 +240,8 @@
   margin: 0;
 }
 
-.user-pincode>input::-webkit-inner-spin-button,
-.user-pincode>input::-webkit-outer-spin-button {
+.user-pincode > input::-webkit-inner-spin-button,
+.user-pincode > input::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
@@ -323,27 +322,209 @@
   margin-bottom: 25px;
 }
 
-.all-data-of-user, .all-data-of-card{
+.all-data-of-user,
+.all-data-of-card {
   display: flex;
 }
 
-.user-data2, .card-data2{
+.user-data2,
+.card-data2 {
   margin-left: 30px;
 }
 
-input[type=radio]{
+input[type="radio"] {
   cursor: pointer;
 }
-.animation{
-  animation: FadeIn .35s ease;
+.animation {
+  animation: FadeIn 0.35s ease;
   transition: all 0.35s ease;
 }
 
 @keyframes FadeIn {
-  0%{
+  0% {
     opacity: 0;
   }
-  100%{
+  100% {
     opacity: 1;
+  }
+}
+
+/* MEDIA QUERIES */
+
+@media (max-width: 1040px) {
+  .country > input,
+  .user-name > input,
+  .user-contact > input,
+  .user-email > input,
+  .user-address > input,
+  .user-pincode > input {
+    width: 300px;
+  }
+}
+
+@media (max-width: 1040px) {
+  .acc-name > input,
+  .acc-number > input,
+  .acc-cvv > input,
+  .acc-exp > input {
+    width: 275px;
+  }
+}
+
+@media (max-width: 800px) {
+  .country > input,
+  .user-name > input,
+  .user-contact > input,
+  .user-email > input,
+  .user-address > input,
+  .user-pincode > input {
+    width: 220px;
+  }
+}
+
+@media (max-width: 740px) {
+  .acc-name > input,
+  .acc-number > input,
+  .acc-cvv > input,
+  .acc-exp > input {
+    width: 185px;
+  }
+}
+
+@media (max-width: 630px) {
+  .all-data-of-user {
+    flex-direction: column;
+  }
+  .user-data2 {
+    margin-left: 0px;
+  }
+  .all-data-of-card {
+    flex-direction: column;
+  }
+  .card-data2 {
+    margin-left: 0px;
+  }
+  .acc-name > input,
+  .acc-number > input,
+  .acc-cvv > input,
+  .acc-exp > input {
+    width: 285px;
+  }
+}
+
+@media (max-width: 565px) {
+  .credit-body {
+    height: 160px;
+    width: 296px;
+  }
+  .credit-chip {
+    right: 26px;
+    width: 70px;
+  }
+  .card-company {
+    width: 32px;
+  }
+  .first-layer {
+    padding-left: 15px;
+    padding-right: 13px;
+    padding-top: 5px;
+  }
+  .cvv-number,
+  .exp-date {
+    font-size: 11px;
+  }
+  .holder-name {
+    font-size: 12px;
+  }
+  .account-number {
+    font-size: 14px;
+    margin-top: 12px;
+  }
+  .all-data-of-card {
+    flex-direction: column;
+  }
+  .card-data2 {
+    margin-left: 0px;
+  }
+  .order-place-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .total-amount {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 520px) {
+  .payment-data {
+    padding: 32px;
+  }
+}
+
+@media (max-width: 500px) {
+  .payment-data {
+    margin-left: 12px;
+    margin-right: 12px;
+  }
+}
+
+@media (max-width: 385px) {
+  .credit-body {
+    transform: scale(0.8);
+  }
+  .credit-body {
+    font-size: 20px;
+  }
+  .choose-option {
+    font-size: 14px;
+  }
+  .card-head-details {
+    font-size: 22px;
+  }
+  .all-data-of-card {
+    font-size: 13px;
+  }
+  .payment-data {
+    width: 70%;
+  }
+  .acc-name > input,
+  .acc-number > input,
+  .acc-cvv > input,
+  .acc-exp > input {
+    width: 215px;
+  }
+}
+
+@media (max-width: 365px) {
+  .country > input,
+  .user-name > input,
+  .user-contact > input,
+  .user-email > input,
+  .user-address > input,
+  .user-pincode > input {
+    width: 140px;
+    height: 28px;
+  }
+}
+
+@media (max-width: 300px) {
+  .credit-body {
+    transform: scale(0.68);
+  }
+  .acc-name > input,
+  .acc-number > input,
+  .acc-cvv > input,
+  .acc-exp > input {
+    width: 180px;
+  }
+  .total-amount {
+    font-size: 14px;
+  }
+  .main-amount {
+    font-size: 15.5px;
+  }
+  .confirm-btn {
+    font-size: 15px;
   }
 }
