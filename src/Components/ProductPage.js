@@ -6,20 +6,16 @@ import "./productpage.css";
 import Rating from "../imgs/rating.png";
 import added from "../imgs/added.png";
 import add from "../imgs/not-added.png";
-import free from "../imgs/free.png";
 import { AddToCart, RemoveCart } from "../action/Cart";
 import { useSelector, useDispatch } from "react-redux";
-import tick from "../imgs/tick.png";
 import VanillaTilt from "vanilla-tilt";
+import LowerNav from "./LowerNav";
 
 function ProductPage() {
   const { id } = useParams();
   const [product, setProduct] = useState("");
   const [Size, setSize] = useState("");
-  const [pincode, setPincode] = useState("");
   const [AddedIds, setAddedIds] = useState([]);
-  const [pinDisplay, setpinDisplay] = useState("none");
-  const [invalidDisplay, setinvalidDisplay] = useState("none");
   const [reviews, setReviews] = useState(null);
   const Quantity = 1;
 
@@ -52,10 +48,6 @@ function ProductPage() {
 
   const isAdded = (itemId) => {
     return AddedIds.includes(itemId);
-  };
-
-  const handlePincode = (e) => {
-    setPincode(e.target.value);
   };
 
   useEffect(() => {
@@ -106,7 +98,7 @@ function ProductPage() {
     <>
       <Navbar />
       <div className="product-page">
-        <div className={product ? (`product-dataa animate`):(`product-dataa`)}>
+        <div className={product ? `product-dataa animate` : `product-dataa`}>
           <div className="item-image">
             <img
               ref={tiltRef}
@@ -199,53 +191,12 @@ function ProductPage() {
                 </p>
               </button>
             </div>
-            <div
-              style={product ? { display: "block" } : { display: "none" }}
-              className="extra-features"
-            >
-              <div className="free-delivery">
-                <img src={free} className="free" />
-                <p className="free-head">Free Delivery</p>
-              </div>
-              <div className="free-data">
-                <input
-                  type="number"
-                  inputMode="numeric"
-                  className="pincode"
-                  placeholder="Pincode"
-                  onChange={handlePincode}
-                  maxlength="6"
-                  value={pincode}
-                />
-                <button
-                  onClick={() => {
-                    if (pincode && pincode.length === 6) {
-                      setpinDisplay("flex");
-                      setinvalidDisplay("none");
-                    } else {
-                      setpinDisplay("none");
-                      setinvalidDisplay("block");
-                    }
-                  }}
-                  className="pin-check"
-                >
-                  Check
-                </button>
-              </div>
-              <div style={{ display: pinDisplay }} className="free-check">
-                <img src={tick} className="tick" />
-                <p className="available">
-                  <b>Free Delivery</b> is available at your location.
-                </p>
-              </div>
-              <p style={{ display: invalidDisplay }} className="invalid">
-                Please enter a valid pincode.
-              </p>
-            </div>
           </div>
         </div>
       </div>
-
+      <div className="lowerNav">
+        <LowerNav />
+      </div>
       {product ? <Footer /> : ""}
     </>
   );
