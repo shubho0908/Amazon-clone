@@ -157,6 +157,7 @@
 .right-btns {
   margin-top: 20px;
   margin-left: 45px;
+  font-family: "Poppins", sans-serif;
   display: flex;
 }
 .save-btn,
@@ -408,5 +409,17 @@
   }
   .promocode > input {
     width: 82px;
+  }
+}
+
+@media (max-width: 450px) {
+  .empty-cart-img {
+    width: 290px;
+  }
+}
+
+@media (max-width: 300px) {
+  .empty-cart-img {
+    width: 240px;
   }
 }

@@ -252,3 +252,46 @@ a {
     padding-right: 115px;
   }
 }
+
+@media (max-width: 1120px) {
+  .empty-text {
+    margin-right: 35px;
+  }
+}
+
+@media (max-width: 830px) {
+  .empty-img {
+    width: 360px;
+  }
+  .empty-head {
+    font-size: 22px;
+  }
+  .empty-desc,
+  .shopping {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 720px) {
+  .empty-list {
+    flex-direction: column;
+  }
+  .empty-text {
+    margin-left: 35px;
+  }
+}
+
+@media (max-width: 420px) {
+  .empty-img {
+    width: 280px;
+  }
+}
+
+@media (max-width: 350px) {
+  .empty-desc, .shopping{
+    font-size: 13px;
+  }
+  .empty-img{
+    width: 230px;
+  }
+}

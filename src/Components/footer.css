@@ -101,7 +101,8 @@
 
 @media (max-width: 420px) {
   .disclaimer-area {
-    height: 135px;
+    font-size: 14px;
+    height: 110px;
   }
 }
 
