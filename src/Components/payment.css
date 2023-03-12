@@ -503,7 +503,7 @@ input[type="radio"] {
   .user-email > input,
   .user-address > input,
   .user-pincode > input {
-    width: 140px;
+    width: 180px;
     height: 28px;
   }
 }
