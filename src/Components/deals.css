@@ -152,3 +152,20 @@
   font-weight: 600;
   margin-left: 6px;
 }
+
+/* MEDIA QUERIES  */
+
+@media (max-width: 690px) {
+  .deal-items {
+    padding-right: 22px;
+  }
+}
+
+@media (max-width: 420px) {
+  .deals-head {
+    font-size: 20px;
+  }
+  .Deals {
+    top: 125px;
+  }
+}

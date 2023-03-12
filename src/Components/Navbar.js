@@ -1,5 +1,6 @@
 import { React, useEffect, useState, useRef } from "react";
 import Logo from "../imgs/logo.png";
+import LogoSmall from "../imgs/A-logo.png";
 import search from "../imgs/search.png";
 import wishlist from "../imgs/wishlist.png";
 import cart from "../imgs/cart.png";
@@ -21,6 +22,7 @@ function Navbar() {
   const [user, setUser] = useState(null);
   const [searchText, setSearchText] = useState("");
   const [Products, setProducts] = useState([]);
+  const [logoSrc, setLogoSrc] = useState(Logo);
 
   const navigate = useNavigate();
 
@@ -77,6 +79,18 @@ function Navbar() {
     0
   );
 
+  useEffect(() => {
+    function handleResize() {
+      if (window.innerWidth <= 450) {
+        setLogoSrc(LogoSmall);
+      } else {
+        setLogoSrc(Logo);
+      }
+    }
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   return (
     <>
       <div className="navbar">
@@ -98,9 +112,10 @@ function Navbar() {
                 navigate({ pathname: "/home" });
               }
             }}
-            src={Logo}
+            src={logoSrc}
             className="logo"
           />
+
           <div className="search-bar">
             <input
               type="text"
@@ -219,7 +234,20 @@ function Navbar() {
             className="default"
           />
         </div>
+        <div className="search-bar2">
+          <input
+            type="text"
+            className="search-box"
+            placeholder="Search..."
+            value={searchText}
+            onChange={(e) => setSearchText(e.target.value)}
+          />
+          <button className="search-btn">
+            <img src={search} className="search-img" />
+          </button>
+        </div>
       </div>
+
       {searchText !== "" && (
         <div
           ref={searchResultsRef}

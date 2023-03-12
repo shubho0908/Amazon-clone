@@ -80,99 +80,106 @@ function LowerNav() {
   return (
     <>
       <div className="navbar2">
-          <img
-            onClick={() => {
-              if (window.location.href.includes("/payment")) {
-                swal({
-                  title: "Are you sure?",
-                  text: "Your transaction is still pending!",
-                  icon: "warning",
-                  buttons: ["Cancel", "Yes"],
-                }).then((willNavigate) => {
-                  if (willNavigate) {
-                    navigate("/wishlists");
-                  }
-                });
-              } else {
-                navigate("/wishlists");
+        <div className="right-content2">
+          <div className="right-one">
+            <img
+              onClick={() => {
+                if (window.location.href.includes("/payment")) {
+                  swal({
+                    title: "Are you sure?",
+                    text: "Your transaction is still pending!",
+                    icon: "warning",
+                    buttons: ["Cancel", "Yes"],
+                  }).then((willNavigate) => {
+                    if (willNavigate) {
+                      navigate("/wishlists");
+                    }
+                  });
+                } else {
+                  navigate("/wishlists");
+                }
+              }}
+              src={wishlist}
+              className="wishlist"
+            />
+            <p
+              style={
+                ListItems && ListItems.length > 0
+                  ? { opacity: 1 }
+                  : { opacity: 0 }
               }
-            }}
-            src={wishlist}
-            className="wishlist"
-          />
-          <p
-            style={
-              ListItems && ListItems.length > 0
-                ? { opacity: 1 }
-                : { opacity: 0 }
-            }
-            className="list-count"
-          >
-            {ListItems.length}
-          </p>
+              className="list-count"
+            >
+              {ListItems.length}
+            </p>
+          </div>
 
-          <img
-            onClick={() => {
-              if (window.location.href.includes("/payment")) {
-                swal({
-                  title: "Are you sure?",
-                  text: "Your transaction is still pending!",
-                  icon: "warning",
-                  buttons: ["Cancel", "Yes"],
-                }).then((willNavigate) => {
-                  if (willNavigate) {
-                    navigate("/cart");
-                  }
-                });
-              } else {
-                navigate("/cart");
+          <div className="right-two">
+            <img
+              onClick={() => {
+                if (window.location.href.includes("/payment")) {
+                  swal({
+                    title: "Are you sure?",
+                    text: "Your transaction is still pending!",
+                    icon: "warning",
+                    buttons: ["Cancel", "Yes"],
+                  }).then((willNavigate) => {
+                    if (willNavigate) {
+                      navigate("/cart");
+                    }
+                  });
+                } else {
+                  navigate("/cart");
+                }
+              }}
+              src={cart}
+              className="cart"
+            />
+
+            <p
+              style={
+                CartItems && CartItems.length > 0
+                  ? { opacity: 1 }
+                  : { opacity: 0 }
               }
-            }}
-            src={cart}
-            className="cart"
-          />
+              className="cart-count"
+            >
+              {totalQuantity}
+            </p>
+          </div>
 
-          <p
-            style={
-              CartItems && CartItems.length > 0
-                ? { opacity: 1 }
-                : { opacity: 0 }
-            }
-            className="cart-count"
-          >
-            {totalQuantity}
-          </p>
-
-          <img
-            onClick={() => {
-              if (window.location.href.includes("/payment")) {
-                swal({
-                  title: "Are you sure?",
-                  text: "Your transaction is still pending!",
-                  icon: "warning",
-                  buttons: ["Cancel", "Yes"],
-                }).then((willNavigate) => {
-                  if (willNavigate) {
-                    navigate("/orders");
-                  }
-                });
-              } else {
-                navigate("/orders");
+          <div className="right-three">
+            <img
+              onClick={() => {
+                if (window.location.href.includes("/payment")) {
+                  swal({
+                    title: "Are you sure?",
+                    text: "Your transaction is still pending!",
+                    icon: "warning",
+                    buttons: ["Cancel", "Yes"],
+                  }).then((willNavigate) => {
+                    if (willNavigate) {
+                      navigate("/orders");
+                    }
+                  });
+                } else {
+                  navigate("/orders");
+                }
+              }}
+              src={orders}
+              className="orders"
+            />
+            <p
+              style={
+                OrderItems && OrderItems.length > 0
+                  ? { opacity: 1 }
+                  : { opacity: 0 }
               }
-            }}
-            src={orders}
-            className="orders"
-          />
-          <p
-            style={
-              OrderItems && OrderItems.length > 0
-                ? { opacity: 1 }
-                : { opacity: 0 }
-            }
-            className="order-count"
-          >
-            {totalLength}
-          </p>
+              className="order-count"
+            >
+              {totalLength}
+            </p>
+          </div>
 
           <img
             onClick={() => navigate("/account")}
@@ -183,6 +190,7 @@ function LowerNav() {
             }
             className="default"
           />
+        </div>
       </div>
       {searchText !== "" && (
         <div

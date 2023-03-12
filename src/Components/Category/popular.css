@@ -18,13 +18,12 @@
 .jwellery,
 .men,
 .women {
-    cursor: pointer;
+  cursor: pointer;
   width: 50px;
   background-color: white;
   padding: 15px;
   border-radius: 15px;
   box-shadow: rgba(0, 0, 0, 0.04) 0px 3px 5px;
-
 }
 .jwellery,
 .men,
@@ -38,16 +37,53 @@
   justify-content: center;
 }
 
-img{
+img {
   transition: background-color 0.3s ease;
-
 }
 
 /* MEDIA QUERIES  */
 
-@media (max-width: 720px) {
-  .popular{
+@media (max-width: 768px) {
+  .popular {
     width: 93%;
   }
-  
+}
+
+@media (max-width: 530px) {
+  .popular {
+    width: 87%;
+  }
+  .electronics,
+  .jwellery,
+  .men,
+  .women {
+    width: 38px;
+  }
+}
+
+@media (max-width: 420px) {
+  .popular {
+    width: 84%;
+  }
+  .electronics,
+  .jwellery,
+  .men,
+  .women {
+    width: 32px;
+  }
+  .popular-items {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 70px);
+    grid-gap: 10px;
+    justify-content: center;
+    align-items: center;
+  }
+  .jwellery,
+  .men,
+  .women {
+    margin: 0;
+  }
+  .popular-head{
+    font-size: 20px;
+  }
 }
