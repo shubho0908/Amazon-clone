@@ -353,6 +353,12 @@ a {
   .right-three {
     margin: 0;
   }
+  .search-results {
+    width: fit-content;
+    right: 15px;
+    left: 15px;
+    top: 80px;
+  }
 }
 
 @media (max-width: 290px) {
