@@ -6,6 +6,7 @@ import { app } from "../Firebase";
 import Default from "../imgs/default.png";
 import USER from "../imgs/user.png";
 import contact from "../imgs/contact.png";
+import LowerNav from "./LowerNav";
 import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 
@@ -16,7 +17,6 @@ function Profile() {
   const [image, setImage] = useState("");
   const navigate = useNavigate();
 
-  
   const checkDP = () => {
     if (user && user.photoURL && user.photoURL.includes("https")) {
       setImage(user.photoURL);
@@ -30,8 +30,11 @@ function Profile() {
 
   useEffect(() => {
     checkDP();
-  }, [user])
-  
+  }, [user]);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
@@ -41,7 +44,6 @@ function Profile() {
         setUser(null);
       }
     });
-
   }, []);
 
   return (
@@ -101,6 +103,9 @@ function Profile() {
             </div>
           </div>
         </div>
+      </div>
+      <div className="lowerNav">
+        <LowerNav />
       </div>
       <Footer />
     </>
