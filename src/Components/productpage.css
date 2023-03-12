@@ -363,7 +363,6 @@
   .rating-img {
     width: 20px;
   }
-  
 }
 
 @media (max-width: 520px) {
@@ -404,6 +403,13 @@
     top: 225px;
     padding-bottom: 78.8vw;
   }
+  .cart-img {
+    width: 21.5px;
+  }
+  .buy-btn,
+  .add-cart-btn {
+    font-size: 13.7px;
+  }
 }
 
 @media (max-width: 430px) {
@@ -411,6 +417,12 @@
     display: grid;
     grid-template-columns: repeat(auto-fill, 50px);
     grid-gap: 6px; /* adjust as needed */
+    justify-content: center;
+  }
+}
+
+@media (max-width: 400px) {
+  .buying-buttons {
     justify-content: center;
   }
 }

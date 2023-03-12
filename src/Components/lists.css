@@ -95,10 +95,10 @@
   transition: all 0.3s;
   opacity: 0;
   visibility: hidden;
-  transition: all .18s ease;
+  transition: all 0.18s ease;
 }
 
-.view2:hover{
+.view2:hover {
   transform: scale(1.06);
 }
 .card-data {
@@ -229,18 +229,26 @@ a {
   text-decoration: none;
 }
 
-.animate{
-  animation: floatzoom .5s ease;
+.animate {
+  animation: floatzoom 0.5s ease;
   transition: all 0.5s ease;
 }
 
 @keyframes floatzoom {
-  0%{
+  0% {
     opacity: 0;
     transform: scale(0.96);
   }
-  100%{
+  100% {
     opacity: 1;
     transform: scale(1);
+  }
+}
+
+/* MEDIA QUERIES  */
+
+@media (max-width: 768px) {
+  .lists-items {
+    padding-right: 115px;
   }
 }

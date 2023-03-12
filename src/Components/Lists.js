@@ -9,6 +9,7 @@ import rating from "../imgs/rating.png";
 import Navbar from "./Navbar";
 import empty from "../imgs/empty.png";
 import { NavLink } from "react-router-dom";
+import LowerNav from "./LowerNav";
 import "./lists.css";
 
 function Lists() {
@@ -106,6 +107,9 @@ function Lists() {
                 );
               })}
           </div>
+        </div>
+        <div className="lowerNav">
+          <LowerNav />
         </div>
         <Footer />
       </div>
