@@ -97,7 +97,10 @@ function ProductPage() {
   return (
     <>
       <Navbar />
-      <div className="product-page">
+      <div
+        style={product ? { height: "100%" } : { height: "100vh" }}
+        className="product-page"
+      >
         <div className={product ? `product-dataa animate` : `product-dataa`}>
           <div className="item-image">
             <img

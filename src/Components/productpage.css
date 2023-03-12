@@ -13,8 +13,8 @@
   justify-content: space-evenly;
   top: 180px;
   width: 75%;
-  height: 100vh;
-  margin-bottom: 20px;
+  height: 100%;
+  margin-bottom: 210px;
 }
 
 .product-details {
@@ -340,6 +340,7 @@
     flex-direction: column;
     align-items: center;
     padding-bottom: 32vw;
+    margin-bottom: 0;
   }
   .item-img {
     width: 180px;
@@ -362,6 +363,7 @@
   .rating-img {
     width: 20px;
   }
+  
 }
 
 @media (max-width: 520px) {
