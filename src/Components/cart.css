@@ -9,7 +9,7 @@
 .cart-item-img {
   width: 55px;
   cursor: pointer;
-  transition: all .3s ease;
+  transition: all 0.3s ease;
 }
 
 .cart-item-img:hover {
@@ -171,7 +171,7 @@
 }
 
 .empty-cart-img {
-  margin-top:10px;
+  margin-top: 10px;
   width: 350px;
 }
 
@@ -311,4 +311,102 @@
   font-weight: bolder;
   font-family: "Poppins";
   font-size: 18px;
+}
+
+/* MEDIA QUERIES */
+
+@media (max-width: 900px) {
+  .cart-section {
+    flex-direction: column;
+    align-items: center;
+  }
+  .checkout-section {
+    margin-left: 0px;
+    margin-top: 40px;
+  }
+}
+
+@media (max-width: 476px) {
+  .cart-discount {
+    width: fit-content;
+  }
+
+  .total,
+  .total-price,
+  .total-price2 {
+    font-size: 16px;
+  }
+
+  .congrats > p {
+    font-size: 13.6px;
+  }
+
+  .payment,
+  .promocode-btn {
+    font-size: 15.6px;
+  }
+
+  .cart-size {
+    font-size: 13.6px;
+  }
+
+  .cart-details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .cart-title {
+    font-size: 13.8px;
+    width: 78%;
+  }
+  .cart-discount {
+    font-size: 15.5px;
+  }
+  .increase,
+  .decrease {
+    font-size: 17.5px;
+  }
+  .quantity-section > p {
+    font-size: 15px;
+  }
+  .save-btn > p,
+  .delete-btn > p {
+    display: none;
+  }
+  .promocode > input {
+    width: 186px;
+  }
+}
+
+@media (max-width: 400px) {
+  .cart-data {
+    flex-direction: column;
+  }
+  .cart-all-data {
+    margin-top: 32px;
+  }
+  .cart-item-img {
+    width: 80px;
+  }
+  .promocode > input {
+    width: 135px;
+  }
+}
+
+@media (max-width: 318px) {
+  .right-btns {
+    margin-left: 18px;
+  }
+  .promocode > input {
+    width: 108px;
+  }
+}
+
+@media (max-width: 280px) {
+  .cart-item {
+    width: 89%;
+  }
+  .promocode > input {
+    width: 82px;
+  }
 }

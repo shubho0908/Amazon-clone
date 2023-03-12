@@ -419,6 +419,12 @@
     grid-gap: 6px; /* adjust as needed */
     justify-content: center;
   }
+  .item-title {
+    font-size: 22px;
+  }
+  .item-desc {
+    font-size: 12px;
+  }
 }
 
 @media (max-width: 400px) {

@@ -11,6 +11,7 @@ import Delete from "../imgs/delete.png";
 import Empty from "../imgs/cart-empty.png";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import LowerNav from "./LowerNav";
 
 function CartSection() {
   const CartItems = useSelector((state) => state.CartItemsAdded.CartItems);
@@ -74,7 +75,10 @@ function CartSection() {
       <Navbar />
 
       <div className="entire-section">
-        <p style={{ margin: 0 }} className={CartItems ? (`cart-head animate`):(`cart-head`)}>
+        <p
+          style={{ margin: 0 }}
+          className={CartItems ? `cart-head animate` : `cart-head`}
+        >
           Your Cart
         </p>
         <div
@@ -83,7 +87,7 @@ function CartSection() {
               ? { height: "40vh" }
               : { height: "100%" }
           }
-          className={CartItems ? (`cart-section animate`):(`cart-section`)}
+          className={CartItems ? `cart-section animate` : `cart-section`}
         >
           <div className="cart-details">
             <div
@@ -100,7 +104,12 @@ function CartSection() {
               {CartItems.map((item) => {
                 return (
                   <div className="cart-data" key={item.id}>
-                    <img onClick={()=> navigate(`/product/${item.id}`)} src={item.image} alt="" className="cart-item-img" />
+                    <img
+                      onClick={() => navigate(`/product/${item.id}`)}
+                      src={item.image}
+                      alt=""
+                      className="cart-item-img"
+                    />
                     <div className="cart-all-data">
                       <p className="cart-title">{item.title}</p>
                       <div className="cart-price">
@@ -298,6 +307,9 @@ function CartSection() {
             </div>
           </div>
         </div>
+      </div>
+      <div className="lowerNav">
+        <LowerNav />
       </div>
       <Footer />
     </>
