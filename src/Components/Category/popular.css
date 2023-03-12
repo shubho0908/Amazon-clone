@@ -42,3 +42,12 @@ img{
   transition: background-color 0.3s ease;
 
 }
+
+/* MEDIA QUERIES  */
+
+@media (max-width: 720px) {
+  .popular{
+    width: 93%;
+  }
+  
+}
