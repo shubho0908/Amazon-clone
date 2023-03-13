@@ -90,6 +90,12 @@
   }
 }
 
+@media (max-width: 720px) {
+  .developer {
+    display: none;
+  }
+}
+
 @media (max-width: 680px) {
   .link-section {
     display: none;

@@ -7,7 +7,7 @@ import cart from "../imgs/cart.png";
 import orders from "../imgs/orders.png";
 import Default from "../imgs/default.png";
 import { useSelector } from "react-redux";
-import { NavLink, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./navbar.css";
 import { app } from "../Firebase";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
@@ -22,7 +22,6 @@ function Navbar() {
   const [user, setUser] = useState(null);
   const [searchText, setSearchText] = useState("");
   const [Products, setProducts] = useState([]);
-  const [logoSrc, setLogoSrc] = useState(Logo);
 
   const navigate = useNavigate();
 

@@ -92,7 +92,7 @@ function ProductPage() {
   };
 
   const limited = product && product.description;
-  const DescLimited = limited ? limited.slice(0, 200) + "." : "";
+  // const DescLimited = limited ? limited.slice(0, 200) + "." : "";
 
   return (
     <>
@@ -111,14 +111,16 @@ function ProductPage() {
           </div>
           <div className="product-details">
             <p className="item-title">{product.title}</p>
-            <p className="item-desc">{DescLimited}</p>
-            <div className="item-rating">
-              <img src={product && Rating} className="rating-img" />
-              <img src={product && Rating} className="rating-img" />
-              <img src={product && Rating} className="rating-img" />
-              <img src={product && Rating} className="rating-img" />
-              <img src={product && Rating} className="rating-img" />
-              <p className="rating-no">{product ? `(${reviews})` : ""}</p>
+            <p className="item-desc">{product.description}</p>
+            <div className="price-section">
+              <div className="item-rating">
+                <img src={product && Rating} className="rating-img" />
+                <img src={product && Rating} className="rating-img" />
+                <img src={product && Rating} className="rating-img" />
+                <img src={product && Rating} className="rating-img" />
+                <img src={product && Rating} className="rating-img" />
+                <p className="rating-no">{product ? `(${reviews})` : ""}</p>
+              </div>
             </div>
             {product ? <hr className="horizontal" /> : ""}
             <div
@@ -170,6 +172,16 @@ function ProductPage() {
             ) : (
               ""
             )}
+            {product ? (
+              <div className="product-actual-price">
+                <p className="price-one">Price:</p>
+                <p className="price-two">${product.price}</p>
+                <p className="mrp">${Math.round(product.price * 1.66)}</p>
+              </div>
+            ) : (
+              ""
+            )}
+
             <div
               style={product ? { display: "flex" } : { display: "none" }}
               className="buying-buttons"
