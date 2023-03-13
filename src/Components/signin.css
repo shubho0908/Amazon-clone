@@ -269,6 +269,7 @@
 @media (max-width: 350px) {
   .signin-page {
     background-color: white;
+    padding-top: 20px;
   }
   .login-form {
     box-shadow: none;

@@ -14,7 +14,8 @@ import {
   updateProfile,
 } from "firebase/auth";
 import swal from "sweetalert";
-
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
@@ -26,6 +27,18 @@ function Signup() {
   const [emailError, setEmailError] = useState("");
   const [bgLoaded, setBgLoaded] = useState(false);
   const [PasswordError, setPasswordError] = useState("");
+  const [NameError, setNameError] = useState("");
+  const notify1 = () =>
+    toast.error("Please fill-up all the credentials properly!", {
+      position: "top-center",
+      autoClose: 1200,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+    });
 
   const navigate = useNavigate();
   const handleEmailChange = (event) => {
@@ -49,6 +62,14 @@ function Signup() {
       setEmailError("Please enter a valid email address.");
     } else {
       setEmailError("");
+    }
+  };
+
+  const handleNameBlur = (event) => {
+    if (event.target.value === "") {
+      setNameError("Please enter your name.");
+    } else {
+      setNameError("");
     }
   };
 
@@ -79,7 +100,7 @@ function Signup() {
         text: error.message,
         icon: "error",
         buttons: "Ok",
-      })
+      });
     }
   };
 
@@ -94,7 +115,7 @@ function Signup() {
           text: error.message,
           icon: "error",
           buttons: "Ok",
-        })
+        });
       });
   };
 
@@ -104,6 +125,7 @@ function Signup() {
 
   return (
     <>
+      <ToastContainer />
       <div className="signin-page">
         <div className="login-navbar">
           <div className="main-logo">
@@ -134,9 +156,11 @@ function Signup() {
                   placeholder="Name"
                   className="name"
                   value={name}
+                  onBlur={handleNameBlur}
                   onChange={handleNameChange}
                   required
                 />
+                {NameError && <div className="error-message">{NameError}</div>}
                 <input
                   type="email"
                   placeholder="Enter Email"
@@ -162,7 +186,16 @@ function Signup() {
                 {PasswordError && (
                   <div className="error-message">{PasswordError}</div>
                 )}
-                <button onClick={CreateUser} className="signin-btn">
+                <button
+                  onClick={() => {
+                    if (name === "" || email === "" || password === "") {
+                      notify1();
+                    } else {
+                      CreateUser();
+                    }
+                  }}
+                  className="signin-btn"
+                >
                   Sign up
                 </button>
                 <div className="extra-buttons">
