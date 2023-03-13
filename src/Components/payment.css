@@ -506,12 +506,11 @@ input[type="radio"] {
     width: 180px;
     height: 28px;
   }
+
 }
 
 @media (max-width: 300px) {
-  .credit-body {
-    transform: scale(0.68);
-  }
+
   .acc-name > input,
   .acc-number > input,
   .acc-cvv > input,
