@@ -77,7 +77,7 @@
   justify-content: center;
   position: relative;
   bottom: 30vw;
-  padding-bottom:22px
+  padding-bottom: 22px;
 }
 
 .main-form2 {
@@ -85,7 +85,7 @@
   justify-content: center;
   position: relative;
   bottom: 32vw;
-  padding-bottom:22px
+  padding-bottom: 22px;
 }
 
 .background {
@@ -196,6 +196,10 @@
   .main-form {
     bottom: 25vw;
   }
+
+  .main-form2 {
+    bottom: 26vw;
+  }
 }
 
 @media (max-width: 530px) {
@@ -206,17 +210,29 @@
   .main-form {
     bottom: 17vw;
   }
-  .main-form2{
+  .main-form2 {
     bottom: 24vw;
   }
 }
 
 @media (max-width: 460px) {
-  .login-navbar {
-    flex-direction: column;
-  }
   .main-form {
     bottom: 20vw;
+  }
+  .signup-btn,
+  .signin-btn {
+    padding: 8px;
+  }
+  .main-form2 {
+    bottom: 20vw;
+  }
+  .login-navbar {
+    padding-left: 25px;
+    padding-right: 25px;
+    justify-content: space-between;
+  }
+  .amazon-logo {
+    width: 110px;
   }
   .email,
   .password,
@@ -232,25 +248,30 @@
 }
 
 @media (max-width: 400px) {
-  .login-form {
-    padding: 0px;
-    box-shadow: none;
-  }
-
   .main-form {
     bottom: 12vw;
   }
-  .main-form2{
-    bottom: 18vw;
+  .main-form2 {
+    bottom: 10vw;
   }
 
+  .email,
+  .password,
+  .name {
+    width: 220px;
+  }
+  .login-form {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+}
+
+@media (max-width: 350px) {
   .signin-page {
     background-color: white;
   }
-
-  .signup-btn,
-  .signin-btn {
-    padding: 8px;
+  .login-form {
+    box-shadow: none;
   }
 }
 
@@ -261,7 +282,7 @@
     width: 205px;
   }
 
-  .main-form2{
+  .main-form2 {
     bottom: 14vw;
   }
 
