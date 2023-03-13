@@ -13,6 +13,8 @@ Firebase Authentication
 
 Firebase Firestore
 
+FakeStore API
+
 
 # Features
 
