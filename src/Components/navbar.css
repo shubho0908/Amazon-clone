@@ -221,7 +221,6 @@ a {
   display: flex;
   align-items: center;
   padding: 20px;
-  width: fit-content;
   padding-top: 15px;
   padding-bottom: 15px;
   transition: all 0.2s ease;

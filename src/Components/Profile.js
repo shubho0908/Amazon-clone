@@ -97,7 +97,7 @@ function Profile() {
                     <p className="mail-data">Contact</p>
                     <img src={contact} className="mail-photo" />
                   </div>
-                  <p className="users-mail">{user ? `${user.email}` : ""}</p>
+                  <p className="users-mail">{user ? `${user.email.slice(0,15) + "..."}` : ""}</p>
                 </div>
               </div>
             </div>
