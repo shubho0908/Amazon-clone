@@ -351,18 +351,6 @@ function Payment() {
     }
   };
 
-  if (window.location.href.includes("/payment")) {
-    window.addEventListener("popstate", function (event) {
-      event.preventDefault();
-      swal({
-        title: "Error",
-        text: "Purchase wasn't successful!",
-        icon: "error",
-        buttons: "Ok",
-      });
-    });
-  }
-
   return (
     <>
       <Navbar />

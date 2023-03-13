@@ -75,50 +75,52 @@ function Orders() {
               <div className="no-orders-txt"></div>
             </div>
           </div>
-          {OrderItems &&
-            OrderItems.map((order) => {
-              return order.map((item) => {
-                return (
-                  <NavLink
-                    to={`/product/${item.id}`}
-                    key={item.id}
-                    className="nav-link2"
-                  >
-                    <div className="order">
-                      <img src={item.image} className="order-img" />
-                      <div className="order-text">
-                        <p className="order-head">{item.title}</p>
-                        <p className="order-category">{item.category}</p>
-                        <p className="order-quantity">
-                          Number of items: <b>{item.quantity}</b>
-                        </p>
-                        {item.category === "men's clothing" ||
-                        item.category === "women's clothing" ? (
-                          <p className="order-size">
-                            Size: <b>{item.size}</b>
+          <div className="all-orders">
+            {OrderItems &&
+              OrderItems.map((order) => {
+                return order.map((item) => {
+                  return (
+                    <NavLink
+                      to={`/product/${item.id}`}
+                      key={item.id}
+                      className="nav-link2"
+                    >
+                      <div className="order">
+                        <img src={item.image} className="order-img" />
+                        <div className="order-text">
+                          <p className="order-head">{item.title}</p>
+                          <p className="order-category">{item.category}</p>
+                          <p className="order-quantity">
+                            Number of items: <b>{item.quantity}</b>
                           </p>
-                        ) : (
-                          ""
-                        )}
-                        <div className="order-success">
-                          <img src={Done} className="order-done" />
-                          <p
-                            style={{
-                              marginLeft: "5px",
-                              marginTop: 0,
-                              marginBottom: 0,
-                            }}
-                            className="order-dispatch"
-                          >
-                            Ordered succesfully! Soon to be dispatch!
-                          </p>
+                          {item.category === "men's clothing" ||
+                          item.category === "women's clothing" ? (
+                            <p className="order-size">
+                              Size: <b>{item.size}</b>
+                            </p>
+                          ) : (
+                            ""
+                          )}
+                          <div className="order-success">
+                            <img src={Done} className="order-done" />
+                            <p
+                              style={{
+                                marginLeft: "5px",
+                                marginTop: 0,
+                                marginBottom: 0,
+                              }}
+                              className="order-dispatch"
+                            >
+                              Ordered succesfully! Soon to be dispatch!
+                            </p>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </NavLink>
-                );
-              });
-            })}
+                    </NavLink>
+                  );
+                });
+              })}
+          </div>
         </div>
       </div>
       <div className="lowerNav">
