@@ -3,6 +3,11 @@
 
 This is a clone of Amazon web application, with improved UI and all major functionalities such as adding products to wishlist, browsing different product categories, adding products to cart, managing shipping details, and payment options. The project is responsive and can be used on any device.
 
+**Demo Video**
+
+
+https://user-images.githubusercontent.com/81776711/224985061-d7012611-8997-4a6b-ba7c-a4fc7f2c9954.mp4
+
 
 # Technologies Used
 
