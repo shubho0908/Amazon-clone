@@ -246,6 +246,12 @@
   margin: 0;
 }
 
+.user-contact > input::-webkit-inner-spin-button,
+.user-contact > input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 .last-layer {
   display: flex;
   margin-top: 40px;

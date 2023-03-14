@@ -399,7 +399,7 @@ function Payment() {
                   <div className="user-contact">
                     <p className="user-number">Contact Number*</p>
                     <input
-                      type="text"
+                      type="number"
                       placeholder="Number"
                       onChange={handleNumber}
                       onBlur={handleNumberBlur}
