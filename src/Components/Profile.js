@@ -17,6 +17,8 @@ function Profile() {
   const [image, setImage] = useState("");
   const navigate = useNavigate();
 
+  document.title = "Profile section"
+
   const checkDP = () => {
     if (user && user.photoURL && user.photoURL.includes("https")) {
       setImage(user.photoURL);
@@ -69,7 +71,9 @@ function Profile() {
               <button
                 onClick={() => {
                   signOut(auth);
-                  navigate("/signup");
+                  setTimeout(() => {
+                    navigate("/signup"); 
+                  }, 700);
                 }}
                 className="signout-btn"
               >

@@ -26,6 +26,8 @@ function CartSection() {
 
   const navigate = useNavigate();
 
+  document.title = "Cart section"
+
   useEffect(() => {
     const newSubtotal = CartItems.reduce(
       (total, item) => total + item.price * item.quantity,

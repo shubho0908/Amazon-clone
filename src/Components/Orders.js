@@ -12,6 +12,8 @@ import LowerNav from "./LowerNav";
 function Orders() {
   const OrderItems = useSelector((state) => state.OrderAdded.OrderItems);
 
+  document.title = "Orders section"
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);

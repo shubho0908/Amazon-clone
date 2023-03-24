@@ -28,6 +28,9 @@ function Signup() {
   const [bgLoaded, setBgLoaded] = useState(false);
   const [PasswordError, setPasswordError] = useState("");
   const [NameError, setNameError] = useState("");
+
+  document.title = "Amazon"
+
   const notify1 = () =>
     toast.error("Please fill-up all the credentials properly!", {
       position: "top-center",

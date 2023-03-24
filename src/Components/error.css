@@ -1,0 +1,70 @@
+.error-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin-top: 140px;
+  animation: floatzoom .35s ease;
+}
+.big-error {
+  font-size: 200px;
+  margin: 0;
+}
+
+.medium-error {
+  font-size: 50px;
+  margin: 0;
+  font-weight: 500;
+  position: relative;
+}
+
+.wrong {
+  margin: 0;
+  font-size: 50px;
+  position: relative;
+  top: 20px;
+  font-family: "Noto Sans", sans-serif;
+}
+
+.back-home {
+  cursor: pointer;
+  height: 50px;
+  padding: 3px;
+  border: none;
+  background-color: rgb(255, 149, 0);
+  padding-left: 22px;
+  padding-right: 22px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  color: white;
+  transition: all 0.3s ease;
+  font-size: 18px;
+  border-radius: 5px;
+  transition: all 0.13s;
+  margin-top: 55px;
+}
+
+.back-home:hover {
+  transform: scale(1.05);
+}
+
+.back-home:active {
+  transform: scale(1);
+}
+
+@media (max-width: 450px) {
+  .error-page {
+    margin-top: 0px;
+    height: 100vh;
+  }
+  .big-error {
+    font-size: 100px;
+  }
+  .medium-error {
+    font-size: 32px;
+  }
+  .wrong {
+    font-size: 38px;
+  }
+}

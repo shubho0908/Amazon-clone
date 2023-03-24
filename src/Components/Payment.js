@@ -47,6 +47,8 @@ function Payment() {
   const [cardDisplay, setcardDisplay] = useState("none");
   const [currentDateTime, setCurrentDateTime] = useState("");
 
+  document.title = "Payment section"
+
   const notify1 = () =>
     toast.error("Please fill-up the form correctly!", {
       position: "top-center",

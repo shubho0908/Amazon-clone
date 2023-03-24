@@ -25,6 +25,8 @@ function Signin() {
   const [bgLoaded, setBgLoaded] = useState(false);
   const navigate = useNavigate();
 
+  document.title = "Amazon"
+
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
   };

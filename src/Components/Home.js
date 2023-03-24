@@ -7,6 +7,8 @@ import Navbar from './Navbar'
 function Home() {
   const [scrollPosition, setScrollPosition] = useState(0);
 
+  document.title = "Amazon"
+
   const handleScroll = () => {
     window.scrollTo({
       top: scrollPosition + 750, 

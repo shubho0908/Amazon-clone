@@ -17,6 +17,8 @@ function Lists() {
   const ListItems = useSelector((state) => state.ItemsAdded.ListItems);
   const dispatch = useDispatch();
 
+  document.title = "Wishlist section"
+
   useEffect(() => {
     // Update the added ids whenever the list items change
     const ids = ListItems.map((item) => item.id);
