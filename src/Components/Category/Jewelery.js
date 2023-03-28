@@ -8,6 +8,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
 import Footer from "../Footer";
 import Spinner from "../Spinner";
+import LowerNav from "../LowerNav";
 
 function Jewelery() {
   const [AllProducts, setAllProducts] = useState([]);
@@ -101,6 +102,9 @@ function Jewelery() {
               </div>
             );
           })}
+      </div>
+      <div className="lowerNav">
+        <LowerNav />
       </div>
       <Footer />
     </div>
